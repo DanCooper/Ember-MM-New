@@ -176,6 +176,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\convert.exe" />
     <Content Include="Langs\generic.EmberCore.NMT.Debug_%28db_DB%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
