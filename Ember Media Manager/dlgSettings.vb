@@ -1577,6 +1577,17 @@ Public Class dlgSettings
         If Not Me.chkOutline.Checked Then Me.chkOutlineForPlot.Checked = False
     End Sub
 
+    Private Sub chkPlotForOutline_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPlotForOutline.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkPlot_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPlot.CheckedChanged
+        Me.SetApplyButton(True)
+
+        Me.chkPlotForOutline.Enabled = Me.chkPlot.Checked
+        If Not Me.chkPlot.Checked Then Me.chkPlotForOutline.Checked = False
+    End Sub
+
     Private Sub chkOverwriteAllSPoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkOverwriteAllSPoster.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -1618,10 +1629,6 @@ Public Class dlgSettings
     End Sub
 
     Private Sub chkPersistImgCache_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPersistImgCache.CheckedChanged
-        Me.SetApplyButton(True)
-    End Sub
-
-    Private Sub chkPlot_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPlot.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2436,6 +2443,7 @@ Public Class dlgSettings
             Me.chkNoDisplayFanart.Checked = Master.eSettings.NoDisplayFanart
             Me.chkNoDisplayPoster.Checked = Master.eSettings.NoDisplayPoster
             Me.chkOutlineForPlot.Checked = Master.eSettings.OutlineForPlot
+            Me.chkPlotForOutline.Checked = Master.eSettings.PlotForOutline
 
             Me.chkShowGenresText.Checked = Master.eSettings.AllwaysDisplayGenresText
             Me.chkDisplayYear.Checked = Master.eSettings.DisplayYear
@@ -3535,6 +3543,7 @@ Public Class dlgSettings
             Master.eSettings.NoDisplayFanart = Me.chkNoDisplayFanart.Checked
             Master.eSettings.NoDisplayPoster = Me.chkNoDisplayPoster.Checked
             Master.eSettings.OutlineForPlot = Me.chkOutlineForPlot.Checked
+            Master.eSettings.PlotForOutline = Me.chkPlotForOutline.Checked
 
             Master.eSettings.AllwaysDisplayGenresText = Me.chkShowGenresText.Checked
             Master.eSettings.DisplayYear = Me.chkDisplayYear.Checked
@@ -3870,6 +3879,7 @@ Public Class dlgSettings
         Me.Label15.Text = Master.eLang.GetString(506, "Number To Create:")
         Me.chkAutoThumbs.Text = Master.eLang.GetString(507, "Extract During Scrapers")
         Me.chkOutlineForPlot.Text = Master.eLang.GetString(508, "Use Outline for Plot if Plot is Empty")
+        Me.chkPlotForOutline.Text = Master.eLang.GetString(891, "Use Plot for Outline if Outline is Empty")
 
         Me.chkCastWithImg.Text = Master.eLang.GetString(510, "Scrape Only Actors With Images")
         Me.chkUseCertForMPAA.Text = Master.eLang.GetString(511, "Use Certification for MPAA")

@@ -199,6 +199,8 @@ Public Class Settings
     Private _onlytvimagesforselectedlangauge As Boolean
     Private _onlyvalueforcert As Boolean
     Private _outlineforplot As Boolean
+    Private _plotforoutline As Boolean
+    Private _plotforoutlinemax As Integer
     Private _overwriteallsPoster As Boolean
     Private _overwriteEpFanart As Boolean
     Private _overwriteEpPoster As Boolean
@@ -1890,6 +1892,24 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property PlotForOutline() As Boolean
+        Get
+            Return Me._plotforoutline
+        End Get
+        Set(ByVal value As Boolean)
+            Me._plotforoutline = value
+        End Set
+    End Property
+
+    Public Property PlotForOutlineMax() As Integer
+        Get
+            Return Me._plotforoutlinemax
+        End Get
+        Set(ByVal value As Integer)
+            Me._plotforoutlinemax = value
+        End Set
+    End Property
+
     Public Property OverwriteAllSPoster() As Boolean
         Get
             Return Me._overwriteallsPoster
@@ -3544,6 +3564,8 @@ Public Class Settings
         Me._nodisplayposter = False
         Me._nodisplayfanart = False
         Me._outlineforplot = False
+        Me._plotforoutline = False
+        Me._plotforoutlinemax = 100
         Me._sortpath = String.Empty
         Me._allwaysdisplaygenrestext = False
         Me._displayyear = False

@@ -614,6 +614,8 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.chkPlotForOutline = New System.Windows.Forms.CheckBox()
+        Me.txtPlotForOutlineMax = New System.Windows.Forms.TextBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -2398,7 +2400,7 @@ Partial Class dlgSettings
         Me.pnlGeneral.BackColor = System.Drawing.Color.White
         Me.pnlGeneral.Controls.Add(Me.gbInterface)
         Me.pnlGeneral.Controls.Add(Me.GroupBox4)
-        Me.pnlGeneral.Location = New System.Drawing.Point(10, 38)
+        Me.pnlGeneral.Location = New System.Drawing.Point(580, 818)
         Me.pnlGeneral.Name = "pnlGeneral"
         Me.pnlGeneral.Size = New System.Drawing.Size(617, 400)
         Me.pnlGeneral.TabIndex = 10
@@ -2980,14 +2982,13 @@ Partial Class dlgSettings
         '
         Me.pnlSources.BackColor = System.Drawing.Color.White
         Me.pnlSources.Controls.Add(Me.btnEditSource)
-        Me.pnlSources.Controls.Add(Me.pnlGeneral)
         Me.pnlSources.Controls.Add(Me.GroupBox19)
         Me.pnlSources.Controls.Add(Me.lvMovies)
         Me.pnlSources.Controls.Add(Me.btnMovieRem)
         Me.pnlSources.Controls.Add(Me.btnMovieAddFolder)
         Me.pnlSources.Controls.Add(Me.GroupBox8)
         Me.pnlSources.Controls.Add(Me.GroupBox16)
-        Me.pnlSources.Location = New System.Drawing.Point(580, 818)
+        Me.pnlSources.Location = New System.Drawing.Point(570, 840)
         Me.pnlSources.Name = "pnlSources"
         Me.pnlSources.Size = New System.Drawing.Size(617, 402)
         Me.pnlSources.TabIndex = 13
@@ -6450,7 +6451,7 @@ Partial Class dlgSettings
         Me.gbOptions.Controls.Add(Me.chkYear)
         Me.gbOptions.Controls.Add(Me.chkTitle)
         Me.gbOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbOptions.Location = New System.Drawing.Point(8, 227)
+        Me.gbOptions.Location = New System.Drawing.Point(8, 236)
         Me.gbOptions.Name = "gbOptions"
         Me.gbOptions.Size = New System.Drawing.Size(302, 170)
         Me.gbOptions.TabIndex = 67
@@ -7067,6 +7068,8 @@ Partial Class dlgSettings
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.txtPlotForOutlineMax)
+        Me.GroupBox1.Controls.Add(Me.chkPlotForOutline)
         Me.GroupBox1.Controls.Add(Me.chkUseMPAAFSK)
         Me.GroupBox1.Controls.Add(Me.chkOnlyValueForCert)
         Me.GroupBox1.Controls.Add(Me.cbForce)
@@ -7081,7 +7084,7 @@ Partial Class dlgSettings
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(313, 187)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(289, 210)
+        Me.GroupBox1.Size = New System.Drawing.Size(289, 233)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Miscellaneous"
@@ -7091,7 +7094,7 @@ Partial Class dlgSettings
         Me.chkUseMPAAFSK.AutoSize = True
         Me.chkUseMPAAFSK.Enabled = False
         Me.chkUseMPAAFSK.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkUseMPAAFSK.Location = New System.Drawing.Point(25, 163)
+        Me.chkUseMPAAFSK.Location = New System.Drawing.Point(25, 185)
         Me.chkUseMPAAFSK.Name = "chkUseMPAAFSK"
         Me.chkUseMPAAFSK.Size = New System.Drawing.Size(213, 17)
         Me.chkUseMPAAFSK.TabIndex = 67
@@ -7103,7 +7106,7 @@ Partial Class dlgSettings
         Me.chkOnlyValueForCert.AutoSize = True
         Me.chkOnlyValueForCert.Enabled = False
         Me.chkOnlyValueForCert.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkOnlyValueForCert.Location = New System.Drawing.Point(25, 142)
+        Me.chkOnlyValueForCert.Location = New System.Drawing.Point(25, 164)
         Me.chkOnlyValueForCert.Name = "chkOnlyValueForCert"
         Me.chkOnlyValueForCert.Size = New System.Drawing.Size(168, 17)
         Me.chkOnlyValueForCert.TabIndex = 66
@@ -7116,7 +7119,7 @@ Partial Class dlgSettings
         Me.cbForce.Enabled = False
         Me.cbForce.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.cbForce.FormattingEnabled = True
-        Me.cbForce.Location = New System.Drawing.Point(139, 183)
+        Me.cbForce.Location = New System.Drawing.Point(139, 205)
         Me.cbForce.Name = "cbForce"
         Me.cbForce.Size = New System.Drawing.Size(144, 21)
         Me.cbForce.Sorted = True
@@ -7126,7 +7129,7 @@ Partial Class dlgSettings
         '
         Me.chkForceTitle.AutoSize = True
         Me.chkForceTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkForceTitle.Location = New System.Drawing.Point(6, 184)
+        Me.chkForceTitle.Location = New System.Drawing.Point(6, 206)
         Me.chkForceTitle.Name = "chkForceTitle"
         Me.chkForceTitle.Size = New System.Drawing.Size(135, 17)
         Me.chkForceTitle.TabIndex = 64
@@ -7137,7 +7140,7 @@ Partial Class dlgSettings
         '
         Me.chkOutlineForPlot.AutoSize = True
         Me.chkOutlineForPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkOutlineForPlot.Location = New System.Drawing.Point(6, 82)
+        Me.chkOutlineForPlot.Location = New System.Drawing.Point(6, 101)
         Me.chkOutlineForPlot.Name = "chkOutlineForPlot"
         Me.chkOutlineForPlot.Size = New System.Drawing.Size(206, 17)
         Me.chkOutlineForPlot.TabIndex = 3
@@ -7160,7 +7163,7 @@ Partial Class dlgSettings
         Me.chkUseCertForMPAA.AutoSize = True
         Me.chkUseCertForMPAA.Enabled = False
         Me.chkUseCertForMPAA.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkUseCertForMPAA.Location = New System.Drawing.Point(6, 124)
+        Me.chkUseCertForMPAA.Location = New System.Drawing.Point(6, 146)
         Me.chkUseCertForMPAA.Name = "chkUseCertForMPAA"
         Me.chkUseCertForMPAA.Size = New System.Drawing.Size(162, 17)
         Me.chkUseCertForMPAA.TabIndex = 6
@@ -7196,7 +7199,7 @@ Partial Class dlgSettings
         Me.cbCert.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.cbCert.FormattingEnabled = True
         Me.cbCert.Items.AddRange(New Object() {"Argentina", "Australia", "Belgium", "Brazil", "Canada", "Finland", "France", "Germany", "Hong Kong", "Iceland", "Ireland", "Netherlands", "New Zealand", "Peru", "Portugal", "Singapore", "South Korea", "Spain", "Sweden", "Switzerland", "UK", "USA"})
-        Me.cbCert.Location = New System.Drawing.Point(175, 102)
+        Me.cbCert.Location = New System.Drawing.Point(175, 124)
         Me.cbCert.Name = "cbCert"
         Me.cbCert.Size = New System.Drawing.Size(108, 21)
         Me.cbCert.Sorted = True
@@ -7206,7 +7209,7 @@ Partial Class dlgSettings
         '
         Me.chkCert.AutoSize = True
         Me.chkCert.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkCert.Location = New System.Drawing.Point(6, 103)
+        Me.chkCert.Location = New System.Drawing.Point(6, 125)
         Me.chkCert.Name = "chkCert"
         Me.chkCert.Size = New System.Drawing.Size(168, 17)
         Me.chkCert.TabIndex = 4
@@ -7220,9 +7223,9 @@ Partial Class dlgSettings
         Me.pnlScraper.Controls.Add(Me.gbOptions)
         Me.pnlScraper.Controls.Add(Me.GroupBox1)
         Me.pnlScraper.Controls.Add(Me.GroupBox26)
-        Me.pnlScraper.Location = New System.Drawing.Point(902, 202)
+        Me.pnlScraper.Location = New System.Drawing.Point(830, 720)
         Me.pnlScraper.Name = "pnlScraper"
-        Me.pnlScraper.Size = New System.Drawing.Size(617, 400)
+        Me.pnlScraper.Size = New System.Drawing.Size(617, 426)
         Me.pnlScraper.TabIndex = 14
         Me.pnlScraper.Visible = False
         '
@@ -7290,6 +7293,24 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
         '
+        'chkPlotForOutline
+        '
+        Me.chkPlotForOutline.AutoSize = True
+        Me.chkPlotForOutline.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkPlotForOutline.Location = New System.Drawing.Point(6, 82)
+        Me.chkPlotForOutline.Name = "chkPlotForOutline"
+        Me.chkPlotForOutline.Size = New System.Drawing.Size(225, 17)
+        Me.chkPlotForOutline.TabIndex = 68
+        Me.chkPlotForOutline.Text = "Use Plot for Outline if Outline is Empty"
+        Me.chkPlotForOutline.UseVisualStyleBackColor = True
+        '
+        'txtPlotForOutlineMax
+        '
+        Me.txtPlotForOutlineMax.Location = New System.Drawing.Point(233, 80)
+        Me.txtPlotForOutlineMax.Name = "txtPlotForOutlineMax"
+        Me.txtPlotForOutlineMax.Size = New System.Drawing.Size(50, 22)
+        Me.txtPlotForOutlineMax.TabIndex = 69
+        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -7298,6 +7319,7 @@ Partial Class dlgSettings
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(892, 628)
         Me.Controls.Add(Me.pnlShows)
+        Me.Controls.Add(Me.pnlGeneral)
         Me.Controls.Add(Me.pnlSources)
         Me.Controls.Add(Me.pnlTVSources)
         Me.Controls.Add(Me.pnlImages)
@@ -8082,4 +8104,6 @@ Partial Class dlgSettings
     Friend WithEvents chkMovieWatchedCol As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockSubtitle As System.Windows.Forms.CheckBox
     Friend WithEvents chkEpisodeWatchedCol As System.Windows.Forms.CheckBox
+    Friend WithEvents chkPlotForOutline As System.Windows.Forms.CheckBox
+    Friend WithEvents txtPlotForOutlineMax As System.Windows.Forms.TextBox
 End Class

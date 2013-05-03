@@ -361,21 +361,19 @@ Namespace TMDBg
 					End If
 				End If
 
-				If bwTMDBg.CancellationPending Then Return Nothing
+                If bwTMDBg.CancellationPending Then Return Nothing
 
-				If Options.bOutline AndAlso (String.IsNullOrEmpty(IMDBMovie.Outline) OrElse Not Master.eSettings.LockOutline) Then
-					IMDBMovie.Outline = CStr(IIf(String.IsNullOrEmpty(Movie.overview) AndAlso _MySettings.FallBackEng, MovieE.overview, Movie.overview))
-				End If
+                'Get the movie plot
+                If Options.bPlot AndAlso (String.IsNullOrEmpty(IMDBMovie.Plot) OrElse Not Master.eSettings.LockPlot) Then
+                    IMDBMovie.Plot = CStr(IIf(String.IsNullOrEmpty(Movie.overview) AndAlso _MySettings.FallBackEng, MovieE.overview, Movie.overview))
+                End If
 
-				If bwTMDBg.CancellationPending Then Return Nothing
+                If bwTMDBg.CancellationPending Then Return Nothing
 
-				If Options.bPlot AndAlso (String.IsNullOrEmpty(IMDBMovie.Plot) OrElse Not Master.eSettings.LockPlot) Then
-					If Master.eSettings.OutlineForPlot AndAlso String.IsNullOrEmpty(IMDBMovie.Plot) AndAlso Not String.IsNullOrEmpty(IMDBMovie.Outline) Then
-						IMDBMovie.Plot = IMDBMovie.Outline
-					Else
-						IMDBMovie.Plot = ""
-					End If
-				End If
+                'Get the movie outline
+                If Options.bOutline AndAlso Master.eSettings.PlotForOutline AndAlso (String.IsNullOrEmpty(IMDBMovie.Outline) OrElse Not Master.eSettings.LockOutline) Then
+                    IMDBMovie.Outline = IMDBMovie.Plot
+                End If
 
 				If bwTMDBg.CancellationPending Then Return Nothing
 
