@@ -7086,7 +7086,7 @@ doCancel:
                 hasTrailer = Not String.IsNullOrEmpty(mContainer.Trailer)
                 hasSub = Not String.IsNullOrEmpty(mContainer.Subs)
                 hasExtra = Not String.IsNullOrEmpty(mContainer.Extra)
-                hasWatched = Not String.IsNullOrEmpty(tmpMovieDb.Movie.PlayCount)
+                hasWatched = Not String.IsNullOrEmpty(tmpMovieDb.Movie.PlayCount) AndAlso Not tmpMovieDb.Movie.PlayCount = "0"
 
                 Dim dRow = From drvRow In dtMedia.Rows Where Convert.ToInt64(DirectCast(drvRow, DataRow).Item(0)) = ID Select drvRow
 
