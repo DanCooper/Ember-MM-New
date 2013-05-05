@@ -200,7 +200,7 @@ Public Class Settings
     Private _onlyvalueforcert As Boolean
     Private _outlineforplot As Boolean
     Private _plotforoutline As Boolean
-    Private _plotforoutlinemax As Integer
+    Private _outlinelimit As Integer
     Private _overwriteallsPoster As Boolean
     Private _overwriteEpFanart As Boolean
     Private _overwriteEpPoster As Boolean
@@ -1901,12 +1901,12 @@ Public Class Settings
         End Set
     End Property
 
-    Public Property PlotForOutlineMax() As Integer
+    Public Property OutlineLimit() As Integer
         Get
-            Return Me._plotforoutlinemax
+            Return Me._outlinelimit
         End Get
         Set(ByVal value As Integer)
-            Me._plotforoutlinemax = value
+            Me._outlinelimit = value
         End Set
     End Property
 
@@ -3565,7 +3565,7 @@ Public Class Settings
         Me._nodisplayfanart = False
         Me._outlineforplot = False
         Me._plotforoutline = False
-        Me._plotforoutlinemax = 100
+        Me._outlinelimit = 400
         Me._sortpath = String.Empty
         Me._allwaysdisplaygenrestext = False
         Me._displayyear = False

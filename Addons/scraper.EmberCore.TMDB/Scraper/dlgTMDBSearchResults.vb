@@ -167,125 +167,125 @@ Public Class dlgTMDBSearchResults
 		Me.lblYear.Text = String.Empty
 		Me.lblDirector.Text = String.Empty
 		Me.lblGenre.Text = String.Empty
-		Me.txtOutline.Text = String.Empty
-		Me.lblIMDB.Text = String.Empty
-		Me.pbPoster.Image = Nothing
+        Me.txtPlot.Text = String.Empty
+        Me.lblIMDB.Text = String.Empty
+        Me.pbPoster.Image = Nothing
 
-		Master.tmpMovie.Clear()
+        Master.tmpMovie.Clear()
 
-		TMDBg.CancelAsync()
-	End Sub
+        TMDBg.CancelAsync()
+    End Sub
 
-	Private Sub ControlsVisible(ByVal areVisible As Boolean)
-		Me.lblYearHeader.Visible = areVisible
-		Me.lblDirectorHeader.Visible = areVisible
-		Me.lblGenreHeader.Visible = areVisible
-		Me.lblPlotHeader.Visible = areVisible
-		Me.lblIMDBHeader.Visible = areVisible
-		Me.txtOutline.Visible = areVisible
-		Me.lblYear.Visible = areVisible
-		Me.lblTagline.Visible = areVisible
-		Me.lblTitle.Visible = areVisible
-		Me.lblDirector.Visible = areVisible
-		Me.lblGenre.Visible = areVisible
-		Me.lblIMDB.Visible = areVisible
-		Me.pbPoster.Visible = areVisible
-	End Sub
+    Private Sub ControlsVisible(ByVal areVisible As Boolean)
+        Me.lblYearHeader.Visible = areVisible
+        Me.lblDirectorHeader.Visible = areVisible
+        Me.lblGenreHeader.Visible = areVisible
+        Me.lblPlotHeader.Visible = areVisible
+        Me.lblIMDBHeader.Visible = areVisible
+        Me.txtPlot.Visible = areVisible
+        Me.lblYear.Visible = areVisible
+        Me.lblTagline.Visible = areVisible
+        Me.lblTitle.Visible = areVisible
+        Me.lblDirector.Visible = areVisible
+        Me.lblGenre.Visible = areVisible
+        Me.lblIMDB.Visible = areVisible
+        Me.pbPoster.Visible = areVisible
+    End Sub
 
-	Private Sub dlgIMDBSearchResults_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.GotFocus
-		Me.AcceptButton = Me.OK_Button
-	End Sub
+    Private Sub dlgIMDBSearchResults_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.GotFocus
+        Me.AcceptButton = Me.OK_Button
+    End Sub
 
-	Private Sub dlgIMDBSearchResults_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-		Me.SetUp()
-		pnlPicStatus.Visible = False
-		'TMDBg.IMDBURL = IMDBURL
-		AddHandler TMDBg.SearchMovieInfoDownloaded, AddressOf SearchMovieInfoDownloaded
-		AddHandler TMDBg.SearchResultsDownloaded, AddressOf SearchResultsDownloaded
+    Private Sub dlgIMDBSearchResults_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Me.SetUp()
+        pnlPicStatus.Visible = False
+        'TMDBg.IMDBURL = IMDBURL
+        AddHandler TMDBg.SearchMovieInfoDownloaded, AddressOf SearchMovieInfoDownloaded
+        AddHandler TMDBg.SearchResultsDownloaded, AddressOf SearchResultsDownloaded
 
-		Try
-			Dim iBackground As New Bitmap(Me.pnlTop.Width, Me.pnlTop.Height)
-			Using g As Graphics = Graphics.FromImage(iBackground)
-				g.FillRectangle(New Drawing2D.LinearGradientBrush(Me.pnlTop.ClientRectangle, Color.SteelBlue, Color.LightSteelBlue, Drawing2D.LinearGradientMode.Horizontal), pnlTop.ClientRectangle)
-				Me.pnlTop.BackgroundImage = iBackground
-			End Using
-		Catch ex As Exception
-			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-		End Try
-	End Sub
+        Try
+            Dim iBackground As New Bitmap(Me.pnlTop.Width, Me.pnlTop.Height)
+            Using g As Graphics = Graphics.FromImage(iBackground)
+                g.FillRectangle(New Drawing2D.LinearGradientBrush(Me.pnlTop.ClientRectangle, Color.SteelBlue, Color.LightSteelBlue, Drawing2D.LinearGradientMode.Horizontal), pnlTop.ClientRectangle)
+                Me.pnlTop.BackgroundImage = iBackground
+            End Using
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+    End Sub
 
-	Private Sub dlgIMDBSearchResults_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-		Me.Activate()
-		Me.tvResults.Focus()
-	End Sub
+    Private Sub dlgIMDBSearchResults_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        Me.Activate()
+        Me.tvResults.Focus()
+    End Sub
 
-	Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-		Try
-			If Me.chkManual.Checked AndAlso Me.btnVerify.Enabled Then
-				'' The rule is that if there is a tt is an IMDB otherwise is a TMDB
-				Master.tmpMovie.IMDBID = Me.txtTMDBID.Text
-			End If
-			Me.DialogResult = System.Windows.Forms.DialogResult.OK
-		Catch ex As Exception
-			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-		End Try
+    Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
+        Try
+            If Me.chkManual.Checked AndAlso Me.btnVerify.Enabled Then
+                '' The rule is that if there is a tt is an IMDB otherwise is a TMDB
+                Master.tmpMovie.IMDBID = Me.txtTMDBID.Text
+            End If
+            Me.DialogResult = System.Windows.Forms.DialogResult.OK
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
 
-		Me.Close()
-	End Sub
+        Me.Close()
+    End Sub
 
-	Private Sub SearchMovieInfoDownloaded(ByVal sPoster As String, ByVal bSuccess As Boolean)
-		'//
-		' Info downloaded... fill form with data
-		'\\
+    Private Sub SearchMovieInfoDownloaded(ByVal sPoster As String, ByVal bSuccess As Boolean)
+        '//
+        ' Info downloaded... fill form with data
+        '\\
 
-		Me.pnlLoading.Visible = False
-		Me.OK_Button.Enabled = True
+        Me.pnlLoading.Visible = False
+        Me.OK_Button.Enabled = True
 
-		Try
-			If bSuccess Then
-				Me.ControlsVisible(True)
-				Me.lblTitle.Text = Master.tmpMovie.Title
-				Me.lblTagline.Text = Master.tmpMovie.Tagline
-				Me.lblYear.Text = Master.tmpMovie.Year
-				Me.lblDirector.Text = Master.tmpMovie.Director
-				Me.lblGenre.Text = Master.tmpMovie.Genre
-				Me.txtOutline.Text = Master.tmpMovie.Outline
-				Me.lblIMDB.Text = Master.tmpMovie.IMDBID
+        Try
+            If bSuccess Then
+                Me.ControlsVisible(True)
+                Me.lblTitle.Text = Master.tmpMovie.Title
+                Me.lblTagline.Text = Master.tmpMovie.Tagline
+                Me.lblYear.Text = Master.tmpMovie.Year
+                Me.lblDirector.Text = Master.tmpMovie.Director
+                Me.lblGenre.Text = Master.tmpMovie.Genre
+                Me.txtPlot.Text = Master.tmpMovie.Plot
+                Me.lblIMDB.Text = Master.tmpMovie.IMDBID
 
-				If _PosterCache.ContainsKey(Master.tmpMovie.TMDBID) Then
-					'just set it
-					Me.pbPoster.Image = _PosterCache(Master.tmpMovie.TMDBID)
-				Else
-					'go download it, if available
-					If Not String.IsNullOrEmpty(sPoster) Then
-						If Me.bwDownloadPic.IsBusy Then
-							Me.bwDownloadPic.CancelAsync()
-						End If
-						pnlPicStatus.Visible = True
-						Me.bwDownloadPic = New System.ComponentModel.BackgroundWorker
-						Me.bwDownloadPic.WorkerSupportsCancellation = True
-						Me.bwDownloadPic.RunWorkerAsync(New Arguments With {.pURL = sPoster, .IMDBId = Master.tmpMovie.TMDBID})
-					End If
+                If _PosterCache.ContainsKey(Master.tmpMovie.TMDBID) Then
+                    'just set it
+                    Me.pbPoster.Image = _PosterCache(Master.tmpMovie.TMDBID)
+                Else
+                    'go download it, if available
+                    If Not String.IsNullOrEmpty(sPoster) Then
+                        If Me.bwDownloadPic.IsBusy Then
+                            Me.bwDownloadPic.CancelAsync()
+                        End If
+                        pnlPicStatus.Visible = True
+                        Me.bwDownloadPic = New System.ComponentModel.BackgroundWorker
+                        Me.bwDownloadPic.WorkerSupportsCancellation = True
+                        Me.bwDownloadPic.RunWorkerAsync(New Arguments With {.pURL = sPoster, .IMDBId = Master.tmpMovie.TMDBID})
+                    End If
 
-				End If
+                End If
 
-				'store clone of tmpmovie
-				If Not _InfoCache.ContainsKey(Master.tmpMovie.TMDBID) Then
-					_InfoCache.Add(Master.tmpMovie.TMDBID, GetMovieClone(Master.tmpMovie))
-				End If
+                'store clone of tmpmovie
+                If Not _InfoCache.ContainsKey(Master.tmpMovie.TMDBID) Then
+                    _InfoCache.Add(Master.tmpMovie.TMDBID, GetMovieClone(Master.tmpMovie))
+                End If
 
 
-				Me.btnVerify.Enabled = False
-			Else
-				If Me.chkManual.Checked Then
-					MsgBox(Master.eLang.GetString(15, "Unable to retrieve movie details for the entered IMDB ID. Please check your entry and try again."), MsgBoxStyle.Exclamation, Master.eLang.GetString(16, "Verification Failed"))
-					Me.btnVerify.Enabled = True
-				End If
-			End If
-		Catch ex As Exception
-			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-		End Try
-	End Sub
+                Me.btnVerify.Enabled = False
+            Else
+                If Me.chkManual.Checked Then
+                    MsgBox(Master.eLang.GetString(15, "Unable to retrieve movie details for the entered IMDB ID. Please check your entry and try again."), MsgBoxStyle.Exclamation, Master.eLang.GetString(16, "Verification Failed"))
+                    Me.btnVerify.Enabled = True
+                End If
+            End If
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+    End Sub
 
 	Private Sub SearchResultsDownloaded(ByVal M As TMDBg.MovieSearchResults)
 		'//
@@ -335,7 +335,7 @@ Public Class dlgTMDBSearchResults
 		Me.lblDirectorHeader.Text = Master.eLang.GetString(239, "Director:", True)
 		Me.lblGenreHeader.Text = Master.eLang.GetString(51, "Genre(s):", True)
 		Me.lblIMDBHeader.Text = Master.eLang.GetString(116, "TMDB ID:")
-		Me.lblPlotHeader.Text = Master.eLang.GetString(242, "Plot Outline:", True)
+        Me.lblPlotHeader.Text = Master.eLang.GetString(783, "Plot Summary:", True)
 		Me.Label3.Text = Master.eLang.GetString(25, "Searching TMDB...")
 	End Sub
 
@@ -419,7 +419,7 @@ Public Class dlgTMDBSearchResults
 			.Year = original.Year
 			.Director = original.Director
 			.Genre = original.Genre
-			.Outline = original.Outline
+            .Plot = original.Plot
 		End With
 		Return result
 		'Using mem As New IO.MemoryStream()

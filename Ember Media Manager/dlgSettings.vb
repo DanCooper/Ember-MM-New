@@ -1579,13 +1579,22 @@ Public Class dlgSettings
 
     Private Sub chkPlotForOutline_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPlotForOutline.CheckedChanged
         Me.SetApplyButton(True)
+
+        Me.txtOutlineLimit.Enabled = Me.chkPlotForOutline.Checked
+        If Not Me.chkPlotForOutline.Checked Then
+            Me.txtOutlineLimit.Enabled = False
+            Me.txtOutlineLimit.Text = "0"
+        End If
     End Sub
 
     Private Sub chkPlot_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPlot.CheckedChanged
         Me.SetApplyButton(True)
 
         Me.chkPlotForOutline.Enabled = Me.chkPlot.Checked
-        If Not Me.chkPlot.Checked Then Me.chkPlotForOutline.Checked = False
+        If Not Me.chkPlot.Checked Then
+            Me.chkPlotForOutline.Checked = False
+            Me.txtOutlineLimit.Enabled = False
+        End If
     End Sub
 
     Private Sub chkOverwriteAllSPoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkOverwriteAllSPoster.CheckedChanged
@@ -2497,6 +2506,7 @@ Public Class dlgSettings
             Me.chkCountry.Checked = Master.eSettings.FieldCountry
             Me.txtActorLimit.Text = Master.eSettings.ActorLimit.ToString
             Me.txtGenreLimit.Text = Master.eSettings.GenreLimit.ToString
+            Me.txtOutlineLimit.Text = Master.eSettings.OutlineLimit.ToString
 
             Me.chkMissingPoster.Checked = Master.eSettings.MissingFilterPoster
             Me.chkMissingFanart.Checked = Master.eSettings.MissingFilterFanart
@@ -3601,6 +3611,13 @@ Public Class dlgSettings
             Else
                 Master.eSettings.ActorLimit = 0
             End If
+
+            If Not String.IsNullOrEmpty(Me.txtOutlineLimit.Text) Then
+                Master.eSettings.OutlineLimit = Convert.ToInt32(Me.txtOutlineLimit.Text)
+            Else
+                Master.eSettings.OutlineLimit = 0
+            End If
+
             If Not String.IsNullOrEmpty(Me.txtGenreLimit.Text) Then
                 Master.eSettings.GenreLimit = Convert.ToInt32(Me.txtGenreLimit.Text)
             Else
@@ -4416,6 +4433,14 @@ Public Class dlgSettings
     End Sub
 
     Private Sub txtActorLimit_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtActorLimit.TextChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub txtOutlineLimit_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtOutlineLimit.KeyPress
+        e.Handled = StringUtils.NumericOnly(e.KeyChar)
+    End Sub
+
+    Private Sub txtOutlineLimit_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtOutlineLimit.TextChanged
         Me.SetApplyButton(True)
     End Sub
 

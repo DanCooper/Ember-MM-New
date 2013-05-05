@@ -366,4 +366,6 @@
   <string control="Core_chkUseMPAAFSK">If enabled, MPAA values will be converted to FSK if no FSK values are found. Priority: FSK -> MPAA</string>
   <string control="Core_chkMovieWatchedCol">Hide the Watched column from the main movie list.</string>
   <string control="Core_chkEpisodeWatchedCol">Hide the Watched column from the episode list.</string>
+  <string control="Core_txtOutlineLimit">Maximum length of the outline. Enter 0 to use the entire plot.</string>
+  <string control="Core_chkPlotForOutline">If enabled, Ember will use the plot for the outline if the outline is empty.</string>
   </strings>

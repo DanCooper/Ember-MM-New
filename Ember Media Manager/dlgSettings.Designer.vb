@@ -596,6 +596,8 @@ Partial Class dlgSettings
         Me.chkLockTagline = New System.Windows.Forms.CheckBox()
         Me.chkLockTitle = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtOutlineLimit = New System.Windows.Forms.TextBox()
+        Me.chkPlotForOutline = New System.Windows.Forms.CheckBox()
         Me.chkUseMPAAFSK = New System.Windows.Forms.CheckBox()
         Me.chkOnlyValueForCert = New System.Windows.Forms.CheckBox()
         Me.cbForce = New System.Windows.Forms.ComboBox()
@@ -614,8 +616,6 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.chkPlotForOutline = New System.Windows.Forms.CheckBox()
-        Me.txtPlotForOutlineMax = New System.Windows.Forms.TextBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -1917,7 +1917,7 @@ Partial Class dlgSettings
         Me.Label24.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.Location = New System.Drawing.Point(3, 127)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(46, 13)
+        Me.Label24.Size = New System.Drawing.Size(47, 13)
         Me.Label24.TabIndex = 9
         Me.Label24.Text = "Quality:"
         '
@@ -2062,7 +2062,7 @@ Partial Class dlgSettings
         Me.Label26.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.Location = New System.Drawing.Point(2, 131)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(46, 13)
+        Me.Label26.Size = New System.Drawing.Size(47, 13)
         Me.Label26.TabIndex = 9
         Me.Label26.Text = "Quality:"
         '
@@ -2336,7 +2336,7 @@ Partial Class dlgSettings
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(61, 38)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(245, 13)
+        Me.Label2.Size = New System.Drawing.Size(246, 13)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Configure Ember's appearance and operation."
         '
@@ -3189,7 +3189,7 @@ Partial Class dlgSettings
         Me.lblPreferredQuality.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPreferredQuality.Location = New System.Drawing.Point(31, 189)
         Me.lblPreferredQuality.Name = "lblPreferredQuality"
-        Me.lblPreferredQuality.Size = New System.Drawing.Size(96, 13)
+        Me.lblPreferredQuality.Size = New System.Drawing.Size(97, 13)
         Me.lblPreferredQuality.TabIndex = 6
         Me.lblPreferredQuality.Text = "Preferred Quality:"
         '
@@ -4868,7 +4868,7 @@ Partial Class dlgSettings
         Me.lblAllSPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAllSPosterQ.Location = New System.Drawing.Point(3, 141)
         Me.lblAllSPosterQ.Name = "lblAllSPosterQ"
-        Me.lblAllSPosterQ.Size = New System.Drawing.Size(46, 13)
+        Me.lblAllSPosterQ.Size = New System.Drawing.Size(47, 13)
         Me.lblAllSPosterQ.TabIndex = 10
         Me.lblAllSPosterQ.Text = "Quality:"
         '
@@ -5028,7 +5028,7 @@ Partial Class dlgSettings
         Me.lblShowPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblShowPosterQ.Location = New System.Drawing.Point(3, 141)
         Me.lblShowPosterQ.Name = "lblShowPosterQ"
-        Me.lblShowPosterQ.Size = New System.Drawing.Size(46, 13)
+        Me.lblShowPosterQ.Size = New System.Drawing.Size(47, 13)
         Me.lblShowPosterQ.TabIndex = 10
         Me.lblShowPosterQ.Text = "Quality:"
         '
@@ -5162,7 +5162,7 @@ Partial Class dlgSettings
         Me.lblShowFanartQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblShowFanartQ.Location = New System.Drawing.Point(3, 118)
         Me.lblShowFanartQ.Name = "lblShowFanartQ"
-        Me.lblShowFanartQ.Size = New System.Drawing.Size(46, 13)
+        Me.lblShowFanartQ.Size = New System.Drawing.Size(47, 13)
         Me.lblShowFanartQ.TabIndex = 8
         Me.lblShowFanartQ.Text = "Quality:"
         '
@@ -5307,7 +5307,7 @@ Partial Class dlgSettings
         Me.lblSeaPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSeaPosterQ.Location = New System.Drawing.Point(3, 118)
         Me.lblSeaPosterQ.Name = "lblSeaPosterQ"
-        Me.lblSeaPosterQ.Size = New System.Drawing.Size(46, 13)
+        Me.lblSeaPosterQ.Size = New System.Drawing.Size(47, 13)
         Me.lblSeaPosterQ.TabIndex = 8
         Me.lblSeaPosterQ.Text = "Quality:"
         '
@@ -5441,7 +5441,7 @@ Partial Class dlgSettings
         Me.lblSeaFanartQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSeaFanartQ.Location = New System.Drawing.Point(3, 118)
         Me.lblSeaFanartQ.Name = "lblSeaFanartQ"
-        Me.lblSeaFanartQ.Size = New System.Drawing.Size(46, 13)
+        Me.lblSeaFanartQ.Size = New System.Drawing.Size(47, 13)
         Me.lblSeaFanartQ.TabIndex = 8
         Me.lblSeaFanartQ.Text = "Quality:"
         '
@@ -5585,7 +5585,7 @@ Partial Class dlgSettings
         Me.lblEpPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEpPosterQ.Location = New System.Drawing.Point(1, 78)
         Me.lblEpPosterQ.Name = "lblEpPosterQ"
-        Me.lblEpPosterQ.Size = New System.Drawing.Size(46, 13)
+        Me.lblEpPosterQ.Size = New System.Drawing.Size(47, 13)
         Me.lblEpPosterQ.TabIndex = 6
         Me.lblEpPosterQ.Text = "Quality:"
         '
@@ -5699,7 +5699,7 @@ Partial Class dlgSettings
         Me.lblEpFanartQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEpFanartQ.Location = New System.Drawing.Point(3, 118)
         Me.lblEpFanartQ.Name = "lblEpFanartQ"
-        Me.lblEpFanartQ.Size = New System.Drawing.Size(46, 13)
+        Me.lblEpFanartQ.Size = New System.Drawing.Size(47, 13)
         Me.lblEpFanartQ.TabIndex = 8
         Me.lblEpFanartQ.Text = "Quality:"
         '
@@ -7068,7 +7068,7 @@ Partial Class dlgSettings
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.txtPlotForOutlineMax)
+        Me.GroupBox1.Controls.Add(Me.txtOutlineLimit)
         Me.GroupBox1.Controls.Add(Me.chkPlotForOutline)
         Me.GroupBox1.Controls.Add(Me.chkUseMPAAFSK)
         Me.GroupBox1.Controls.Add(Me.chkOnlyValueForCert)
@@ -7088,6 +7088,24 @@ Partial Class dlgSettings
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Miscellaneous"
+        '
+        'txtOutlineLimit
+        '
+        Me.txtOutlineLimit.Location = New System.Drawing.Point(233, 80)
+        Me.txtOutlineLimit.Name = "txtOutlineLimit"
+        Me.txtOutlineLimit.Size = New System.Drawing.Size(50, 22)
+        Me.txtOutlineLimit.TabIndex = 69
+        '
+        'chkPlotForOutline
+        '
+        Me.chkPlotForOutline.AutoSize = True
+        Me.chkPlotForOutline.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkPlotForOutline.Location = New System.Drawing.Point(6, 82)
+        Me.chkPlotForOutline.Name = "chkPlotForOutline"
+        Me.chkPlotForOutline.Size = New System.Drawing.Size(225, 17)
+        Me.chkPlotForOutline.TabIndex = 68
+        Me.chkPlotForOutline.Text = "Use Plot for Outline if Outline is Empty"
+        Me.chkPlotForOutline.UseVisualStyleBackColor = True
         '
         'chkUseMPAAFSK
         '
@@ -7292,24 +7310,6 @@ Partial Class dlgSettings
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
-        '
-        'chkPlotForOutline
-        '
-        Me.chkPlotForOutline.AutoSize = True
-        Me.chkPlotForOutline.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkPlotForOutline.Location = New System.Drawing.Point(6, 82)
-        Me.chkPlotForOutline.Name = "chkPlotForOutline"
-        Me.chkPlotForOutline.Size = New System.Drawing.Size(225, 17)
-        Me.chkPlotForOutline.TabIndex = 68
-        Me.chkPlotForOutline.Text = "Use Plot for Outline if Outline is Empty"
-        Me.chkPlotForOutline.UseVisualStyleBackColor = True
-        '
-        'txtPlotForOutlineMax
-        '
-        Me.txtPlotForOutlineMax.Location = New System.Drawing.Point(233, 80)
-        Me.txtPlotForOutlineMax.Name = "txtPlotForOutlineMax"
-        Me.txtPlotForOutlineMax.Size = New System.Drawing.Size(50, 22)
-        Me.txtPlotForOutlineMax.TabIndex = 69
         '
         'dlgSettings
         '
@@ -8105,5 +8105,5 @@ Partial Class dlgSettings
     Friend WithEvents chkLockSubtitle As System.Windows.Forms.CheckBox
     Friend WithEvents chkEpisodeWatchedCol As System.Windows.Forms.CheckBox
     Friend WithEvents chkPlotForOutline As System.Windows.Forms.CheckBox
-    Friend WithEvents txtPlotForOutlineMax As System.Windows.Forms.TextBox
+    Friend WithEvents txtOutlineLimit As System.Windows.Forms.TextBox
 End Class
