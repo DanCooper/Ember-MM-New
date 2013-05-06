@@ -6958,6 +6958,18 @@ doCancel:
         End Try
     End Sub
 
+    Private Sub pbFanartSmall_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles pbFanartSmall.DoubleClick
+        Try
+            If Not IsNothing(Me.pbFanartSmall.Image) Then
+                Using dImgView As New dlgImgView
+                    dImgView.ShowDialog(Me.pbFanartSmallCache.Image)
+                End Using
+            End If
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+    End Sub
+
     Private Sub pbAllSeason_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles pbAllSeason.DoubleClick
         Try
             If Not IsNothing(Me.pbAllSeason.Image) Then
