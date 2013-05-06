@@ -1,1 +1,1 @@
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=bodrick&url=https://github.com/bodrick/Ember-MM&title=EmberMM&language=en_GB&tags=github&category=software) 
+<a href="http://flattr.com/thing/1321788/" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
