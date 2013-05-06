@@ -501,6 +501,9 @@ Partial Class frmMain
         Me.pnlLoadingSettings = New System.Windows.Forms.Panel()
         Me.tmrAppExit = New System.Windows.Forms.Timer(Me.components)
         Me.tmrKeyBuffer = New System.Windows.Forms.Timer(Me.components)
+        Me.pnlFanartSmall = New System.Windows.Forms.Panel()
+        Me.pbFanartSmall = New System.Windows.Forms.PictureBox()
+        Me.pbFanartSmallCache = New System.Windows.Forms.PictureBox()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
         Me.scMain.Panel1.SuspendLayout()
@@ -571,6 +574,9 @@ Partial Class frmMain
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLoadingSettings.SuspendLayout()
+        Me.pnlFanartSmall.SuspendLayout()
+        CType(Me.pbFanartSmall, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbFanartSmallCache, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BottomToolStripPanel
@@ -621,7 +627,7 @@ Partial Class frmMain
         '
         Me.ExitToolStripMenuItem.Image = CType(resources.GetObject("ExitToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
@@ -889,6 +895,8 @@ Partial Class frmMain
         'scMain.Panel2
         '
         Me.scMain.Panel2.BackColor = System.Drawing.Color.DimGray
+        Me.scMain.Panel2.Controls.Add(Me.pbFanartSmallCache)
+        Me.scMain.Panel2.Controls.Add(Me.pnlFanartSmall)
         Me.scMain.Panel2.Controls.Add(Me.pnlTop)
         Me.scMain.Panel2.Controls.Add(Me.pnlCancel)
         Me.scMain.Panel2.Controls.Add(Me.pnlAllSeason)
@@ -4466,6 +4474,35 @@ Partial Class frmMain
         '
         Me.tmrKeyBuffer.Interval = 1000
         '
+        'pnlFanartSmall
+        '
+        Me.pnlFanartSmall.BackColor = System.Drawing.Color.Gainsboro
+        Me.pnlFanartSmall.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlFanartSmall.Controls.Add(Me.pbFanartSmall)
+        Me.pnlFanartSmall.Location = New System.Drawing.Point(146, 112)
+        Me.pnlFanartSmall.Name = "pnlFanartSmall"
+        Me.pnlFanartSmall.Size = New System.Drawing.Size(293, 169)
+        Me.pnlFanartSmall.TabIndex = 14
+        Me.pnlFanartSmall.Visible = False
+        '
+        'pbFanartSmall
+        '
+        Me.pbFanartSmall.BackColor = System.Drawing.SystemColors.Control
+        Me.pbFanartSmall.Location = New System.Drawing.Point(4, 4)
+        Me.pbFanartSmall.Name = "pbFanartSmall"
+        Me.pbFanartSmall.Size = New System.Drawing.Size(283, 159)
+        Me.pbFanartSmall.TabIndex = 0
+        Me.pbFanartSmall.TabStop = False
+        '
+        'pbFanartSmallCache
+        '
+        Me.pbFanartSmallCache.Location = New System.Drawing.Point(697, 107)
+        Me.pbFanartSmallCache.Name = "pbFanartSmallCache"
+        Me.pbFanartSmallCache.Size = New System.Drawing.Size(115, 111)
+        Me.pbFanartSmallCache.TabIndex = 15
+        Me.pbFanartSmallCache.TabStop = False
+        Me.pbFanartSmallCache.Visible = False
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -4568,6 +4605,9 @@ Partial Class frmMain
         Me.Panel3.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLoadingSettings.ResumeLayout(False)
+        Me.pnlFanartSmall.ResumeLayout(False)
+        CType(Me.pbFanartSmall, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbFanartSmallCache, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -5046,4 +5086,7 @@ Partial Class frmMain
     Friend WithEvents ExportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MoviesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TVShowsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents pnlFanartSmall As System.Windows.Forms.Panel
+    Friend WithEvents pbFanartSmall As System.Windows.Forms.PictureBox
+    Friend WithEvents pbFanartSmallCache As System.Windows.Forms.PictureBox
 End Class
