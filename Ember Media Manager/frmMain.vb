@@ -4401,6 +4401,8 @@ doCancel:
 
             If Not String.IsNullOrEmpty(Me.filSearch) AndAlso Me.cbSearch.Text = Master.eLang.GetString(100, "Actor") Then
                 Master.DB.FillDataTable(Me.dtMedia, String.Concat("SELECT * FROM movies WHERE ID IN (SELECT MovieID FROM MoviesActors WHERE ActorName LIKE '%", Me.filSearch, "%') ORDER BY ListTitle COLLATE NOCASE;"))
+            ElseIf Not String.IsNullOrEmpty(Me.filSearch) AndAlso Me.cbSearch.Text = Master.eLang.GetString(233, "Role") Then
+                Master.DB.FillDataTable(Me.dtMedia, String.Concat("SELECT * FROM movies WHERE ID IN (SELECT MovieID FROM MoviesActors WHERE Role LIKE '%", Me.filSearch, "%') ORDER BY ListTitle COLLATE NOCASE;"))
             Else
                 If Me.chkFilterDupe.Checked Then
                     Master.DB.FillDataTable(Me.dtMedia, "SELECT * FROM movies WHERE imdb IN (SELECT imdb FROM movies WHERE imdb IS NOT NULL AND LENGTH(imdb) > 0 GROUP BY imdb HAVING ( COUNT(imdb) > 1 )) ORDER BY ListTitle COLLATE NOCASE;")
@@ -7633,8 +7635,8 @@ doCancel:
                 If doFill Then
                     Me.FillList(0)
                 Else
-                    'Me.dgvMediaList.Focus()
-                    Me.txtSearch.Focus()
+                    Me.dgvMediaList.Focus()
+                    'Me.txtSearch.Focus()
                 End If
             End If
 
@@ -8608,7 +8610,7 @@ doCancel:
                 TT.Active = True
 
                 .cbSearch.Items.Clear()
-                .cbSearch.Items.AddRange(New Object() {Master.eLang.GetString(21, "Title"), Master.eLang.GetString(100, "Actor"), Master.eLang.GetString(62, "Director")})
+                .cbSearch.Items.AddRange(New Object() {Master.eLang.GetString(21, "Title"), Master.eLang.GetString(100, "Actor"), Master.eLang.GetString(233, "Role"), Master.eLang.GetString(62, "Director"), Master.eLang.GetString(729, "Credits")})
 
                 If doTheme Then
                     Me.tTheme = New Theming
@@ -8902,12 +8904,17 @@ doCancel:
                         Me.FilterArray.Add(Me.filSearch)
                     Case Master.eLang.GetString(100, "Actor")
                         Me.filSearch = Me.txtSearch.Text
+                    Case Master.eLang.GetString(233, "Role")
+                        Me.filSearch = Me.txtSearch.Text
                     Case Master.eLang.GetString(62, "Director")
                         Me.filSearch = String.Concat("Director LIKE '%", Me.txtSearch.Text, "%'")
                         Me.FilterArray.Add(Me.filSearch)
+                    Case Master.eLang.GetString(729, "Credits")
+                        Me.filSearch = String.Concat("Credits LIKE '%", Me.txtSearch.Text, "%'")
+                        Me.FilterArray.Add(Me.filSearch)
                 End Select
 
-                Me.RunFilter(Me.cbSearch.Text = Master.eLang.GetString(100, "Actor"))
+                Me.RunFilter(Me.cbSearch.Text = Master.eLang.GetString(100, "Actor") OrElse Me.cbSearch.Text = Master.eLang.GetString(233, "Role"))
 
             Else
                 If Not String.IsNullOrEmpty(Me.filSearch) Then
