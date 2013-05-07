@@ -348,20 +348,21 @@ Public Class AdvancedSettings
         End If
 
         If Not loadSingle OrElse section = "VideoFormatConvert" Then
-            SetSetting("VideoFormatConvert:divx 5", "dx50", "*EmberAPP", True)
+            SetSetting("VideoFormatConvert:divx 5", "divx", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:mpeg-4 video", "mpeg4", "*EmberAPP", True)
-            SetSetting("VideoFormatConvert:divx 3", "div3", "*EmberAPP", True)
+            SetSetting("VideoFormatConvert:divx 3", "divx", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:lmp4", "h264", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:svq3", "h264", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:v_mpeg4/iso/avc", "h264", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:x264", "h264", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:avc", "h264", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:swf", "flv", "*EmberAPP", True)
-            SetSetting("VideoFormatConvert:3iv0", "3ivx", "*EmberAPP", True)
-            SetSetting("VideoFormatConvert:3iv1", "3ivx", "*EmberAPP", True)
-            SetSetting("VideoFormatConvert:3iv2", "3ivx", "*EmberAPP", True)
-            SetSetting("VideoFormatConvert:3ivd", "3ivx", "*EmberAPP", True)
-
+            SetSetting("VideoFormatConvert:3iv0", "3iv2", "*EmberAPP", True)
+            SetSetting("VideoFormatConvert:3iv1", "3iv2", "*EmberAPP", True)
+            SetSetting("VideoFormatConvert:3iv2", "3iv2", "*EmberAPP", True)
+            SetSetting("VideoFormatConvert:3ivd", "3iv2", "*EmberAPP", True)
+            SetSetting("VideoFormatConvert:microsoft", "wvc1", "*EmberAPP", True)
+            SetSetting("VideoFormatConvert:v_mpeg2", "mpeg2video", "*EmberAPP", True)
         End If
 
         If Not loadSingle Then
