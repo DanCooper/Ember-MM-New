@@ -7639,8 +7639,7 @@ doCancel:
                 If doFill Then
                     Me.FillList(0)
                 Else
-                    Me.dgvMediaList.Focus()
-                    'Me.txtSearch.Focus()
+                    Me.txtSearch.Focus()
                 End If
             End If
 
