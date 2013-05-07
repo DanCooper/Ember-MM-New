@@ -1549,8 +1549,11 @@ doCancel:
     End Sub
 
     Private Sub cbSearch_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSearch.SelectedIndexChanged
-        Me.txtSearch.Text = String.Empty
-        Me.txtSearch.Focus()
+        Me.currText = Me.txtSearch.Text
+
+        Me.tmrSearchWait.Enabled = False
+        Me.tmrSearch.Enabled = False
+        Me.tmrSearchWait.Enabled = True
     End Sub
 
     Private Sub chkFilterDupe_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkFilterDupe.Click
