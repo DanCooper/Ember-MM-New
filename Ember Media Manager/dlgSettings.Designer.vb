@@ -7104,6 +7104,8 @@ Partial Class dlgSettings
         '
         'txtOutlineLimit
         '
+        Me.txtOutlineLimit.Enabled = False
+        Me.txtOutlineLimit.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.txtOutlineLimit.Location = New System.Drawing.Point(233, 80)
         Me.txtOutlineLimit.Name = "txtOutlineLimit"
         Me.txtOutlineLimit.Size = New System.Drawing.Size(50, 22)
