@@ -35,7 +35,8 @@ Public Class ErrorLogger
 			System.IO.Directory.CreateDirectory(_sPath)
 		End If
 
-		_LogFile = Path.Combine(_sPath, Format(Now, "yyyyMMdd-HHmmss") & ".log")
+        '_LogFile = Path.Combine(_sPath, Format(Now, "yyyyMMdd-HHmmss") & ".log")
+        _LogFile = Path.Combine(_sPath, "errlog.txt")
 	End Sub
 
 #End Region	'Constructors
