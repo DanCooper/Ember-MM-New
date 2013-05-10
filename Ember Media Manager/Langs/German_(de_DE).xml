@@ -730,7 +730,7 @@
   <string id="729">Drehbuch</string>
   <string id="730">Bevorzugter Typ:</string>
   <string id="731">Aktualisiere Serie:</string>
-  <string id="732">&lt;h&gt; = Stunden, &lt;m&gt; = Minuten</string>
+  <string id="732">&lt;h&gt;= Stunden &lt;m&gt;= Minuten &lt;s&gt;= Sekunden</string>
   <string id="733">Fehlende Episoden zeigen</string>
   <string id="734">Episodentitel scrapen statt filtern</string>
   <string id="735">Alle-Staffeln Poster</string>

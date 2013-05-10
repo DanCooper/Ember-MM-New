@@ -30,7 +30,7 @@ Partial Class dlgSettings
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgSettings))
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.gbGeneralMiscellaneous = New System.Windows.Forms.GroupBox()
         Me.chkPosterGlassOverlay = New System.Windows.Forms.CheckBox()
         Me.chkSpecialDateAdd = New System.Windows.Forms.CheckBox()
         Me.chkShowGenresText = New System.Windows.Forms.CheckBox()
@@ -76,17 +76,17 @@ Partial Class dlgSettings
         Me.txtWhitelist = New System.Windows.Forms.TextBox()
         Me.lstWhitelist = New System.Windows.Forms.ListBox()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.GroupBox12 = New System.Windows.Forms.GroupBox()
+        Me.gbMoviesMiscellaneous = New System.Windows.Forms.GroupBox()
         Me.chkClickScrape = New System.Windows.Forms.CheckBox()
         Me.chkAskCheckboxScrape = New System.Windows.Forms.CheckBox()
         Me.chkMarkNew = New System.Windows.Forms.CheckBox()
         Me.lbGenre = New System.Windows.Forms.CheckedListBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.gbMoviesMediaList = New System.Windows.Forms.GroupBox()
         Me.chkMovieWatchedCol = New System.Windows.Forms.CheckBox()
         Me.txtCheckTitleTol = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.chkCheckTitles = New System.Windows.Forms.CheckBox()
-        Me.GroupBox25 = New System.Windows.Forms.GroupBox()
+        Me.gbMoviesSortToken = New System.Windows.Forms.GroupBox()
         Me.btnRemoveToken = New System.Windows.Forms.Button()
         Me.btnAddToken = New System.Windows.Forms.Button()
         Me.txtSortToken = New System.Windows.Forms.TextBox()
@@ -98,7 +98,7 @@ Partial Class dlgSettings
         Me.chkMovieInfoCol = New System.Windows.Forms.CheckBox()
         Me.chkMovieFanartCol = New System.Windows.Forms.CheckBox()
         Me.chkMoviePosterCol = New System.Windows.Forms.CheckBox()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.gbSourcesFileNaming = New System.Windows.Forms.GroupBox()
         Me.btnMovieFrodo = New System.Windows.Forms.Button()
         Me.chkMovieNameMultiOnly = New System.Windows.Forms.CheckBox()
         Me.GroupBox21 = New System.Windows.Forms.GroupBox()
@@ -130,7 +130,7 @@ Partial Class dlgSettings
         Me.colSingle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btnMovieRem = New System.Windows.Forms.Button()
         Me.btnMovieAddFolder = New System.Windows.Forms.Button()
-        Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.gbImagesPoster = New System.Windows.Forms.GroupBox()
         Me.chkPosterOnly = New System.Windows.Forms.CheckBox()
         Me.txtPosterWidth = New System.Windows.Forms.TextBox()
         Me.txtPosterHeight = New System.Windows.Forms.TextBox()
@@ -143,7 +143,7 @@ Partial Class dlgSettings
         Me.lblPosterSize = New System.Windows.Forms.Label()
         Me.cbPosterSize = New System.Windows.Forms.ComboBox()
         Me.chkOverwritePoster = New System.Windows.Forms.CheckBox()
-        Me.GroupBox13 = New System.Windows.Forms.GroupBox()
+        Me.gbImagesFanart = New System.Windows.Forms.GroupBox()
         Me.txtFanartWidth = New System.Windows.Forms.TextBox()
         Me.txtFanartHeight = New System.Windows.Forms.TextBox()
         Me.chkFanartOnly = New System.Windows.Forms.CheckBox()
@@ -156,11 +156,11 @@ Partial Class dlgSettings
         Me.cbFanartSize = New System.Windows.Forms.ComboBox()
         Me.lblFanartSize = New System.Windows.Forms.Label()
         Me.chkOverwriteFanart = New System.Windows.Forms.CheckBox()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.gbImagesImages = New System.Windows.Forms.GroupBox()
         Me.chkScraperActorThumbs = New System.Windows.Forms.CheckBox()
         Me.chkNoSaveImagesToNfo = New System.Windows.Forms.CheckBox()
         Me.chkSingleScrapeImages = New System.Windows.Forms.CheckBox()
-        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
+        Me.gbImagesCaching = New System.Windows.Forms.GroupBox()
         Me.chkUseImgCacheUpdaters = New System.Windows.Forms.CheckBox()
         Me.chkPersistImgCache = New System.Windows.Forms.CheckBox()
         Me.chkUseImgCache = New System.Windows.Forms.CheckBox()
@@ -179,7 +179,7 @@ Partial Class dlgSettings
         Me.ilSettings = New System.Windows.Forms.ImageList(Me.components)
         Me.tvSettings = New System.Windows.Forms.TreeView()
         Me.pnlGeneral = New System.Windows.Forms.Panel()
-        Me.gbInterface = New System.Windows.Forms.GroupBox()
+        Me.gbGeneralInterface = New System.Windows.Forms.GroupBox()
         Me.pnlXBMCCom = New System.Windows.Forms.Panel()
         Me.gbProxy = New System.Windows.Forms.GroupBox()
         Me.gbCreds = New System.Windows.Forms.GroupBox()
@@ -196,8 +196,8 @@ Partial Class dlgSettings
         Me.txtProxyURI = New System.Windows.Forms.TextBox()
         Me.chkEnableProxy = New System.Windows.Forms.CheckBox()
         Me.pnlMovies = New System.Windows.Forms.Panel()
-        Me.gbGenreFilter = New System.Windows.Forms.GroupBox()
-        Me.gbFilters = New System.Windows.Forms.GroupBox()
+        Me.gbMoviesGenreFilter = New System.Windows.Forms.GroupBox()
+        Me.gbMoviesFilters = New System.Windows.Forms.GroupBox()
         Me.btnResetMovieFilters = New System.Windows.Forms.Button()
         Me.btnDown = New System.Windows.Forms.Button()
         Me.btnUp = New System.Windows.Forms.Button()
@@ -206,14 +206,14 @@ Partial Class dlgSettings
         Me.btnAddFilter = New System.Windows.Forms.Button()
         Me.txtFilter = New System.Windows.Forms.TextBox()
         Me.lstFilters = New System.Windows.Forms.ListBox()
-        Me.GroupBox27 = New System.Windows.Forms.GroupBox()
+        Me.gbMoviesMissingFilter = New System.Windows.Forms.GroupBox()
         Me.chkMissingExtra = New System.Windows.Forms.CheckBox()
         Me.chkMissingSubs = New System.Windows.Forms.CheckBox()
         Me.chkMissingTrailer = New System.Windows.Forms.CheckBox()
         Me.chkMissingNFO = New System.Windows.Forms.CheckBox()
         Me.chkMissingFanart = New System.Windows.Forms.CheckBox()
         Me.chkMissingPoster = New System.Windows.Forms.CheckBox()
-        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.gbSourcesBackdrops = New System.Windows.Forms.GroupBox()
         Me.chkAutoBD = New System.Windows.Forms.CheckBox()
         Me.btnBrowse = New System.Windows.Forms.Button()
         Me.txtBDPath = New System.Windows.Forms.TextBox()
@@ -235,7 +235,7 @@ Partial Class dlgSettings
         Me.lstMovieExts = New System.Windows.Forms.ListBox()
         Me.pnlSources = New System.Windows.Forms.Panel()
         Me.btnEditSource = New System.Windows.Forms.Button()
-        Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.gbSourcesMiscellaneous = New System.Windows.Forms.GroupBox()
         Me.chkVideoTSParentXBMC = New System.Windows.Forms.CheckBox()
         Me.chkScanOrderModify = New System.Windows.Forms.CheckBox()
         Me.chkSortBeforeScan = New System.Windows.Forms.CheckBox()
@@ -247,7 +247,7 @@ Partial Class dlgSettings
         Me.txtSkipLessThan = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.pnlImages = New System.Windows.Forms.Panel()
-        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.gbImagesTrailers = New System.Windows.Forms.GroupBox()
         Me.cbTrailerQuality = New System.Windows.Forms.ComboBox()
         Me.lblPreferredQuality = New System.Windows.Forms.Label()
         Me.chkDeleteAllTrailers = New System.Windows.Forms.CheckBox()
@@ -256,10 +256,10 @@ Partial Class dlgSettings
         Me.chkSingleScrapeTrailer = New System.Windows.Forms.CheckBox()
         Me.chkUpdaterTrailer = New System.Windows.Forms.CheckBox()
         Me.chkDownloadTrailer = New System.Windows.Forms.CheckBox()
-        Me.GroupBox23 = New System.Windows.Forms.GroupBox()
+        Me.gbImagesExtrathumbs = New System.Windows.Forms.GroupBox()
         Me.chkAutoETSize = New System.Windows.Forms.CheckBox()
         Me.cbAutoETSize = New System.Windows.Forms.ComboBox()
-        Me.GroupBox24 = New System.Windows.Forms.GroupBox()
+        Me.gbImagesSizing = New System.Windows.Forms.GroupBox()
         Me.txtETWidth = New System.Windows.Forms.TextBox()
         Me.txtETHeight = New System.Windows.Forms.TextBox()
         Me.chkETPadding = New System.Windows.Forms.CheckBox()
@@ -350,7 +350,7 @@ Partial Class dlgSettings
         Me.colEpisode = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colEpApply = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.pnlShows = New System.Windows.Forms.Panel()
-        Me.gbTVListOptions = New System.Windows.Forms.GroupBox()
+        Me.gbShowMediaList = New System.Windows.Forms.GroupBox()
         Me.chkDisplayMissingEpisodes = New System.Windows.Forms.CheckBox()
         Me.gbEpisodeListOptions = New System.Windows.Forms.GroupBox()
         Me.chkEpisodeWatchedCol = New System.Windows.Forms.CheckBox()
@@ -364,13 +364,13 @@ Partial Class dlgSettings
         Me.chkShowNfoCol = New System.Windows.Forms.CheckBox()
         Me.chkShowFanartCol = New System.Windows.Forms.CheckBox()
         Me.chkShowPosterCol = New System.Windows.Forms.CheckBox()
-        Me.gbTVMisc = New System.Windows.Forms.GroupBox()
+        Me.gbShowsMiscellaneous = New System.Windows.Forms.GroupBox()
         Me.chkMarkNewShows = New System.Windows.Forms.CheckBox()
         Me.chkMarkNewEpisodes = New System.Windows.Forms.CheckBox()
         Me.chkDisplayAllSeason = New System.Windows.Forms.CheckBox()
         Me.lblRatingRegion = New System.Windows.Forms.Label()
         Me.cbRatingRegion = New System.Windows.Forms.ComboBox()
-        Me.gbEpFilter = New System.Windows.Forms.GroupBox()
+        Me.gbShowEpFilter = New System.Windows.Forms.GroupBox()
         Me.btnResetEpFilter = New System.Windows.Forms.Button()
         Me.chkNoFilterEpisode = New System.Windows.Forms.CheckBox()
         Me.btnEpFilterDown = New System.Windows.Forms.Button()
@@ -484,40 +484,19 @@ Partial Class dlgSettings
         Me.chkGetEnglishImages = New System.Windows.Forms.CheckBox()
         Me.chkOnlyTVImagesLanguage = New System.Windows.Forms.CheckBox()
         Me.pnlTVScraper = New System.Windows.Forms.Panel()
-        Me.GroupBox32 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox35 = New System.Windows.Forms.GroupBox()
-        Me.chkScraperShowRating = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowActors = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowStudio = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowPremiered = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowEGU = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowMPAA = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowPlot = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowGenre = New System.Windows.Forms.CheckBox()
-        Me.chkScraperShowTitle = New System.Windows.Forms.CheckBox()
-        Me.GroupBox34 = New System.Windows.Forms.GroupBox()
-        Me.chkScraperEpActors = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpCredits = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpDirector = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpPlot = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpRating = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpAired = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpTitle = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpEpisode = New System.Windows.Forms.CheckBox()
-        Me.chkScraperEpSeason = New System.Windows.Forms.CheckBox()
-        Me.GroupBox33 = New System.Windows.Forms.GroupBox()
-        Me.gbEpLocks = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperGlobalLocks = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperEpLocks = New System.Windows.Forms.GroupBox()
         Me.chkEpLockTitle = New System.Windows.Forms.CheckBox()
         Me.chkEpLockRating = New System.Windows.Forms.CheckBox()
         Me.chkEpLockPlot = New System.Windows.Forms.CheckBox()
-        Me.gbShowLocks = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperShowLocks = New System.Windows.Forms.GroupBox()
         Me.chkShowLockPlot = New System.Windows.Forms.CheckBox()
         Me.chkShowLockGenre = New System.Windows.Forms.CheckBox()
         Me.chkShowLockStudio = New System.Windows.Forms.CheckBox()
         Me.chkShowLockRating = New System.Windows.Forms.CheckBox()
         Me.chkShowLockTitle = New System.Windows.Forms.CheckBox()
-        Me.GroupBox31 = New System.Windows.Forms.GroupBox()
-        Me.gbTVMIDefaults = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperMetaData = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperFileType = New System.Windows.Forms.GroupBox()
         Me.lstTVMetaData = New System.Windows.Forms.ListBox()
         Me.txtTVDefFIExt = New System.Windows.Forms.TextBox()
         Me.Label49 = New System.Windows.Forms.Label()
@@ -536,11 +515,33 @@ Partial Class dlgSettings
         Me.lblTVDBMirror = New System.Windows.Forms.Label()
         Me.txtAPIKey = New System.Windows.Forms.TextBox()
         Me.txtTVDBMirror = New System.Windows.Forms.TextBox()
-        Me.gbLanguage = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperLanguage = New System.Windows.Forms.GroupBox()
         Me.lblTVLanguagePreferred = New System.Windows.Forms.Label()
         Me.btnTVLanguageFetch = New System.Windows.Forms.Button()
         Me.cbTVLanguage = New System.Windows.Forms.ComboBox()
-        Me.gbOptions = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperEpisode = New System.Windows.Forms.GroupBox()
+        Me.chkScraperEpActors = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpCredits = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpDirector = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpPlot = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpRating = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpAired = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpTitle = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpEpisode = New System.Windows.Forms.CheckBox()
+        Me.chkScraperEpSeason = New System.Windows.Forms.CheckBox()
+        Me.gbTVScraperFields = New System.Windows.Forms.GroupBox()
+        Me.gbTVScraperShow = New System.Windows.Forms.GroupBox()
+        Me.chkScraperShowRating = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowActors = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowStudio = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowPremiered = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowEGU = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowMPAA = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowPlot = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowGenre = New System.Windows.Forms.CheckBox()
+        Me.chkScraperShowTitle = New System.Windows.Forms.CheckBox()
+        Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.gbScraperFields = New System.Windows.Forms.GroupBox()
         Me.chkCertification = New System.Windows.Forms.CheckBox()
         Me.chkTop250 = New System.Windows.Forms.CheckBox()
         Me.chkCountry = New System.Windows.Forms.CheckBox()
@@ -567,8 +568,8 @@ Partial Class dlgSettings
         Me.chkMPAA = New System.Windows.Forms.CheckBox()
         Me.chkYear = New System.Windows.Forms.CheckBox()
         Me.chkTitle = New System.Windows.Forms.CheckBox()
-        Me.GroupBox26 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox28 = New System.Windows.Forms.GroupBox()
+        Me.gbScraperMetaData = New System.Windows.Forms.GroupBox()
+        Me.gbScraperFileType = New System.Windows.Forms.GroupBox()
         Me.lstMetaData = New System.Windows.Forms.ListBox()
         Me.txtDefFIExt = New System.Windows.Forms.TextBox()
         Me.Label34 = New System.Windows.Forms.Label()
@@ -578,12 +579,12 @@ Partial Class dlgSettings
         Me.chkIFOScan = New System.Windows.Forms.CheckBox()
         Me.cbLanguages = New System.Windows.Forms.ComboBox()
         Me.Label31 = New System.Windows.Forms.Label()
-        Me.gbRTFormat = New System.Windows.Forms.GroupBox()
+        Me.gbScraperDurationFormat = New System.Windows.Forms.GroupBox()
         Me.Label51 = New System.Windows.Forms.Label()
         Me.txtRuntimeFormat = New System.Windows.Forms.TextBox()
         Me.chkUseMIDuration = New System.Windows.Forms.CheckBox()
         Me.chkScanMediaInfo = New System.Windows.Forms.CheckBox()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.gbScraperGlobalLocks = New System.Windows.Forms.GroupBox()
         Me.chkLockSubtitle = New System.Windows.Forms.CheckBox()
         Me.chkLockMPAA = New System.Windows.Forms.CheckBox()
         Me.chkLockLanguageA = New System.Windows.Forms.CheckBox()
@@ -596,7 +597,7 @@ Partial Class dlgSettings
         Me.chkLockRating = New System.Windows.Forms.CheckBox()
         Me.chkLockTagline = New System.Windows.Forms.CheckBox()
         Me.chkLockTitle = New System.Windows.Forms.CheckBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gbScraperMiscellaneous = New System.Windows.Forms.GroupBox()
         Me.txtOutlineLimit = New System.Windows.Forms.TextBox()
         Me.chkPlotForOutline = New System.Windows.Forms.CheckBox()
         Me.chkUseMPAAFSK = New System.Windows.Forms.CheckBox()
@@ -612,54 +613,53 @@ Partial Class dlgSettings
         Me.chkCert = New System.Windows.Forms.CheckBox()
         Me.pnlScraper = New System.Windows.Forms.Panel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.pnlMain = New System.Windows.Forms.Panel()
         Me.gbHelp = New System.Windows.Forms.GroupBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.GroupBox4.SuspendLayout()
+        Me.gbGeneralMiscellaneous.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.tcCleaner.SuspendLayout()
         Me.tpStandard.SuspendLayout()
         Me.tpExpert.SuspendLayout()
-        Me.GroupBox12.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox25.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
+        Me.gbMoviesMiscellaneous.SuspendLayout()
+        Me.gbMoviesMediaList.SuspendLayout()
+        Me.gbMoviesSortToken.SuspendLayout()
+        Me.gbSourcesFileNaming.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
-        Me.GroupBox14.SuspendLayout()
+        Me.gbImagesPoster.SuspendLayout()
         CType(Me.tbPosterQual, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox13.SuspendLayout()
+        Me.gbImagesFanart.SuspendLayout()
         CType(Me.tbFanartQual, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox9.SuspendLayout()
-        Me.GroupBox17.SuspendLayout()
+        Me.gbImagesImages.SuspendLayout()
+        Me.gbImagesCaching.SuspendLayout()
         Me.pnlTop.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlGeneral.SuspendLayout()
-        Me.gbInterface.SuspendLayout()
+        Me.gbGeneralInterface.SuspendLayout()
         Me.pnlXBMCCom.SuspendLayout()
         Me.gbProxy.SuspendLayout()
         Me.gbCreds.SuspendLayout()
         Me.pnlMovies.SuspendLayout()
-        Me.gbGenreFilter.SuspendLayout()
-        Me.gbFilters.SuspendLayout()
-        Me.GroupBox27.SuspendLayout()
-        Me.GroupBox16.SuspendLayout()
+        Me.gbMoviesGenreFilter.SuspendLayout()
+        Me.gbMoviesFilters.SuspendLayout()
+        Me.gbMoviesMissingFilter.SuspendLayout()
+        Me.gbSourcesBackdrops.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.pbCurrent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlExtensions.SuspendLayout()
         Me.GroupBox22.SuspendLayout()
         Me.GroupBox18.SuspendLayout()
         Me.pnlSources.SuspendLayout()
-        Me.GroupBox19.SuspendLayout()
+        Me.gbSourcesMiscellaneous.SuspendLayout()
         Me.pnlImages.SuspendLayout()
-        Me.GroupBox15.SuspendLayout()
-        Me.GroupBox23.SuspendLayout()
-        Me.GroupBox24.SuspendLayout()
+        Me.gbImagesTrailers.SuspendLayout()
+        Me.gbImagesExtrathumbs.SuspendLayout()
+        Me.gbImagesSizing.SuspendLayout()
         Me.pnlTVSources.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -676,12 +676,12 @@ Partial Class dlgSettings
         Me.TabPage4.SuspendLayout()
         Me.gbShowRegex.SuspendLayout()
         Me.pnlShows.SuspendLayout()
-        Me.gbTVListOptions.SuspendLayout()
+        Me.gbShowMediaList.SuspendLayout()
         Me.gbEpisodeListOptions.SuspendLayout()
         Me.gbSeasonListOptions.SuspendLayout()
         Me.gbShowListOptions.SuspendLayout()
-        Me.gbTVMisc.SuspendLayout()
-        Me.gbEpFilter.SuspendLayout()
+        Me.gbShowsMiscellaneous.SuspendLayout()
+        Me.gbShowEpFilter.SuspendLayout()
         Me.gbShowFilter.SuspendLayout()
         Me.pnlTVImages.SuspendLayout()
         Me.TabControl3.SuspendLayout()
@@ -704,49 +704,49 @@ Partial Class dlgSettings
         CType(Me.tbEpFanartQual, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage8.SuspendLayout()
         Me.pnlTVScraper.SuspendLayout()
-        Me.GroupBox32.SuspendLayout()
-        Me.GroupBox35.SuspendLayout()
-        Me.GroupBox34.SuspendLayout()
-        Me.GroupBox33.SuspendLayout()
-        Me.gbEpLocks.SuspendLayout()
-        Me.gbShowLocks.SuspendLayout()
-        Me.GroupBox31.SuspendLayout()
-        Me.gbTVMIDefaults.SuspendLayout()
+        Me.gbTVScraperGlobalLocks.SuspendLayout()
+        Me.gbTVScraperEpLocks.SuspendLayout()
+        Me.gbTVScraperShowLocks.SuspendLayout()
+        Me.gbTVScraperMetaData.SuspendLayout()
+        Me.gbTVScraperFileType.SuspendLayout()
         Me.gbTVScraperOptions.SuspendLayout()
-        Me.gbLanguage.SuspendLayout()
-        Me.gbOptions.SuspendLayout()
-        Me.GroupBox26.SuspendLayout()
-        Me.GroupBox28.SuspendLayout()
-        Me.gbRTFormat.SuspendLayout()
-        Me.GroupBox10.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.gbTVScraperLanguage.SuspendLayout()
+        Me.gbTVScraperEpisode.SuspendLayout()
+        Me.gbTVScraperFields.SuspendLayout()
+        Me.gbTVScraperShow.SuspendLayout()
+        Me.gbScraperFields.SuspendLayout()
+        Me.gbScraperMetaData.SuspendLayout()
+        Me.gbScraperFileType.SuspendLayout()
+        Me.gbScraperDurationFormat.SuspendLayout()
+        Me.gbScraperGlobalLocks.SuspendLayout()
+        Me.gbScraperMiscellaneous.SuspendLayout()
         Me.pnlScraper.SuspendLayout()
         Me.gbHelp.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox4
+        'gbGeneralMiscellaneous
         '
-        Me.GroupBox4.Controls.Add(Me.chkPosterGlassOverlay)
-        Me.GroupBox4.Controls.Add(Me.chkSpecialDateAdd)
-        Me.GroupBox4.Controls.Add(Me.chkShowGenresText)
-        Me.GroupBox4.Controls.Add(Me.chkSourceFromFolder)
-        Me.GroupBox4.Controls.Add(Me.chkNoDisplayFanart)
-        Me.GroupBox4.Controls.Add(Me.chkInfoPanelAnim)
-        Me.GroupBox4.Controls.Add(Me.chkNoDisplayPoster)
-        Me.GroupBox4.Controls.Add(Me.chkShowDims)
-        Me.GroupBox4.Controls.Add(Me.chkUpdates)
-        Me.GroupBox4.Controls.Add(Me.chkOverwriteNfo)
-        Me.GroupBox4.Controls.Add(Me.Label5)
-        Me.GroupBox4.Controls.Add(Me.chkLogErrors)
-        Me.GroupBox4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(210, 3)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(900, 657)
-        Me.GroupBox4.TabIndex = 1
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Miscellaneous"
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkPosterGlassOverlay)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkSpecialDateAdd)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkShowGenresText)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkSourceFromFolder)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkNoDisplayFanart)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkInfoPanelAnim)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkNoDisplayPoster)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkShowDims)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkUpdates)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkOverwriteNfo)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.Label5)
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkLogErrors)
+        Me.gbGeneralMiscellaneous.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbGeneralMiscellaneous.Location = New System.Drawing.Point(210, 3)
+        Me.gbGeneralMiscellaneous.Name = "gbGeneralMiscellaneous"
+        Me.gbGeneralMiscellaneous.Size = New System.Drawing.Size(417, 344)
+        Me.gbGeneralMiscellaneous.TabIndex = 1
+        Me.gbGeneralMiscellaneous.TabStop = False
+        Me.gbGeneralMiscellaneous.Text = "Miscellaneous"
         '
         'chkPosterGlassOverlay
         '
@@ -1255,18 +1255,18 @@ Partial Class dlgSettings
     "e care when using this tool."
         Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'GroupBox12
+        'gbMoviesMiscellaneous
         '
-        Me.GroupBox12.Controls.Add(Me.chkClickScrape)
-        Me.GroupBox12.Controls.Add(Me.chkAskCheckboxScrape)
-        Me.GroupBox12.Controls.Add(Me.chkMarkNew)
-        Me.GroupBox12.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox12.Location = New System.Drawing.Point(6, 7)
-        Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(219, 93)
-        Me.GroupBox12.TabIndex = 1
-        Me.GroupBox12.TabStop = False
-        Me.GroupBox12.Text = "Miscellaneous"
+        Me.gbMoviesMiscellaneous.Controls.Add(Me.chkClickScrape)
+        Me.gbMoviesMiscellaneous.Controls.Add(Me.chkAskCheckboxScrape)
+        Me.gbMoviesMiscellaneous.Controls.Add(Me.chkMarkNew)
+        Me.gbMoviesMiscellaneous.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbMoviesMiscellaneous.Location = New System.Drawing.Point(6, 7)
+        Me.gbMoviesMiscellaneous.Name = "gbMoviesMiscellaneous"
+        Me.gbMoviesMiscellaneous.Size = New System.Drawing.Size(219, 93)
+        Me.gbMoviesMiscellaneous.TabIndex = 1
+        Me.gbMoviesMiscellaneous.TabStop = False
+        Me.gbMoviesMiscellaneous.Text = "Miscellaneous"
         '
         'chkClickScrape
         '
@@ -1313,27 +1313,27 @@ Partial Class dlgSettings
         Me.lbGenre.Sorted = True
         Me.lbGenre.TabIndex = 0
         '
-        'GroupBox2
+        'gbMoviesMediaList
         '
-        Me.GroupBox2.Controls.Add(Me.chkMovieWatchedCol)
-        Me.GroupBox2.Controls.Add(Me.txtCheckTitleTol)
-        Me.GroupBox2.Controls.Add(Me.Label30)
-        Me.GroupBox2.Controls.Add(Me.chkCheckTitles)
-        Me.GroupBox2.Controls.Add(Me.GroupBox25)
-        Me.GroupBox2.Controls.Add(Me.chkDisplayYear)
-        Me.GroupBox2.Controls.Add(Me.chkMovieExtraCol)
-        Me.GroupBox2.Controls.Add(Me.chkMovieSubCol)
-        Me.GroupBox2.Controls.Add(Me.chkMovieTrailerCol)
-        Me.GroupBox2.Controls.Add(Me.chkMovieInfoCol)
-        Me.GroupBox2.Controls.Add(Me.chkMovieFanartCol)
-        Me.GroupBox2.Controls.Add(Me.chkMoviePosterCol)
-        Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(7, 106)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(218, 291)
-        Me.GroupBox2.TabIndex = 4
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Media List Options"
+        Me.gbMoviesMediaList.Controls.Add(Me.chkMovieWatchedCol)
+        Me.gbMoviesMediaList.Controls.Add(Me.txtCheckTitleTol)
+        Me.gbMoviesMediaList.Controls.Add(Me.Label30)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkCheckTitles)
+        Me.gbMoviesMediaList.Controls.Add(Me.gbMoviesSortToken)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkDisplayYear)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkMovieExtraCol)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkMovieSubCol)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkMovieTrailerCol)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkMovieInfoCol)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkMovieFanartCol)
+        Me.gbMoviesMediaList.Controls.Add(Me.chkMoviePosterCol)
+        Me.gbMoviesMediaList.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbMoviesMediaList.Location = New System.Drawing.Point(7, 106)
+        Me.gbMoviesMediaList.Name = "gbMoviesMediaList"
+        Me.gbMoviesMediaList.Size = New System.Drawing.Size(218, 297)
+        Me.gbMoviesMediaList.TabIndex = 4
+        Me.gbMoviesMediaList.TabStop = False
+        Me.gbMoviesMediaList.Text = "Media List Options"
         '
         'chkMovieWatchedCol
         '
@@ -1377,19 +1377,19 @@ Partial Class dlgSettings
         Me.chkCheckTitles.Text = "Check Title Match Confidence"
         Me.chkCheckTitles.UseVisualStyleBackColor = True
         '
-        'GroupBox25
+        'gbMoviesSortToken
         '
-        Me.GroupBox25.Controls.Add(Me.btnRemoveToken)
-        Me.GroupBox25.Controls.Add(Me.btnAddToken)
-        Me.GroupBox25.Controls.Add(Me.txtSortToken)
-        Me.GroupBox25.Controls.Add(Me.lstSortTokens)
-        Me.GroupBox25.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox25.Location = New System.Drawing.Point(9, 73)
-        Me.GroupBox25.Name = "GroupBox25"
-        Me.GroupBox25.Size = New System.Drawing.Size(200, 102)
-        Me.GroupBox25.TabIndex = 71
-        Me.GroupBox25.TabStop = False
-        Me.GroupBox25.Text = "Sort Tokens to Ignore"
+        Me.gbMoviesSortToken.Controls.Add(Me.btnRemoveToken)
+        Me.gbMoviesSortToken.Controls.Add(Me.btnAddToken)
+        Me.gbMoviesSortToken.Controls.Add(Me.txtSortToken)
+        Me.gbMoviesSortToken.Controls.Add(Me.lstSortTokens)
+        Me.gbMoviesSortToken.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbMoviesSortToken.Location = New System.Drawing.Point(9, 73)
+        Me.gbMoviesSortToken.Name = "gbMoviesSortToken"
+        Me.gbMoviesSortToken.Size = New System.Drawing.Size(200, 102)
+        Me.gbMoviesSortToken.TabIndex = 71
+        Me.gbMoviesSortToken.TabStop = False
+        Me.gbMoviesSortToken.Text = "Sort Tokens to Ignore"
         '
         'btnRemoveToken
         '
@@ -1505,21 +1505,21 @@ Partial Class dlgSettings
         Me.chkMoviePosterCol.Text = "Hide Poster Column"
         Me.chkMoviePosterCol.UseVisualStyleBackColor = True
         '
-        'GroupBox8
+        'gbSourcesFileNaming
         '
-        Me.GroupBox8.Controls.Add(Me.btnMovieFrodo)
-        Me.GroupBox8.Controls.Add(Me.chkMovieNameMultiOnly)
-        Me.GroupBox8.Controls.Add(Me.GroupBox21)
-        Me.GroupBox8.Controls.Add(Me.GroupBox7)
-        Me.GroupBox8.Controls.Add(Me.GroupBox6)
-        Me.GroupBox8.Controls.Add(Me.GroupBox5)
-        Me.GroupBox8.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox8.Location = New System.Drawing.Point(243, 113)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(366, 207)
-        Me.GroupBox8.TabIndex = 5
-        Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "File Naming"
+        Me.gbSourcesFileNaming.Controls.Add(Me.btnMovieFrodo)
+        Me.gbSourcesFileNaming.Controls.Add(Me.chkMovieNameMultiOnly)
+        Me.gbSourcesFileNaming.Controls.Add(Me.GroupBox21)
+        Me.gbSourcesFileNaming.Controls.Add(Me.GroupBox7)
+        Me.gbSourcesFileNaming.Controls.Add(Me.GroupBox6)
+        Me.gbSourcesFileNaming.Controls.Add(Me.GroupBox5)
+        Me.gbSourcesFileNaming.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbSourcesFileNaming.Location = New System.Drawing.Point(243, 113)
+        Me.gbSourcesFileNaming.Name = "gbSourcesFileNaming"
+        Me.gbSourcesFileNaming.Size = New System.Drawing.Size(366, 207)
+        Me.gbSourcesFileNaming.TabIndex = 5
+        Me.gbSourcesFileNaming.TabStop = False
+        Me.gbSourcesFileNaming.Text = "File Naming"
         '
         'btnMovieFrodo
         '
@@ -1588,7 +1588,7 @@ Partial Class dlgSettings
         Me.GroupBox7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(258, 111)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(102, 81)
+        Me.GroupBox7.Size = New System.Drawing.Size(102, 90)
         Me.GroupBox7.TabIndex = 5
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "NFO"
@@ -1851,27 +1851,27 @@ Partial Class dlgSettings
         Me.btnMovieAddFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnMovieAddFolder.UseVisualStyleBackColor = True
         '
-        'GroupBox14
+        'gbImagesPoster
         '
-        Me.GroupBox14.Controls.Add(Me.chkPosterOnly)
-        Me.GroupBox14.Controls.Add(Me.txtPosterWidth)
-        Me.GroupBox14.Controls.Add(Me.txtPosterHeight)
-        Me.GroupBox14.Controls.Add(Me.lblPosterQual)
-        Me.GroupBox14.Controls.Add(Me.tbPosterQual)
-        Me.GroupBox14.Controls.Add(Me.Label24)
-        Me.GroupBox14.Controls.Add(Me.Label11)
-        Me.GroupBox14.Controls.Add(Me.Label12)
-        Me.GroupBox14.Controls.Add(Me.chkResizePoster)
-        Me.GroupBox14.Controls.Add(Me.lblPosterSize)
-        Me.GroupBox14.Controls.Add(Me.cbPosterSize)
-        Me.GroupBox14.Controls.Add(Me.chkOverwritePoster)
-        Me.GroupBox14.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox14.Location = New System.Drawing.Point(190, 3)
-        Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(218, 170)
-        Me.GroupBox14.TabIndex = 2
-        Me.GroupBox14.TabStop = False
-        Me.GroupBox14.Text = "Poster"
+        Me.gbImagesPoster.Controls.Add(Me.chkPosterOnly)
+        Me.gbImagesPoster.Controls.Add(Me.txtPosterWidth)
+        Me.gbImagesPoster.Controls.Add(Me.txtPosterHeight)
+        Me.gbImagesPoster.Controls.Add(Me.lblPosterQual)
+        Me.gbImagesPoster.Controls.Add(Me.tbPosterQual)
+        Me.gbImagesPoster.Controls.Add(Me.Label24)
+        Me.gbImagesPoster.Controls.Add(Me.Label11)
+        Me.gbImagesPoster.Controls.Add(Me.Label12)
+        Me.gbImagesPoster.Controls.Add(Me.chkResizePoster)
+        Me.gbImagesPoster.Controls.Add(Me.lblPosterSize)
+        Me.gbImagesPoster.Controls.Add(Me.cbPosterSize)
+        Me.gbImagesPoster.Controls.Add(Me.chkOverwritePoster)
+        Me.gbImagesPoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbImagesPoster.Location = New System.Drawing.Point(190, 3)
+        Me.gbImagesPoster.Name = "gbImagesPoster"
+        Me.gbImagesPoster.Size = New System.Drawing.Size(218, 170)
+        Me.gbImagesPoster.TabIndex = 2
+        Me.gbImagesPoster.TabStop = False
+        Me.gbImagesPoster.Text = "Poster"
         '
         'chkPosterOnly
         '
@@ -1996,27 +1996,27 @@ Partial Class dlgSettings
         Me.chkOverwritePoster.Text = "Overwrite Existing"
         Me.chkOverwritePoster.UseVisualStyleBackColor = True
         '
-        'GroupBox13
+        'gbImagesFanart
         '
-        Me.GroupBox13.Controls.Add(Me.txtFanartWidth)
-        Me.GroupBox13.Controls.Add(Me.txtFanartHeight)
-        Me.GroupBox13.Controls.Add(Me.chkFanartOnly)
-        Me.GroupBox13.Controls.Add(Me.lblFanartQual)
-        Me.GroupBox13.Controls.Add(Me.tbFanartQual)
-        Me.GroupBox13.Controls.Add(Me.Label26)
-        Me.GroupBox13.Controls.Add(Me.Label9)
-        Me.GroupBox13.Controls.Add(Me.Label10)
-        Me.GroupBox13.Controls.Add(Me.chkResizeFanart)
-        Me.GroupBox13.Controls.Add(Me.cbFanartSize)
-        Me.GroupBox13.Controls.Add(Me.lblFanartSize)
-        Me.GroupBox13.Controls.Add(Me.chkOverwriteFanart)
-        Me.GroupBox13.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox13.Location = New System.Drawing.Point(190, 185)
-        Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(218, 176)
-        Me.GroupBox13.TabIndex = 3
-        Me.GroupBox13.TabStop = False
-        Me.GroupBox13.Text = "Fanart"
+        Me.gbImagesFanart.Controls.Add(Me.txtFanartWidth)
+        Me.gbImagesFanart.Controls.Add(Me.txtFanartHeight)
+        Me.gbImagesFanart.Controls.Add(Me.chkFanartOnly)
+        Me.gbImagesFanart.Controls.Add(Me.lblFanartQual)
+        Me.gbImagesFanart.Controls.Add(Me.tbFanartQual)
+        Me.gbImagesFanart.Controls.Add(Me.Label26)
+        Me.gbImagesFanart.Controls.Add(Me.Label9)
+        Me.gbImagesFanart.Controls.Add(Me.Label10)
+        Me.gbImagesFanart.Controls.Add(Me.chkResizeFanart)
+        Me.gbImagesFanart.Controls.Add(Me.cbFanartSize)
+        Me.gbImagesFanart.Controls.Add(Me.lblFanartSize)
+        Me.gbImagesFanart.Controls.Add(Me.chkOverwriteFanart)
+        Me.gbImagesFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbImagesFanart.Location = New System.Drawing.Point(190, 185)
+        Me.gbImagesFanart.Name = "gbImagesFanart"
+        Me.gbImagesFanart.Size = New System.Drawing.Size(218, 176)
+        Me.gbImagesFanart.TabIndex = 3
+        Me.gbImagesFanart.TabStop = False
+        Me.gbImagesFanart.Text = "Fanart"
         '
         'txtFanartWidth
         '
@@ -2141,19 +2141,19 @@ Partial Class dlgSettings
         Me.chkOverwriteFanart.Text = "Overwrite Existing"
         Me.chkOverwriteFanart.UseVisualStyleBackColor = True
         '
-        'GroupBox9
+        'gbImagesImages
         '
-        Me.GroupBox9.Controls.Add(Me.chkScraperActorThumbs)
-        Me.GroupBox9.Controls.Add(Me.chkNoSaveImagesToNfo)
-        Me.GroupBox9.Controls.Add(Me.chkSingleScrapeImages)
-        Me.GroupBox9.Controls.Add(Me.GroupBox17)
-        Me.GroupBox9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox9.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(184, 168)
-        Me.GroupBox9.TabIndex = 0
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "Images"
+        Me.gbImagesImages.Controls.Add(Me.chkScraperActorThumbs)
+        Me.gbImagesImages.Controls.Add(Me.chkNoSaveImagesToNfo)
+        Me.gbImagesImages.Controls.Add(Me.chkSingleScrapeImages)
+        Me.gbImagesImages.Controls.Add(Me.gbImagesCaching)
+        Me.gbImagesImages.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbImagesImages.Location = New System.Drawing.Point(3, 3)
+        Me.gbImagesImages.Name = "gbImagesImages"
+        Me.gbImagesImages.Size = New System.Drawing.Size(184, 168)
+        Me.gbImagesImages.TabIndex = 0
+        Me.gbImagesImages.TabStop = False
+        Me.gbImagesImages.Text = "Images"
         '
         'chkScraperActorThumbs
         '
@@ -2191,18 +2191,18 @@ Partial Class dlgSettings
         Me.chkSingleScrapeImages.TextAlign = System.Drawing.ContentAlignment.TopLeft
         Me.chkSingleScrapeImages.UseVisualStyleBackColor = True
         '
-        'GroupBox17
+        'gbImagesCaching
         '
-        Me.GroupBox17.Controls.Add(Me.chkUseImgCacheUpdaters)
-        Me.GroupBox17.Controls.Add(Me.chkPersistImgCache)
-        Me.GroupBox17.Controls.Add(Me.chkUseImgCache)
-        Me.GroupBox17.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox17.Location = New System.Drawing.Point(4, 84)
-        Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(176, 79)
-        Me.GroupBox17.TabIndex = 3
-        Me.GroupBox17.TabStop = False
-        Me.GroupBox17.Text = "Caching"
+        Me.gbImagesCaching.Controls.Add(Me.chkUseImgCacheUpdaters)
+        Me.gbImagesCaching.Controls.Add(Me.chkPersistImgCache)
+        Me.gbImagesCaching.Controls.Add(Me.chkUseImgCache)
+        Me.gbImagesCaching.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbImagesCaching.Location = New System.Drawing.Point(4, 84)
+        Me.gbImagesCaching.Name = "gbImagesCaching"
+        Me.gbImagesCaching.Size = New System.Drawing.Size(176, 79)
+        Me.gbImagesCaching.TabIndex = 3
+        Me.gbImagesCaching.TabStop = False
+        Me.gbImagesCaching.Text = "Caching"
         '
         'chkUseImgCacheUpdaters
         '
@@ -2299,7 +2299,7 @@ Partial Class dlgSettings
         'btnOK
         '
         Me.btnOK.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnOK.Location = New System.Drawing.Point(813, 601)
+        Me.btnOK.Location = New System.Drawing.Point(813, 638)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(75, 23)
         Me.btnOK.TabIndex = 0
@@ -2310,7 +2310,7 @@ Partial Class dlgSettings
         '
         Me.btnApply.Enabled = False
         Me.btnApply.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnApply.Location = New System.Drawing.Point(650, 601)
+        Me.btnApply.Location = New System.Drawing.Point(651, 638)
         Me.btnApply.Name = "btnApply"
         Me.btnApply.Size = New System.Drawing.Size(75, 23)
         Me.btnApply.TabIndex = 2
@@ -2321,7 +2321,7 @@ Partial Class dlgSettings
         '
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnCancel.Location = New System.Drawing.Point(732, 601)
+        Me.btnCancel.Location = New System.Drawing.Point(732, 638)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 1
@@ -2338,7 +2338,7 @@ Partial Class dlgSettings
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 0)
         Me.pnlTop.Name = "pnlTop"
-        Me.pnlTop.Size = New System.Drawing.Size(892, 64)
+        Me.pnlTop.Size = New System.Drawing.Size(894, 64)
         Me.pnlTop.TabIndex = 3
         '
         'Label2
@@ -2405,38 +2405,38 @@ Partial Class dlgSettings
         Me.tvSettings.SelectedImageIndex = 0
         Me.tvSettings.ShowLines = False
         Me.tvSettings.ShowPlusMinus = False
-        Me.tvSettings.Size = New System.Drawing.Size(242, 402)
+        Me.tvSettings.Size = New System.Drawing.Size(242, 440)
         Me.tvSettings.TabIndex = 7
         '
         'pnlGeneral
         '
         Me.pnlGeneral.BackColor = System.Drawing.Color.White
-        Me.pnlGeneral.Controls.Add(Me.gbInterface)
-        Me.pnlGeneral.Controls.Add(Me.GroupBox4)
-        Me.pnlGeneral.Location = New System.Drawing.Point(855, 677)
+        Me.pnlGeneral.Controls.Add(Me.gbGeneralInterface)
+        Me.pnlGeneral.Controls.Add(Me.gbGeneralMiscellaneous)
+        Me.pnlGeneral.Location = New System.Drawing.Point(900, 900)
         Me.pnlGeneral.Name = "pnlGeneral"
-        Me.pnlGeneral.Size = New System.Drawing.Size(617, 400)
+        Me.pnlGeneral.Size = New System.Drawing.Size(635, 435)
         Me.pnlGeneral.TabIndex = 10
         Me.pnlGeneral.Visible = False
         '
-        'gbInterface
+        'gbGeneralInterface
         '
-        Me.gbInterface.Controls.Add(Me.GroupBox29)
-        Me.gbInterface.Controls.Add(Me.Label32)
-        Me.gbInterface.Controls.Add(Me.cbIntLang)
-        Me.gbInterface.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbInterface.Location = New System.Drawing.Point(7, 3)
-        Me.gbInterface.Name = "gbInterface"
-        Me.gbInterface.Size = New System.Drawing.Size(196, 344)
-        Me.gbInterface.TabIndex = 0
-        Me.gbInterface.TabStop = False
-        Me.gbInterface.Text = "Interface"
+        Me.gbGeneralInterface.Controls.Add(Me.GroupBox29)
+        Me.gbGeneralInterface.Controls.Add(Me.Label32)
+        Me.gbGeneralInterface.Controls.Add(Me.cbIntLang)
+        Me.gbGeneralInterface.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbGeneralInterface.Location = New System.Drawing.Point(7, 3)
+        Me.gbGeneralInterface.Name = "gbGeneralInterface"
+        Me.gbGeneralInterface.Size = New System.Drawing.Size(196, 344)
+        Me.gbGeneralInterface.TabIndex = 0
+        Me.gbGeneralInterface.TabStop = False
+        Me.gbGeneralInterface.Text = "Interface"
         '
         'pnlXBMCCom
         '
         Me.pnlXBMCCom.BackColor = System.Drawing.Color.White
         Me.pnlXBMCCom.Controls.Add(Me.gbProxy)
-        Me.pnlXBMCCom.Location = New System.Drawing.Point(766, 722)
+        Me.pnlXBMCCom.Location = New System.Drawing.Point(900, 900)
         Me.pnlXBMCCom.Name = "pnlXBMCCom"
         Me.pnlXBMCCom.Size = New System.Drawing.Size(617, 400)
         Me.pnlXBMCCom.TabIndex = 18
@@ -2451,7 +2451,7 @@ Partial Class dlgSettings
         Me.gbProxy.Controls.Add(Me.txtProxyURI)
         Me.gbProxy.Controls.Add(Me.chkEnableProxy)
         Me.gbProxy.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbProxy.Location = New System.Drawing.Point(3, 6)
+        Me.gbProxy.Location = New System.Drawing.Point(4, 4)
         Me.gbProxy.Name = "gbProxy"
         Me.gbProxy.Size = New System.Drawing.Size(290, 230)
         Me.gbProxy.TabIndex = 0
@@ -2597,45 +2597,45 @@ Partial Class dlgSettings
         'pnlMovies
         '
         Me.pnlMovies.BackColor = System.Drawing.Color.White
-        Me.pnlMovies.Controls.Add(Me.gbGenreFilter)
-        Me.pnlMovies.Controls.Add(Me.gbFilters)
-        Me.pnlMovies.Controls.Add(Me.GroupBox27)
-        Me.pnlMovies.Controls.Add(Me.GroupBox12)
-        Me.pnlMovies.Controls.Add(Me.GroupBox2)
-        Me.pnlMovies.Location = New System.Drawing.Point(850, 650)
+        Me.pnlMovies.Controls.Add(Me.gbMoviesGenreFilter)
+        Me.pnlMovies.Controls.Add(Me.gbMoviesFilters)
+        Me.pnlMovies.Controls.Add(Me.gbMoviesMissingFilter)
+        Me.pnlMovies.Controls.Add(Me.gbMoviesMiscellaneous)
+        Me.pnlMovies.Controls.Add(Me.gbMoviesMediaList)
+        Me.pnlMovies.Location = New System.Drawing.Point(900, 900)
         Me.pnlMovies.Name = "pnlMovies"
-        Me.pnlMovies.Size = New System.Drawing.Size(617, 400)
+        Me.pnlMovies.Size = New System.Drawing.Size(635, 435)
         Me.pnlMovies.TabIndex = 15
         Me.pnlMovies.Visible = False
         '
-        'gbGenreFilter
+        'gbMoviesGenreFilter
         '
-        Me.gbGenreFilter.Controls.Add(Me.lbGenre)
-        Me.gbGenreFilter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbGenreFilter.Location = New System.Drawing.Point(428, 209)
-        Me.gbGenreFilter.Name = "gbGenreFilter"
-        Me.gbGenreFilter.Size = New System.Drawing.Size(183, 151)
-        Me.gbGenreFilter.TabIndex = 7
-        Me.gbGenreFilter.TabStop = False
-        Me.gbGenreFilter.Text = "Genre Language Filter"
+        Me.gbMoviesGenreFilter.Controls.Add(Me.lbGenre)
+        Me.gbMoviesGenreFilter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbMoviesGenreFilter.Location = New System.Drawing.Point(428, 209)
+        Me.gbMoviesGenreFilter.Name = "gbMoviesGenreFilter"
+        Me.gbMoviesGenreFilter.Size = New System.Drawing.Size(183, 151)
+        Me.gbMoviesGenreFilter.TabIndex = 7
+        Me.gbMoviesGenreFilter.TabStop = False
+        Me.gbMoviesGenreFilter.Text = "Genre Language Filter"
         '
-        'gbFilters
+        'gbMoviesFilters
         '
-        Me.gbFilters.Controls.Add(Me.btnResetMovieFilters)
-        Me.gbFilters.Controls.Add(Me.btnDown)
-        Me.gbFilters.Controls.Add(Me.btnUp)
-        Me.gbFilters.Controls.Add(Me.chkProperCase)
-        Me.gbFilters.Controls.Add(Me.btnRemoveFilter)
-        Me.gbFilters.Controls.Add(Me.btnAddFilter)
-        Me.gbFilters.Controls.Add(Me.txtFilter)
-        Me.gbFilters.Controls.Add(Me.lstFilters)
-        Me.gbFilters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbFilters.Location = New System.Drawing.Point(229, 7)
-        Me.gbFilters.Name = "gbFilters"
-        Me.gbFilters.Size = New System.Drawing.Size(382, 200)
-        Me.gbFilters.TabIndex = 6
-        Me.gbFilters.TabStop = False
-        Me.gbFilters.Text = "Folder/File Name Filters"
+        Me.gbMoviesFilters.Controls.Add(Me.btnResetMovieFilters)
+        Me.gbMoviesFilters.Controls.Add(Me.btnDown)
+        Me.gbMoviesFilters.Controls.Add(Me.btnUp)
+        Me.gbMoviesFilters.Controls.Add(Me.chkProperCase)
+        Me.gbMoviesFilters.Controls.Add(Me.btnRemoveFilter)
+        Me.gbMoviesFilters.Controls.Add(Me.btnAddFilter)
+        Me.gbMoviesFilters.Controls.Add(Me.txtFilter)
+        Me.gbMoviesFilters.Controls.Add(Me.lstFilters)
+        Me.gbMoviesFilters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbMoviesFilters.Location = New System.Drawing.Point(229, 7)
+        Me.gbMoviesFilters.Name = "gbMoviesFilters"
+        Me.gbMoviesFilters.Size = New System.Drawing.Size(382, 200)
+        Me.gbMoviesFilters.TabIndex = 6
+        Me.gbMoviesFilters.TabStop = False
+        Me.gbMoviesFilters.Text = "Folder/File Name Filters"
         '
         'btnResetMovieFilters
         '
@@ -2711,21 +2711,21 @@ Partial Class dlgSettings
         Me.lstFilters.Size = New System.Drawing.Size(371, 121)
         Me.lstFilters.TabIndex = 1
         '
-        'GroupBox27
+        'gbMoviesMissingFilter
         '
-        Me.GroupBox27.Controls.Add(Me.chkMissingExtra)
-        Me.GroupBox27.Controls.Add(Me.chkMissingSubs)
-        Me.GroupBox27.Controls.Add(Me.chkMissingTrailer)
-        Me.GroupBox27.Controls.Add(Me.chkMissingNFO)
-        Me.GroupBox27.Controls.Add(Me.chkMissingFanart)
-        Me.GroupBox27.Controls.Add(Me.chkMissingPoster)
-        Me.GroupBox27.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox27.Location = New System.Drawing.Point(229, 209)
-        Me.GroupBox27.Name = "GroupBox27"
-        Me.GroupBox27.Size = New System.Drawing.Size(185, 123)
-        Me.GroupBox27.TabIndex = 5
-        Me.GroupBox27.TabStop = False
-        Me.GroupBox27.Text = "Missing Items Filter"
+        Me.gbMoviesMissingFilter.Controls.Add(Me.chkMissingExtra)
+        Me.gbMoviesMissingFilter.Controls.Add(Me.chkMissingSubs)
+        Me.gbMoviesMissingFilter.Controls.Add(Me.chkMissingTrailer)
+        Me.gbMoviesMissingFilter.Controls.Add(Me.chkMissingNFO)
+        Me.gbMoviesMissingFilter.Controls.Add(Me.chkMissingFanart)
+        Me.gbMoviesMissingFilter.Controls.Add(Me.chkMissingPoster)
+        Me.gbMoviesMissingFilter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbMoviesMissingFilter.Location = New System.Drawing.Point(229, 209)
+        Me.gbMoviesMissingFilter.Name = "gbMoviesMissingFilter"
+        Me.gbMoviesMissingFilter.Size = New System.Drawing.Size(185, 123)
+        Me.gbMoviesMissingFilter.TabIndex = 5
+        Me.gbMoviesMissingFilter.TabStop = False
+        Me.gbMoviesMissingFilter.Text = "Missing Items Filter"
         '
         'chkMissingExtra
         '
@@ -2787,18 +2787,18 @@ Partial Class dlgSettings
         Me.chkMissingPoster.Text = "Check for Poster"
         Me.chkMissingPoster.UseVisualStyleBackColor = True
         '
-        'GroupBox16
+        'gbSourcesBackdrops
         '
-        Me.GroupBox16.Controls.Add(Me.chkAutoBD)
-        Me.GroupBox16.Controls.Add(Me.btnBrowse)
-        Me.GroupBox16.Controls.Add(Me.txtBDPath)
-        Me.GroupBox16.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox16.Location = New System.Drawing.Point(243, 326)
-        Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(366, 69)
-        Me.GroupBox16.TabIndex = 6
-        Me.GroupBox16.TabStop = False
-        Me.GroupBox16.Text = "Backdrops Folder"
+        Me.gbSourcesBackdrops.Controls.Add(Me.chkAutoBD)
+        Me.gbSourcesBackdrops.Controls.Add(Me.btnBrowse)
+        Me.gbSourcesBackdrops.Controls.Add(Me.txtBDPath)
+        Me.gbSourcesBackdrops.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbSourcesBackdrops.Location = New System.Drawing.Point(243, 326)
+        Me.gbSourcesBackdrops.Name = "gbSourcesBackdrops"
+        Me.gbSourcesBackdrops.Size = New System.Drawing.Size(366, 69)
+        Me.gbSourcesBackdrops.TabIndex = 6
+        Me.gbSourcesBackdrops.TabStop = False
+        Me.gbSourcesBackdrops.Text = "Backdrops Folder"
         '
         'chkAutoBD
         '
@@ -2995,15 +2995,15 @@ Partial Class dlgSettings
         '
         Me.pnlSources.BackColor = System.Drawing.Color.White
         Me.pnlSources.Controls.Add(Me.btnEditSource)
-        Me.pnlSources.Controls.Add(Me.GroupBox19)
+        Me.pnlSources.Controls.Add(Me.gbSourcesMiscellaneous)
         Me.pnlSources.Controls.Add(Me.lvMovies)
         Me.pnlSources.Controls.Add(Me.btnMovieRem)
         Me.pnlSources.Controls.Add(Me.btnMovieAddFolder)
-        Me.pnlSources.Controls.Add(Me.GroupBox8)
-        Me.pnlSources.Controls.Add(Me.GroupBox16)
-        Me.pnlSources.Location = New System.Drawing.Point(570, 840)
+        Me.pnlSources.Controls.Add(Me.gbSourcesFileNaming)
+        Me.pnlSources.Controls.Add(Me.gbSourcesBackdrops)
+        Me.pnlSources.Location = New System.Drawing.Point(900, 900)
         Me.pnlSources.Name = "pnlSources"
-        Me.pnlSources.Size = New System.Drawing.Size(617, 402)
+        Me.pnlSources.Size = New System.Drawing.Size(635, 435)
         Me.pnlSources.TabIndex = 13
         Me.pnlSources.Visible = False
         '
@@ -3020,25 +3020,25 @@ Partial Class dlgSettings
         Me.btnEditSource.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnEditSource.UseVisualStyleBackColor = True
         '
-        'GroupBox19
+        'gbSourcesMiscellaneous
         '
-        Me.GroupBox19.Controls.Add(Me.chkVideoTSParentXBMC)
-        Me.GroupBox19.Controls.Add(Me.chkScanOrderModify)
-        Me.GroupBox19.Controls.Add(Me.chkSortBeforeScan)
-        Me.GroupBox19.Controls.Add(Me.chkIgnoreLastScan)
-        Me.GroupBox19.Controls.Add(Me.chkCleanDB)
-        Me.GroupBox19.Controls.Add(Me.chkAutoDetectVTS)
-        Me.GroupBox19.Controls.Add(Me.chkSkipStackedSizeCheck)
-        Me.GroupBox19.Controls.Add(Me.Label21)
-        Me.GroupBox19.Controls.Add(Me.txtSkipLessThan)
-        Me.GroupBox19.Controls.Add(Me.Label20)
-        Me.GroupBox19.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox19.Location = New System.Drawing.Point(5, 113)
-        Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(233, 282)
-        Me.GroupBox19.TabIndex = 4
-        Me.GroupBox19.TabStop = False
-        Me.GroupBox19.Text = "Miscellaneous Options"
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.chkVideoTSParentXBMC)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.chkScanOrderModify)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.chkSortBeforeScan)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.chkIgnoreLastScan)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.chkCleanDB)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.chkAutoDetectVTS)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.chkSkipStackedSizeCheck)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.Label21)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.txtSkipLessThan)
+        Me.gbSourcesMiscellaneous.Controls.Add(Me.Label20)
+        Me.gbSourcesMiscellaneous.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbSourcesMiscellaneous.Location = New System.Drawing.Point(5, 113)
+        Me.gbSourcesMiscellaneous.Name = "gbSourcesMiscellaneous"
+        Me.gbSourcesMiscellaneous.Size = New System.Drawing.Size(233, 282)
+        Me.gbSourcesMiscellaneous.TabIndex = 4
+        Me.gbSourcesMiscellaneous.TabStop = False
+        Me.gbSourcesMiscellaneous.Text = "Miscellaneous Options"
         '
         'chkVideoTSParentXBMC
         '
@@ -3156,34 +3156,34 @@ Partial Class dlgSettings
         'pnlImages
         '
         Me.pnlImages.BackColor = System.Drawing.Color.White
-        Me.pnlImages.Controls.Add(Me.GroupBox15)
-        Me.pnlImages.Controls.Add(Me.GroupBox9)
-        Me.pnlImages.Controls.Add(Me.GroupBox13)
-        Me.pnlImages.Controls.Add(Me.GroupBox14)
-        Me.pnlImages.Controls.Add(Me.GroupBox23)
+        Me.pnlImages.Controls.Add(Me.gbImagesTrailers)
+        Me.pnlImages.Controls.Add(Me.gbImagesImages)
+        Me.pnlImages.Controls.Add(Me.gbImagesFanart)
+        Me.pnlImages.Controls.Add(Me.gbImagesPoster)
+        Me.pnlImages.Controls.Add(Me.gbImagesExtrathumbs)
         Me.pnlImages.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pnlImages.Location = New System.Drawing.Point(1181, 571)
+        Me.pnlImages.Location = New System.Drawing.Point(900, 900)
         Me.pnlImages.Name = "pnlImages"
-        Me.pnlImages.Size = New System.Drawing.Size(617, 408)
+        Me.pnlImages.Size = New System.Drawing.Size(635, 435)
         Me.pnlImages.TabIndex = 12
         Me.pnlImages.Visible = False
         '
-        'GroupBox15
+        'gbImagesTrailers
         '
-        Me.GroupBox15.Controls.Add(Me.cbTrailerQuality)
-        Me.GroupBox15.Controls.Add(Me.lblPreferredQuality)
-        Me.GroupBox15.Controls.Add(Me.chkDeleteAllTrailers)
-        Me.GroupBox15.Controls.Add(Me.chkOverwriteTrailer)
-        Me.GroupBox15.Controls.Add(Me.chkNoDLTrailer)
-        Me.GroupBox15.Controls.Add(Me.chkSingleScrapeTrailer)
-        Me.GroupBox15.Controls.Add(Me.chkUpdaterTrailer)
-        Me.GroupBox15.Controls.Add(Me.chkDownloadTrailer)
-        Me.GroupBox15.Location = New System.Drawing.Point(4, 172)
-        Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(183, 230)
-        Me.GroupBox15.TabIndex = 1
-        Me.GroupBox15.TabStop = False
-        Me.GroupBox15.Text = "Trailers"
+        Me.gbImagesTrailers.Controls.Add(Me.cbTrailerQuality)
+        Me.gbImagesTrailers.Controls.Add(Me.lblPreferredQuality)
+        Me.gbImagesTrailers.Controls.Add(Me.chkDeleteAllTrailers)
+        Me.gbImagesTrailers.Controls.Add(Me.chkOverwriteTrailer)
+        Me.gbImagesTrailers.Controls.Add(Me.chkNoDLTrailer)
+        Me.gbImagesTrailers.Controls.Add(Me.chkSingleScrapeTrailer)
+        Me.gbImagesTrailers.Controls.Add(Me.chkUpdaterTrailer)
+        Me.gbImagesTrailers.Controls.Add(Me.chkDownloadTrailer)
+        Me.gbImagesTrailers.Location = New System.Drawing.Point(4, 172)
+        Me.gbImagesTrailers.Name = "gbImagesTrailers"
+        Me.gbImagesTrailers.Size = New System.Drawing.Size(183, 230)
+        Me.gbImagesTrailers.TabIndex = 1
+        Me.gbImagesTrailers.TabStop = False
+        Me.gbImagesTrailers.Text = "Trailers"
         '
         'cbTrailerQuality
         '
@@ -3281,23 +3281,23 @@ Partial Class dlgSettings
         Me.chkDownloadTrailer.Text = "Enable Trailer Support"
         Me.chkDownloadTrailer.UseVisualStyleBackColor = True
         '
-        'GroupBox23
+        'gbImagesExtrathumbs
         '
-        Me.GroupBox23.Controls.Add(Me.chkAutoETSize)
-        Me.GroupBox23.Controls.Add(Me.cbAutoETSize)
-        Me.GroupBox23.Controls.Add(Me.txtAutoThumbs)
-        Me.GroupBox23.Controls.Add(Me.GroupBox24)
-        Me.GroupBox23.Controls.Add(Me.chkAutoThumbs)
-        Me.GroupBox23.Controls.Add(Me.chkUseETasFA)
-        Me.GroupBox23.Controls.Add(Me.Label15)
-        Me.GroupBox23.Controls.Add(Me.chkNoSpoilers)
-        Me.GroupBox23.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox23.Location = New System.Drawing.Point(412, 3)
-        Me.GroupBox23.Name = "GroupBox23"
-        Me.GroupBox23.Size = New System.Drawing.Size(199, 358)
-        Me.GroupBox23.TabIndex = 4
-        Me.GroupBox23.TabStop = False
-        Me.GroupBox23.Text = "Extrathumbs"
+        Me.gbImagesExtrathumbs.Controls.Add(Me.chkAutoETSize)
+        Me.gbImagesExtrathumbs.Controls.Add(Me.cbAutoETSize)
+        Me.gbImagesExtrathumbs.Controls.Add(Me.txtAutoThumbs)
+        Me.gbImagesExtrathumbs.Controls.Add(Me.gbImagesSizing)
+        Me.gbImagesExtrathumbs.Controls.Add(Me.chkAutoThumbs)
+        Me.gbImagesExtrathumbs.Controls.Add(Me.chkUseETasFA)
+        Me.gbImagesExtrathumbs.Controls.Add(Me.Label15)
+        Me.gbImagesExtrathumbs.Controls.Add(Me.chkNoSpoilers)
+        Me.gbImagesExtrathumbs.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbImagesExtrathumbs.Location = New System.Drawing.Point(412, 3)
+        Me.gbImagesExtrathumbs.Name = "gbImagesExtrathumbs"
+        Me.gbImagesExtrathumbs.Size = New System.Drawing.Size(199, 358)
+        Me.gbImagesExtrathumbs.TabIndex = 4
+        Me.gbImagesExtrathumbs.TabStop = False
+        Me.gbImagesExtrathumbs.Text = "Extrathumbs"
         '
         'chkAutoETSize
         '
@@ -3322,22 +3322,22 @@ Partial Class dlgSettings
         Me.cbAutoETSize.Size = New System.Drawing.Size(148, 21)
         Me.cbAutoETSize.TabIndex = 7
         '
-        'GroupBox24
+        'gbImagesSizing
         '
-        Me.GroupBox24.Controls.Add(Me.txtETWidth)
-        Me.GroupBox24.Controls.Add(Me.txtETHeight)
-        Me.GroupBox24.Controls.Add(Me.chkETPadding)
-        Me.GroupBox24.Controls.Add(Me.Label28)
-        Me.GroupBox24.Controls.Add(Me.Label29)
-        Me.GroupBox24.Controls.Add(Me.rbETCustom)
-        Me.GroupBox24.Controls.Add(Me.rbETNative)
-        Me.GroupBox24.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox24.Location = New System.Drawing.Point(7, 120)
-        Me.GroupBox24.Name = "GroupBox24"
-        Me.GroupBox24.Size = New System.Drawing.Size(185, 104)
-        Me.GroupBox24.TabIndex = 5
-        Me.GroupBox24.TabStop = False
-        Me.GroupBox24.Text = "Sizing (Extracted Frames)"
+        Me.gbImagesSizing.Controls.Add(Me.txtETWidth)
+        Me.gbImagesSizing.Controls.Add(Me.txtETHeight)
+        Me.gbImagesSizing.Controls.Add(Me.chkETPadding)
+        Me.gbImagesSizing.Controls.Add(Me.Label28)
+        Me.gbImagesSizing.Controls.Add(Me.Label29)
+        Me.gbImagesSizing.Controls.Add(Me.rbETCustom)
+        Me.gbImagesSizing.Controls.Add(Me.rbETNative)
+        Me.gbImagesSizing.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbImagesSizing.Location = New System.Drawing.Point(7, 120)
+        Me.gbImagesSizing.Name = "gbImagesSizing"
+        Me.gbImagesSizing.Size = New System.Drawing.Size(185, 104)
+        Me.gbImagesSizing.TabIndex = 5
+        Me.gbImagesSizing.TabStop = False
+        Me.gbImagesSizing.Text = "Sizing (Extracted Frames)"
         '
         'txtETWidth
         '
@@ -3421,9 +3421,9 @@ Partial Class dlgSettings
         '
         Me.pnlTVSources.BackColor = System.Drawing.Color.White
         Me.pnlTVSources.Controls.Add(Me.TabControl2)
-        Me.pnlTVSources.Location = New System.Drawing.Point(1260, 560)
+        Me.pnlTVSources.Location = New System.Drawing.Point(900, 900)
         Me.pnlTVSources.Name = "pnlTVSources"
-        Me.pnlTVSources.Size = New System.Drawing.Size(617, 400)
+        Me.pnlTVSources.Size = New System.Drawing.Size(635, 435)
         Me.pnlTVSources.TabIndex = 11
         Me.pnlTVSources.Visible = False
         '
@@ -3435,7 +3435,7 @@ Partial Class dlgSettings
         Me.TabControl2.Location = New System.Drawing.Point(3, 4)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(612, 392)
+        Me.TabControl2.Size = New System.Drawing.Size(620, 400)
         Me.TabControl2.TabIndex = 0
         '
         'TabPage3
@@ -3450,7 +3450,7 @@ Partial Class dlgSettings
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(604, 366)
+        Me.TabPage3.Size = New System.Drawing.Size(612, 374)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "General"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -3504,7 +3504,7 @@ Partial Class dlgSettings
         Me.gbMiscTVSourceOpts.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbMiscTVSourceOpts.Location = New System.Drawing.Point(6, 110)
         Me.gbMiscTVSourceOpts.Name = "gbMiscTVSourceOpts"
-        Me.gbMiscTVSourceOpts.Size = New System.Drawing.Size(151, 188)
+        Me.gbMiscTVSourceOpts.Size = New System.Drawing.Size(151, 200)
         Me.gbMiscTVSourceOpts.TabIndex = 4
         Me.gbMiscTVSourceOpts.TabStop = False
         Me.gbMiscTVSourceOpts.Text = "Miscellaneous Options"
@@ -3578,7 +3578,7 @@ Partial Class dlgSettings
         Me.btnAddTVSource.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.btnAddTVSource.Image = CType(resources.GetObject("btnAddTVSource.Image"), System.Drawing.Image)
         Me.btnAddTVSource.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAddTVSource.Location = New System.Drawing.Point(494, 4)
+        Me.btnAddTVSource.Location = New System.Drawing.Point(502, 4)
         Me.btnAddTVSource.Name = "btnAddTVSource"
         Me.btnAddTVSource.Size = New System.Drawing.Size(104, 23)
         Me.btnAddTVSource.TabIndex = 1
@@ -3591,7 +3591,7 @@ Partial Class dlgSettings
         Me.btnEditTVSource.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.btnEditTVSource.Image = CType(resources.GetObject("btnEditTVSource.Image"), System.Drawing.Image)
         Me.btnEditTVSource.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEditTVSource.Location = New System.Drawing.Point(494, 33)
+        Me.btnEditTVSource.Location = New System.Drawing.Point(502, 33)
         Me.btnEditTVSource.Name = "btnEditTVSource"
         Me.btnEditTVSource.Size = New System.Drawing.Size(104, 23)
         Me.btnEditTVSource.TabIndex = 2
@@ -3604,7 +3604,7 @@ Partial Class dlgSettings
         Me.btnRemTVSource.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.btnRemTVSource.Image = CType(resources.GetObject("btnRemTVSource.Image"), System.Drawing.Image)
         Me.btnRemTVSource.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnRemTVSource.Location = New System.Drawing.Point(494, 86)
+        Me.btnRemTVSource.Location = New System.Drawing.Point(502, 86)
         Me.btnRemTVSource.Name = "btnRemTVSource"
         Me.btnRemTVSource.Size = New System.Drawing.Size(104, 23)
         Me.btnRemTVSource.TabIndex = 3
@@ -3625,7 +3625,7 @@ Partial Class dlgSettings
         Me.gbTVNaming.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbTVNaming.Location = New System.Drawing.Point(161, 110)
         Me.gbTVNaming.Name = "gbTVNaming"
-        Me.gbTVNaming.Size = New System.Drawing.Size(437, 253)
+        Me.gbTVNaming.Size = New System.Drawing.Size(445, 253)
         Me.gbTVNaming.TabIndex = 6
         Me.gbTVNaming.TabStop = False
         Me.gbTVNaming.Text = "File Naming"
@@ -3633,12 +3633,14 @@ Partial Class dlgSettings
         'gbShowBanner
         '
         Me.gbShowBanner.Controls.Add(Me.chkShowBannerJPG)
+        Me.gbShowBanner.Enabled = False
         Me.gbShowBanner.Location = New System.Drawing.Point(5, 204)
         Me.gbShowBanner.Name = "gbShowBanner"
         Me.gbShowBanner.Size = New System.Drawing.Size(133, 40)
         Me.gbShowBanner.TabIndex = 2
         Me.gbShowBanner.TabStop = False
         Me.gbShowBanner.Text = "Show Banner"
+        Me.gbShowBanner.Visible = False
         '
         'chkShowBannerJPG
         '
@@ -3659,9 +3661,9 @@ Partial Class dlgSettings
         Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllJPG)
         Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllTBN)
         Me.gbAllSeasonPoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbAllSeasonPoster.Location = New System.Drawing.Point(292, 162)
+        Me.gbAllSeasonPoster.Location = New System.Drawing.Point(292, 168)
         Me.gbAllSeasonPoster.Name = "gbAllSeasonPoster"
-        Me.gbAllSeasonPoster.Size = New System.Drawing.Size(140, 81)
+        Me.gbAllSeasonPoster.Size = New System.Drawing.Size(146, 81)
         Me.gbAllSeasonPoster.TabIndex = 7
         Me.gbAllSeasonPoster.TabStop = False
         Me.gbAllSeasonPoster.Text = "All Season Posters"
@@ -3707,7 +3709,7 @@ Partial Class dlgSettings
         Me.gbEpisodeFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbEpisodeFanart.Location = New System.Drawing.Point(292, 97)
         Me.gbEpisodeFanart.Name = "gbEpisodeFanart"
-        Me.gbEpisodeFanart.Size = New System.Drawing.Size(140, 52)
+        Me.gbEpisodeFanart.Size = New System.Drawing.Size(147, 52)
         Me.gbEpisodeFanart.TabIndex = 6
         Me.gbEpisodeFanart.TabStop = False
         Me.gbEpisodeFanart.Text = "Episode Fanart"
@@ -3742,7 +3744,7 @@ Partial Class dlgSettings
         Me.gbEpisodePosters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbEpisodePosters.Location = New System.Drawing.Point(292, 15)
         Me.gbEpisodePosters.Name = "gbEpisodePosters"
-        Me.gbEpisodePosters.Size = New System.Drawing.Size(140, 74)
+        Me.gbEpisodePosters.Size = New System.Drawing.Size(147, 74)
         Me.gbEpisodePosters.TabIndex = 5
         Me.gbEpisodePosters.TabStop = False
         Me.gbEpisodePosters.Text = "Episode Posters"
@@ -4078,7 +4080,7 @@ Partial Class dlgSettings
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(604, 366)
+        Me.TabPage4.Size = New System.Drawing.Size(612, 374)
         Me.TabPage4.TabIndex = 1
         Me.TabPage4.Text = "Regex"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -4316,35 +4318,35 @@ Partial Class dlgSettings
         'pnlShows
         '
         Me.pnlShows.BackColor = System.Drawing.Color.White
-        Me.pnlShows.Controls.Add(Me.gbTVListOptions)
-        Me.pnlShows.Controls.Add(Me.gbTVMisc)
-        Me.pnlShows.Controls.Add(Me.gbEpFilter)
+        Me.pnlShows.Controls.Add(Me.gbShowMediaList)
+        Me.pnlShows.Controls.Add(Me.gbShowsMiscellaneous)
+        Me.pnlShows.Controls.Add(Me.gbShowEpFilter)
         Me.pnlShows.Controls.Add(Me.gbShowFilter)
-        Me.pnlShows.Location = New System.Drawing.Point(850, 750)
+        Me.pnlShows.Location = New System.Drawing.Point(900, 900)
         Me.pnlShows.Name = "pnlShows"
-        Me.pnlShows.Size = New System.Drawing.Size(617, 400)
+        Me.pnlShows.Size = New System.Drawing.Size(635, 435)
         Me.pnlShows.TabIndex = 20
         Me.pnlShows.Visible = False
         '
-        'gbTVListOptions
+        'gbShowMediaList
         '
-        Me.gbTVListOptions.Controls.Add(Me.chkDisplayMissingEpisodes)
-        Me.gbTVListOptions.Controls.Add(Me.gbEpisodeListOptions)
-        Me.gbTVListOptions.Controls.Add(Me.gbSeasonListOptions)
-        Me.gbTVListOptions.Controls.Add(Me.gbShowListOptions)
-        Me.gbTVListOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbTVListOptions.Location = New System.Drawing.Point(6, 143)
-        Me.gbTVListOptions.Name = "gbTVListOptions"
-        Me.gbTVListOptions.Size = New System.Drawing.Size(219, 252)
-        Me.gbTVListOptions.TabIndex = 1
-        Me.gbTVListOptions.TabStop = False
-        Me.gbTVListOptions.Text = "Media List Options"
+        Me.gbShowMediaList.Controls.Add(Me.chkDisplayMissingEpisodes)
+        Me.gbShowMediaList.Controls.Add(Me.gbEpisodeListOptions)
+        Me.gbShowMediaList.Controls.Add(Me.gbSeasonListOptions)
+        Me.gbShowMediaList.Controls.Add(Me.gbShowListOptions)
+        Me.gbShowMediaList.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbShowMediaList.Location = New System.Drawing.Point(6, 150)
+        Me.gbShowMediaList.Name = "gbShowMediaList"
+        Me.gbShowMediaList.Size = New System.Drawing.Size(219, 258)
+        Me.gbShowMediaList.TabIndex = 1
+        Me.gbShowMediaList.TabStop = False
+        Me.gbShowMediaList.Text = "Media List Options"
         '
         'chkDisplayMissingEpisodes
         '
         Me.chkDisplayMissingEpisodes.AutoSize = True
         Me.chkDisplayMissingEpisodes.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkDisplayMissingEpisodes.Location = New System.Drawing.Point(8, 231)
+        Me.chkDisplayMissingEpisodes.Location = New System.Drawing.Point(8, 234)
         Me.chkDisplayMissingEpisodes.Name = "chkDisplayMissingEpisodes"
         Me.chkDisplayMissingEpisodes.Size = New System.Drawing.Size(155, 17)
         Me.chkDisplayMissingEpisodes.TabIndex = 3
@@ -4489,20 +4491,20 @@ Partial Class dlgSettings
         Me.chkShowPosterCol.Text = "Hide Poster Column"
         Me.chkShowPosterCol.UseVisualStyleBackColor = True
         '
-        'gbTVMisc
+        'gbShowsMiscellaneous
         '
-        Me.gbTVMisc.Controls.Add(Me.chkMarkNewShows)
-        Me.gbTVMisc.Controls.Add(Me.chkMarkNewEpisodes)
-        Me.gbTVMisc.Controls.Add(Me.chkDisplayAllSeason)
-        Me.gbTVMisc.Controls.Add(Me.lblRatingRegion)
-        Me.gbTVMisc.Controls.Add(Me.cbRatingRegion)
-        Me.gbTVMisc.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbTVMisc.Location = New System.Drawing.Point(6, 7)
-        Me.gbTVMisc.Name = "gbTVMisc"
-        Me.gbTVMisc.Size = New System.Drawing.Size(219, 130)
-        Me.gbTVMisc.TabIndex = 0
-        Me.gbTVMisc.TabStop = False
-        Me.gbTVMisc.Text = "Miscellaneous"
+        Me.gbShowsMiscellaneous.Controls.Add(Me.chkMarkNewShows)
+        Me.gbShowsMiscellaneous.Controls.Add(Me.chkMarkNewEpisodes)
+        Me.gbShowsMiscellaneous.Controls.Add(Me.chkDisplayAllSeason)
+        Me.gbShowsMiscellaneous.Controls.Add(Me.lblRatingRegion)
+        Me.gbShowsMiscellaneous.Controls.Add(Me.cbRatingRegion)
+        Me.gbShowsMiscellaneous.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbShowsMiscellaneous.Location = New System.Drawing.Point(6, 7)
+        Me.gbShowsMiscellaneous.Name = "gbShowsMiscellaneous"
+        Me.gbShowsMiscellaneous.Size = New System.Drawing.Size(219, 137)
+        Me.gbShowsMiscellaneous.TabIndex = 0
+        Me.gbShowsMiscellaneous.TabStop = False
+        Me.gbShowsMiscellaneous.Text = "Miscellaneous"
         '
         'chkMarkNewShows
         '
@@ -4554,24 +4556,24 @@ Partial Class dlgSettings
         Me.cbRatingRegion.Size = New System.Drawing.Size(163, 21)
         Me.cbRatingRegion.TabIndex = 1
         '
-        'gbEpFilter
+        'gbShowEpFilter
         '
-        Me.gbEpFilter.Controls.Add(Me.btnResetEpFilter)
-        Me.gbEpFilter.Controls.Add(Me.chkNoFilterEpisode)
-        Me.gbEpFilter.Controls.Add(Me.btnEpFilterDown)
-        Me.gbEpFilter.Controls.Add(Me.btnEpFilterUp)
-        Me.gbEpFilter.Controls.Add(Me.chkEpProperCase)
-        Me.gbEpFilter.Controls.Add(Me.btnRemoveEpFilter)
-        Me.gbEpFilter.Controls.Add(Me.btnAddEpFilter)
-        Me.gbEpFilter.Controls.Add(Me.txtEpFilter)
-        Me.gbEpFilter.Controls.Add(Me.lstEpFilters)
-        Me.gbEpFilter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbEpFilter.Location = New System.Drawing.Point(229, 185)
-        Me.gbEpFilter.Name = "gbEpFilter"
-        Me.gbEpFilter.Size = New System.Drawing.Size(382, 205)
-        Me.gbEpFilter.TabIndex = 3
-        Me.gbEpFilter.TabStop = False
-        Me.gbEpFilter.Text = "Episode Folder/File Name Filters"
+        Me.gbShowEpFilter.Controls.Add(Me.btnResetEpFilter)
+        Me.gbShowEpFilter.Controls.Add(Me.chkNoFilterEpisode)
+        Me.gbShowEpFilter.Controls.Add(Me.btnEpFilterDown)
+        Me.gbShowEpFilter.Controls.Add(Me.btnEpFilterUp)
+        Me.gbShowEpFilter.Controls.Add(Me.chkEpProperCase)
+        Me.gbShowEpFilter.Controls.Add(Me.btnRemoveEpFilter)
+        Me.gbShowEpFilter.Controls.Add(Me.btnAddEpFilter)
+        Me.gbShowEpFilter.Controls.Add(Me.txtEpFilter)
+        Me.gbShowEpFilter.Controls.Add(Me.lstEpFilters)
+        Me.gbShowEpFilter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbShowEpFilter.Location = New System.Drawing.Point(229, 185)
+        Me.gbShowEpFilter.Name = "gbShowEpFilter"
+        Me.gbShowEpFilter.Size = New System.Drawing.Size(382, 205)
+        Me.gbShowEpFilter.TabIndex = 3
+        Me.gbShowEpFilter.TabStop = False
+        Me.gbShowEpFilter.Text = "Episode Folder/File Name Filters"
         '
         'btnResetEpFilter
         '
@@ -4755,9 +4757,9 @@ Partial Class dlgSettings
         '
         Me.pnlTVImages.BackColor = System.Drawing.Color.White
         Me.pnlTVImages.Controls.Add(Me.TabControl3)
-        Me.pnlTVImages.Location = New System.Drawing.Point(913, 685)
+        Me.pnlTVImages.Location = New System.Drawing.Point(900, 900)
         Me.pnlTVImages.Name = "pnlTVImages"
-        Me.pnlTVImages.Size = New System.Drawing.Size(617, 402)
+        Me.pnlTVImages.Size = New System.Drawing.Size(635, 435)
         Me.pnlTVImages.TabIndex = 16
         Me.pnlTVImages.Visible = False
         '
@@ -5815,270 +5817,40 @@ Partial Class dlgSettings
         'pnlTVScraper
         '
         Me.pnlTVScraper.BackColor = System.Drawing.Color.White
-        Me.pnlTVScraper.Controls.Add(Me.GroupBox32)
-        Me.pnlTVScraper.Controls.Add(Me.GroupBox33)
-        Me.pnlTVScraper.Controls.Add(Me.GroupBox31)
+        Me.pnlTVScraper.Controls.Add(Me.gbTVScraperGlobalLocks)
+        Me.pnlTVScraper.Controls.Add(Me.gbTVScraperMetaData)
         Me.pnlTVScraper.Controls.Add(Me.gbTVScraperOptions)
-        Me.pnlTVScraper.Location = New System.Drawing.Point(717, 746)
+        Me.pnlTVScraper.Controls.Add(Me.gbTVScraperFields)
+        Me.pnlTVScraper.Location = New System.Drawing.Point(900, 900)
         Me.pnlTVScraper.Name = "pnlTVScraper"
-        Me.pnlTVScraper.Size = New System.Drawing.Size(617, 400)
+        Me.pnlTVScraper.Size = New System.Drawing.Size(635, 435)
         Me.pnlTVScraper.TabIndex = 19
         Me.pnlTVScraper.Visible = False
         '
-        'GroupBox32
+        'gbTVScraperGlobalLocks
         '
-        Me.GroupBox32.Controls.Add(Me.GroupBox35)
-        Me.GroupBox32.Controls.Add(Me.GroupBox34)
-        Me.GroupBox32.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox32.Location = New System.Drawing.Point(208, 252)
-        Me.GroupBox32.Name = "GroupBox32"
-        Me.GroupBox32.Size = New System.Drawing.Size(403, 114)
-        Me.GroupBox32.TabIndex = 3
-        Me.GroupBox32.TabStop = False
-        Me.GroupBox32.Text = "Scraper Fields"
+        Me.gbTVScraperGlobalLocks.Controls.Add(Me.gbTVScraperEpLocks)
+        Me.gbTVScraperGlobalLocks.Controls.Add(Me.gbTVScraperShowLocks)
+        Me.gbTVScraperGlobalLocks.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperGlobalLocks.Location = New System.Drawing.Point(208, 6)
+        Me.gbTVScraperGlobalLocks.Name = "gbTVScraperGlobalLocks"
+        Me.gbTVScraperGlobalLocks.Size = New System.Drawing.Size(191, 228)
+        Me.gbTVScraperGlobalLocks.TabIndex = 1
+        Me.gbTVScraperGlobalLocks.TabStop = False
+        Me.gbTVScraperGlobalLocks.Text = "Global Locks"
         '
-        'GroupBox35
+        'gbTVScraperEpLocks
         '
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowRating)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowActors)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowStudio)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowPremiered)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowEGU)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowMPAA)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowPlot)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowGenre)
-        Me.GroupBox35.Controls.Add(Me.chkScraperShowTitle)
-        Me.GroupBox35.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox35.Location = New System.Drawing.Point(3, 14)
-        Me.GroupBox35.Name = "GroupBox35"
-        Me.GroupBox35.Size = New System.Drawing.Size(213, 96)
-        Me.GroupBox35.TabIndex = 0
-        Me.GroupBox35.TabStop = False
-        Me.GroupBox35.Text = "Show"
-        '
-        'chkScraperShowRating
-        '
-        Me.chkScraperShowRating.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowRating.Location = New System.Drawing.Point(130, 29)
-        Me.chkScraperShowRating.Name = "chkScraperShowRating"
-        Me.chkScraperShowRating.Size = New System.Drawing.Size(78, 17)
-        Me.chkScraperShowRating.TabIndex = 6
-        Me.chkScraperShowRating.Text = "Rating"
-        Me.chkScraperShowRating.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowActors
-        '
-        Me.chkScraperShowActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowActors.Location = New System.Drawing.Point(130, 61)
-        Me.chkScraperShowActors.Name = "chkScraperShowActors"
-        Me.chkScraperShowActors.Size = New System.Drawing.Size(78, 17)
-        Me.chkScraperShowActors.TabIndex = 8
-        Me.chkScraperShowActors.Text = "Actors"
-        Me.chkScraperShowActors.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowStudio
-        '
-        Me.chkScraperShowStudio.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowStudio.Location = New System.Drawing.Point(130, 45)
-        Me.chkScraperShowStudio.Name = "chkScraperShowStudio"
-        Me.chkScraperShowStudio.Size = New System.Drawing.Size(78, 17)
-        Me.chkScraperShowStudio.TabIndex = 7
-        Me.chkScraperShowStudio.Text = "Studio"
-        Me.chkScraperShowStudio.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowPremiered
-        '
-        Me.chkScraperShowPremiered.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowPremiered.Location = New System.Drawing.Point(130, 13)
-        Me.chkScraperShowPremiered.Name = "chkScraperShowPremiered"
-        Me.chkScraperShowPremiered.Size = New System.Drawing.Size(78, 17)
-        Me.chkScraperShowPremiered.TabIndex = 5
-        Me.chkScraperShowPremiered.Text = "Premiered"
-        Me.chkScraperShowPremiered.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowEGU
-        '
-        Me.chkScraperShowEGU.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowEGU.Location = New System.Drawing.Point(6, 29)
-        Me.chkScraperShowEGU.Name = "chkScraperShowEGU"
-        Me.chkScraperShowEGU.Size = New System.Drawing.Size(118, 17)
-        Me.chkScraperShowEGU.TabIndex = 1
-        Me.chkScraperShowEGU.Text = "EpisodeGuideURL"
-        Me.chkScraperShowEGU.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowMPAA
-        '
-        Me.chkScraperShowMPAA.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowMPAA.Location = New System.Drawing.Point(6, 61)
-        Me.chkScraperShowMPAA.Name = "chkScraperShowMPAA"
-        Me.chkScraperShowMPAA.Size = New System.Drawing.Size(119, 17)
-        Me.chkScraperShowMPAA.TabIndex = 3
-        Me.chkScraperShowMPAA.Text = "MPAA"
-        Me.chkScraperShowMPAA.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowPlot
-        '
-        Me.chkScraperShowPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowPlot.Location = New System.Drawing.Point(6, 77)
-        Me.chkScraperShowPlot.Name = "chkScraperShowPlot"
-        Me.chkScraperShowPlot.Size = New System.Drawing.Size(119, 17)
-        Me.chkScraperShowPlot.TabIndex = 4
-        Me.chkScraperShowPlot.Text = "Plot"
-        Me.chkScraperShowPlot.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowGenre
-        '
-        Me.chkScraperShowGenre.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowGenre.Location = New System.Drawing.Point(6, 45)
-        Me.chkScraperShowGenre.Name = "chkScraperShowGenre"
-        Me.chkScraperShowGenre.Size = New System.Drawing.Size(118, 17)
-        Me.chkScraperShowGenre.TabIndex = 2
-        Me.chkScraperShowGenre.Text = "Genre"
-        Me.chkScraperShowGenre.UseVisualStyleBackColor = True
-        '
-        'chkScraperShowTitle
-        '
-        Me.chkScraperShowTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperShowTitle.Location = New System.Drawing.Point(6, 13)
-        Me.chkScraperShowTitle.Name = "chkScraperShowTitle"
-        Me.chkScraperShowTitle.Size = New System.Drawing.Size(118, 17)
-        Me.chkScraperShowTitle.TabIndex = 0
-        Me.chkScraperShowTitle.Text = "Title"
-        Me.chkScraperShowTitle.UseVisualStyleBackColor = True
-        '
-        'GroupBox34
-        '
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpActors)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpCredits)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpDirector)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpPlot)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpRating)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpAired)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpTitle)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpEpisode)
-        Me.GroupBox34.Controls.Add(Me.chkScraperEpSeason)
-        Me.GroupBox34.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox34.Location = New System.Drawing.Point(219, 14)
-        Me.GroupBox34.Name = "GroupBox34"
-        Me.GroupBox34.Size = New System.Drawing.Size(181, 96)
-        Me.GroupBox34.TabIndex = 1
-        Me.GroupBox34.TabStop = False
-        Me.GroupBox34.Text = "Episode"
-        '
-        'chkScraperEpActors
-        '
-        Me.chkScraperEpActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpActors.Location = New System.Drawing.Point(94, 60)
-        Me.chkScraperEpActors.Name = "chkScraperEpActors"
-        Me.chkScraperEpActors.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpActors.TabIndex = 0
-        Me.chkScraperEpActors.Text = "Actors"
-        Me.chkScraperEpActors.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpCredits
-        '
-        Me.chkScraperEpCredits.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpCredits.Location = New System.Drawing.Point(94, 44)
-        Me.chkScraperEpCredits.Name = "chkScraperEpCredits"
-        Me.chkScraperEpCredits.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpCredits.TabIndex = 8
-        Me.chkScraperEpCredits.Text = "Credits"
-        Me.chkScraperEpCredits.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpDirector
-        '
-        Me.chkScraperEpDirector.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpDirector.Location = New System.Drawing.Point(94, 28)
-        Me.chkScraperEpDirector.Name = "chkScraperEpDirector"
-        Me.chkScraperEpDirector.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpDirector.TabIndex = 7
-        Me.chkScraperEpDirector.Text = "Director"
-        Me.chkScraperEpDirector.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpPlot
-        '
-        Me.chkScraperEpPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpPlot.Location = New System.Drawing.Point(94, 12)
-        Me.chkScraperEpPlot.Name = "chkScraperEpPlot"
-        Me.chkScraperEpPlot.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpPlot.TabIndex = 6
-        Me.chkScraperEpPlot.Text = "Plot"
-        Me.chkScraperEpPlot.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpRating
-        '
-        Me.chkScraperEpRating.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpRating.Location = New System.Drawing.Point(6, 77)
-        Me.chkScraperEpRating.Name = "chkScraperEpRating"
-        Me.chkScraperEpRating.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpRating.TabIndex = 5
-        Me.chkScraperEpRating.Text = "Rating"
-        Me.chkScraperEpRating.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpAired
-        '
-        Me.chkScraperEpAired.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpAired.Location = New System.Drawing.Point(6, 61)
-        Me.chkScraperEpAired.Name = "chkScraperEpAired"
-        Me.chkScraperEpAired.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpAired.TabIndex = 4
-        Me.chkScraperEpAired.Text = "Aired"
-        Me.chkScraperEpAired.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpTitle
-        '
-        Me.chkScraperEpTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpTitle.Location = New System.Drawing.Point(6, 13)
-        Me.chkScraperEpTitle.Name = "chkScraperEpTitle"
-        Me.chkScraperEpTitle.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpTitle.TabIndex = 0
-        Me.chkScraperEpTitle.Text = "Title"
-        Me.chkScraperEpTitle.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpEpisode
-        '
-        Me.chkScraperEpEpisode.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpEpisode.Location = New System.Drawing.Point(6, 45)
-        Me.chkScraperEpEpisode.Name = "chkScraperEpEpisode"
-        Me.chkScraperEpEpisode.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpEpisode.TabIndex = 3
-        Me.chkScraperEpEpisode.Text = "Episode"
-        Me.chkScraperEpEpisode.UseVisualStyleBackColor = True
-        '
-        'chkScraperEpSeason
-        '
-        Me.chkScraperEpSeason.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScraperEpSeason.Location = New System.Drawing.Point(6, 29)
-        Me.chkScraperEpSeason.Name = "chkScraperEpSeason"
-        Me.chkScraperEpSeason.Size = New System.Drawing.Size(67, 17)
-        Me.chkScraperEpSeason.TabIndex = 2
-        Me.chkScraperEpSeason.Text = "Season"
-        Me.chkScraperEpSeason.UseVisualStyleBackColor = True
-        '
-        'GroupBox33
-        '
-        Me.GroupBox33.Controls.Add(Me.gbEpLocks)
-        Me.GroupBox33.Controls.Add(Me.gbShowLocks)
-        Me.GroupBox33.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox33.Location = New System.Drawing.Point(208, 6)
-        Me.GroupBox33.Name = "GroupBox33"
-        Me.GroupBox33.Size = New System.Drawing.Size(191, 243)
-        Me.GroupBox33.TabIndex = 1
-        Me.GroupBox33.TabStop = False
-        Me.GroupBox33.Text = "Global Locks"
-        '
-        'gbEpLocks
-        '
-        Me.gbEpLocks.Controls.Add(Me.chkEpLockTitle)
-        Me.gbEpLocks.Controls.Add(Me.chkEpLockRating)
-        Me.gbEpLocks.Controls.Add(Me.chkEpLockPlot)
-        Me.gbEpLocks.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbEpLocks.Location = New System.Drawing.Point(5, 112)
-        Me.gbEpLocks.Name = "gbEpLocks"
-        Me.gbEpLocks.Size = New System.Drawing.Size(181, 66)
-        Me.gbEpLocks.TabIndex = 1
-        Me.gbEpLocks.TabStop = False
-        Me.gbEpLocks.Text = "Episode"
+        Me.gbTVScraperEpLocks.Controls.Add(Me.chkEpLockTitle)
+        Me.gbTVScraperEpLocks.Controls.Add(Me.chkEpLockRating)
+        Me.gbTVScraperEpLocks.Controls.Add(Me.chkEpLockPlot)
+        Me.gbTVScraperEpLocks.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperEpLocks.Location = New System.Drawing.Point(5, 112)
+        Me.gbTVScraperEpLocks.Name = "gbTVScraperEpLocks"
+        Me.gbTVScraperEpLocks.Size = New System.Drawing.Size(181, 66)
+        Me.gbTVScraperEpLocks.TabIndex = 1
+        Me.gbTVScraperEpLocks.TabStop = False
+        Me.gbTVScraperEpLocks.Text = "Episode"
         '
         'chkEpLockTitle
         '
@@ -6110,20 +5882,20 @@ Partial Class dlgSettings
         Me.chkEpLockPlot.Text = "Lock Plot"
         Me.chkEpLockPlot.UseVisualStyleBackColor = True
         '
-        'gbShowLocks
+        'gbTVScraperShowLocks
         '
-        Me.gbShowLocks.Controls.Add(Me.chkShowLockPlot)
-        Me.gbShowLocks.Controls.Add(Me.chkShowLockGenre)
-        Me.gbShowLocks.Controls.Add(Me.chkShowLockStudio)
-        Me.gbShowLocks.Controls.Add(Me.chkShowLockRating)
-        Me.gbShowLocks.Controls.Add(Me.chkShowLockTitle)
-        Me.gbShowLocks.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbShowLocks.Location = New System.Drawing.Point(5, 13)
-        Me.gbShowLocks.Name = "gbShowLocks"
-        Me.gbShowLocks.Size = New System.Drawing.Size(181, 96)
-        Me.gbShowLocks.TabIndex = 0
-        Me.gbShowLocks.TabStop = False
-        Me.gbShowLocks.Text = "Show"
+        Me.gbTVScraperShowLocks.Controls.Add(Me.chkShowLockPlot)
+        Me.gbTVScraperShowLocks.Controls.Add(Me.chkShowLockGenre)
+        Me.gbTVScraperShowLocks.Controls.Add(Me.chkShowLockStudio)
+        Me.gbTVScraperShowLocks.Controls.Add(Me.chkShowLockRating)
+        Me.gbTVScraperShowLocks.Controls.Add(Me.chkShowLockTitle)
+        Me.gbTVScraperShowLocks.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperShowLocks.Location = New System.Drawing.Point(5, 13)
+        Me.gbTVScraperShowLocks.Name = "gbTVScraperShowLocks"
+        Me.gbTVScraperShowLocks.Size = New System.Drawing.Size(181, 96)
+        Me.gbTVScraperShowLocks.TabIndex = 0
+        Me.gbTVScraperShowLocks.TabStop = False
+        Me.gbTVScraperShowLocks.Text = "Show"
         '
         'chkShowLockPlot
         '
@@ -6175,35 +5947,35 @@ Partial Class dlgSettings
         Me.chkShowLockTitle.Text = "Lock Title"
         Me.chkShowLockTitle.UseVisualStyleBackColor = True
         '
-        'GroupBox31
+        'gbTVScraperMetaData
         '
-        Me.GroupBox31.Controls.Add(Me.gbTVMIDefaults)
-        Me.GroupBox31.Controls.Add(Me.cboTVMetaDataOverlay)
-        Me.GroupBox31.Controls.Add(Me.Label50)
-        Me.GroupBox31.Controls.Add(Me.chkTVScanMetaData)
-        Me.GroupBox31.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox31.Location = New System.Drawing.Point(403, 6)
-        Me.GroupBox31.Name = "GroupBox31"
-        Me.GroupBox31.Size = New System.Drawing.Size(208, 243)
-        Me.GroupBox31.TabIndex = 2
-        Me.GroupBox31.TabStop = False
-        Me.GroupBox31.Text = "Meta Data"
+        Me.gbTVScraperMetaData.Controls.Add(Me.gbTVScraperFileType)
+        Me.gbTVScraperMetaData.Controls.Add(Me.cboTVMetaDataOverlay)
+        Me.gbTVScraperMetaData.Controls.Add(Me.Label50)
+        Me.gbTVScraperMetaData.Controls.Add(Me.chkTVScanMetaData)
+        Me.gbTVScraperMetaData.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperMetaData.Location = New System.Drawing.Point(403, 6)
+        Me.gbTVScraperMetaData.Name = "gbTVScraperMetaData"
+        Me.gbTVScraperMetaData.Size = New System.Drawing.Size(208, 240)
+        Me.gbTVScraperMetaData.TabIndex = 2
+        Me.gbTVScraperMetaData.TabStop = False
+        Me.gbTVScraperMetaData.Text = "Meta Data"
         '
-        'gbTVMIDefaults
+        'gbTVScraperFileType
         '
-        Me.gbTVMIDefaults.Controls.Add(Me.lstTVMetaData)
-        Me.gbTVMIDefaults.Controls.Add(Me.txtTVDefFIExt)
-        Me.gbTVMIDefaults.Controls.Add(Me.Label49)
-        Me.gbTVMIDefaults.Controls.Add(Me.btnRemoveTVMetaDataFT)
-        Me.gbTVMIDefaults.Controls.Add(Me.btnEditTVMetaDataFT)
-        Me.gbTVMIDefaults.Controls.Add(Me.btnNewTVMetaDataFT)
-        Me.gbTVMIDefaults.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbTVMIDefaults.Location = New System.Drawing.Point(12, 93)
-        Me.gbTVMIDefaults.Name = "gbTVMIDefaults"
-        Me.gbTVMIDefaults.Size = New System.Drawing.Size(183, 144)
-        Me.gbTVMIDefaults.TabIndex = 3
-        Me.gbTVMIDefaults.TabStop = False
-        Me.gbTVMIDefaults.Text = "Defaults by File Type"
+        Me.gbTVScraperFileType.Controls.Add(Me.lstTVMetaData)
+        Me.gbTVScraperFileType.Controls.Add(Me.txtTVDefFIExt)
+        Me.gbTVScraperFileType.Controls.Add(Me.Label49)
+        Me.gbTVScraperFileType.Controls.Add(Me.btnRemoveTVMetaDataFT)
+        Me.gbTVScraperFileType.Controls.Add(Me.btnEditTVMetaDataFT)
+        Me.gbTVScraperFileType.Controls.Add(Me.btnNewTVMetaDataFT)
+        Me.gbTVScraperFileType.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperFileType.Location = New System.Drawing.Point(12, 88)
+        Me.gbTVScraperFileType.Name = "gbTVScraperFileType"
+        Me.gbTVScraperFileType.Size = New System.Drawing.Size(183, 144)
+        Me.gbTVScraperFileType.TabIndex = 3
+        Me.gbTVScraperFileType.TabStop = False
+        Me.gbTVScraperFileType.Text = "Defaults by File Type"
         '
         'lstTVMetaData
         '
@@ -6308,7 +6080,7 @@ Partial Class dlgSettings
         Me.gbTVScraperOptions.Controls.Add(Me.lblTVDBMirror)
         Me.gbTVScraperOptions.Controls.Add(Me.txtAPIKey)
         Me.gbTVScraperOptions.Controls.Add(Me.txtTVDBMirror)
-        Me.gbTVScraperOptions.Controls.Add(Me.gbLanguage)
+        Me.gbTVScraperOptions.Controls.Add(Me.gbTVScraperLanguage)
         Me.gbTVScraperOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbTVScraperOptions.Location = New System.Drawing.Point(5, 6)
         Me.gbTVScraperOptions.Name = "gbTVScraperOptions"
@@ -6393,18 +6165,18 @@ Partial Class dlgSettings
         Me.txtTVDBMirror.Size = New System.Drawing.Size(189, 22)
         Me.txtTVDBMirror.TabIndex = 1
         '
-        'gbLanguage
+        'gbTVScraperLanguage
         '
-        Me.gbLanguage.Controls.Add(Me.lblTVLanguagePreferred)
-        Me.gbLanguage.Controls.Add(Me.btnTVLanguageFetch)
-        Me.gbLanguage.Controls.Add(Me.cbTVLanguage)
-        Me.gbLanguage.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbLanguage.Location = New System.Drawing.Point(5, 104)
-        Me.gbLanguage.Name = "gbLanguage"
-        Me.gbLanguage.Size = New System.Drawing.Size(190, 100)
-        Me.gbLanguage.TabIndex = 4
-        Me.gbLanguage.TabStop = False
-        Me.gbLanguage.Text = "Language"
+        Me.gbTVScraperLanguage.Controls.Add(Me.lblTVLanguagePreferred)
+        Me.gbTVScraperLanguage.Controls.Add(Me.btnTVLanguageFetch)
+        Me.gbTVScraperLanguage.Controls.Add(Me.cbTVLanguage)
+        Me.gbTVScraperLanguage.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperLanguage.Location = New System.Drawing.Point(5, 104)
+        Me.gbTVScraperLanguage.Name = "gbTVScraperLanguage"
+        Me.gbTVScraperLanguage.Size = New System.Drawing.Size(190, 100)
+        Me.gbTVScraperLanguage.TabIndex = 4
+        Me.gbTVScraperLanguage.TabStop = False
+        Me.gbTVScraperLanguage.Text = "Language"
         '
         'lblTVLanguagePreferred
         '
@@ -6435,41 +6207,300 @@ Partial Class dlgSettings
         Me.cbTVLanguage.Size = New System.Drawing.Size(166, 21)
         Me.cbTVLanguage.TabIndex = 1
         '
-        'gbOptions
+        'gbTVScraperEpisode
         '
-        Me.gbOptions.Controls.Add(Me.chkCertification)
-        Me.gbOptions.Controls.Add(Me.chkTop250)
-        Me.gbOptions.Controls.Add(Me.chkCountry)
-        Me.gbOptions.Controls.Add(Me.txtGenreLimit)
-        Me.gbOptions.Controls.Add(Me.lblLimit2)
-        Me.gbOptions.Controls.Add(Me.txtActorLimit)
-        Me.gbOptions.Controls.Add(Me.lblLimit)
-        Me.gbOptions.Controls.Add(Me.chkCrew)
-        Me.gbOptions.Controls.Add(Me.chkMusicBy)
-        Me.gbOptions.Controls.Add(Me.chkProducers)
-        Me.gbOptions.Controls.Add(Me.chkWriters)
-        Me.gbOptions.Controls.Add(Me.chkStudio)
-        Me.gbOptions.Controls.Add(Me.chkRuntime)
-        Me.gbOptions.Controls.Add(Me.chkPlot)
-        Me.gbOptions.Controls.Add(Me.chkOutline)
-        Me.gbOptions.Controls.Add(Me.chkGenre)
-        Me.gbOptions.Controls.Add(Me.chkDirector)
-        Me.gbOptions.Controls.Add(Me.chkTagline)
-        Me.gbOptions.Controls.Add(Me.chkCast)
-        Me.gbOptions.Controls.Add(Me.chkVotes)
-        Me.gbOptions.Controls.Add(Me.chkTrailer)
-        Me.gbOptions.Controls.Add(Me.chkRating)
-        Me.gbOptions.Controls.Add(Me.chkRelease)
-        Me.gbOptions.Controls.Add(Me.chkMPAA)
-        Me.gbOptions.Controls.Add(Me.chkYear)
-        Me.gbOptions.Controls.Add(Me.chkTitle)
-        Me.gbOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbOptions.Location = New System.Drawing.Point(8, 236)
-        Me.gbOptions.Name = "gbOptions"
-        Me.gbOptions.Size = New System.Drawing.Size(302, 170)
-        Me.gbOptions.TabIndex = 67
-        Me.gbOptions.TabStop = False
-        Me.gbOptions.Text = "Scraper Fields - Global"
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpActors)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpCredits)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpDirector)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpPlot)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpRating)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpAired)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpTitle)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpEpisode)
+        Me.gbTVScraperEpisode.Controls.Add(Me.chkScraperEpSeason)
+        Me.gbTVScraperEpisode.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperEpisode.Location = New System.Drawing.Point(197, 14)
+        Me.gbTVScraperEpisode.Name = "gbTVScraperEpisode"
+        Me.gbTVScraperEpisode.Size = New System.Drawing.Size(200, 165)
+        Me.gbTVScraperEpisode.TabIndex = 1
+        Me.gbTVScraperEpisode.TabStop = False
+        Me.gbTVScraperEpisode.Text = "Episode"
+        '
+        'chkScraperEpActors
+        '
+        Me.chkScraperEpActors.AutoSize = True
+        Me.chkScraperEpActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpActors.Location = New System.Drawing.Point(6, 141)
+        Me.chkScraperEpActors.Name = "chkScraperEpActors"
+        Me.chkScraperEpActors.Size = New System.Drawing.Size(58, 17)
+        Me.chkScraperEpActors.TabIndex = 0
+        Me.chkScraperEpActors.Text = "Actors"
+        Me.chkScraperEpActors.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpCredits
+        '
+        Me.chkScraperEpCredits.AutoSize = True
+        Me.chkScraperEpCredits.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpCredits.Location = New System.Drawing.Point(6, 125)
+        Me.chkScraperEpCredits.Name = "chkScraperEpCredits"
+        Me.chkScraperEpCredits.Size = New System.Drawing.Size(62, 17)
+        Me.chkScraperEpCredits.TabIndex = 8
+        Me.chkScraperEpCredits.Text = "Credits"
+        Me.chkScraperEpCredits.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpDirector
+        '
+        Me.chkScraperEpDirector.AutoSize = True
+        Me.chkScraperEpDirector.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpDirector.Location = New System.Drawing.Point(6, 109)
+        Me.chkScraperEpDirector.Name = "chkScraperEpDirector"
+        Me.chkScraperEpDirector.Size = New System.Drawing.Size(67, 17)
+        Me.chkScraperEpDirector.TabIndex = 7
+        Me.chkScraperEpDirector.Text = "Director"
+        Me.chkScraperEpDirector.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpPlot
+        '
+        Me.chkScraperEpPlot.AutoSize = True
+        Me.chkScraperEpPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpPlot.Location = New System.Drawing.Point(6, 93)
+        Me.chkScraperEpPlot.Name = "chkScraperEpPlot"
+        Me.chkScraperEpPlot.Size = New System.Drawing.Size(46, 17)
+        Me.chkScraperEpPlot.TabIndex = 6
+        Me.chkScraperEpPlot.Text = "Plot"
+        Me.chkScraperEpPlot.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpRating
+        '
+        Me.chkScraperEpRating.AutoSize = True
+        Me.chkScraperEpRating.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpRating.Location = New System.Drawing.Point(6, 77)
+        Me.chkScraperEpRating.Name = "chkScraperEpRating"
+        Me.chkScraperEpRating.Size = New System.Drawing.Size(60, 17)
+        Me.chkScraperEpRating.TabIndex = 5
+        Me.chkScraperEpRating.Text = "Rating"
+        Me.chkScraperEpRating.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpAired
+        '
+        Me.chkScraperEpAired.AutoSize = True
+        Me.chkScraperEpAired.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpAired.Location = New System.Drawing.Point(6, 61)
+        Me.chkScraperEpAired.Name = "chkScraperEpAired"
+        Me.chkScraperEpAired.Size = New System.Drawing.Size(53, 17)
+        Me.chkScraperEpAired.TabIndex = 4
+        Me.chkScraperEpAired.Text = "Aired"
+        Me.chkScraperEpAired.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpTitle
+        '
+        Me.chkScraperEpTitle.AutoSize = True
+        Me.chkScraperEpTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpTitle.Location = New System.Drawing.Point(6, 13)
+        Me.chkScraperEpTitle.Name = "chkScraperEpTitle"
+        Me.chkScraperEpTitle.Size = New System.Drawing.Size(47, 17)
+        Me.chkScraperEpTitle.TabIndex = 0
+        Me.chkScraperEpTitle.Text = "Title"
+        Me.chkScraperEpTitle.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpEpisode
+        '
+        Me.chkScraperEpEpisode.AutoSize = True
+        Me.chkScraperEpEpisode.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpEpisode.Location = New System.Drawing.Point(6, 45)
+        Me.chkScraperEpEpisode.Name = "chkScraperEpEpisode"
+        Me.chkScraperEpEpisode.Size = New System.Drawing.Size(67, 17)
+        Me.chkScraperEpEpisode.TabIndex = 3
+        Me.chkScraperEpEpisode.Text = "Episode"
+        Me.chkScraperEpEpisode.UseVisualStyleBackColor = True
+        '
+        'chkScraperEpSeason
+        '
+        Me.chkScraperEpSeason.AutoSize = True
+        Me.chkScraperEpSeason.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperEpSeason.Location = New System.Drawing.Point(6, 29)
+        Me.chkScraperEpSeason.Name = "chkScraperEpSeason"
+        Me.chkScraperEpSeason.Size = New System.Drawing.Size(63, 17)
+        Me.chkScraperEpSeason.TabIndex = 2
+        Me.chkScraperEpSeason.Text = "Season"
+        Me.chkScraperEpSeason.UseVisualStyleBackColor = True
+        '
+        'gbTVScraperFields
+        '
+        Me.gbTVScraperFields.Controls.Add(Me.gbTVScraperShow)
+        Me.gbTVScraperFields.Controls.Add(Me.gbTVScraperEpisode)
+        Me.gbTVScraperFields.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperFields.Location = New System.Drawing.Point(208, 246)
+        Me.gbTVScraperFields.Name = "gbTVScraperFields"
+        Me.gbTVScraperFields.Size = New System.Drawing.Size(403, 185)
+        Me.gbTVScraperFields.TabIndex = 3
+        Me.gbTVScraperFields.TabStop = False
+        Me.gbTVScraperFields.Text = "Scraper Fields"
+        '
+        'gbTVScraperShow
+        '
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowRating)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowActors)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowStudio)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowPremiered)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowEGU)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowMPAA)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowPlot)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowGenre)
+        Me.gbTVScraperShow.Controls.Add(Me.chkScraperShowTitle)
+        Me.gbTVScraperShow.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbTVScraperShow.Location = New System.Drawing.Point(3, 14)
+        Me.gbTVScraperShow.Name = "gbTVScraperShow"
+        Me.gbTVScraperShow.Size = New System.Drawing.Size(188, 165)
+        Me.gbTVScraperShow.TabIndex = 0
+        Me.gbTVScraperShow.TabStop = False
+        Me.gbTVScraperShow.Text = "Show"
+        '
+        'chkScraperShowRating
+        '
+        Me.chkScraperShowRating.AutoSize = True
+        Me.chkScraperShowRating.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowRating.Location = New System.Drawing.Point(6, 109)
+        Me.chkScraperShowRating.Name = "chkScraperShowRating"
+        Me.chkScraperShowRating.Size = New System.Drawing.Size(60, 17)
+        Me.chkScraperShowRating.TabIndex = 6
+        Me.chkScraperShowRating.Text = "Rating"
+        Me.chkScraperShowRating.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowActors
+        '
+        Me.chkScraperShowActors.AutoSize = True
+        Me.chkScraperShowActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowActors.Location = New System.Drawing.Point(6, 141)
+        Me.chkScraperShowActors.Name = "chkScraperShowActors"
+        Me.chkScraperShowActors.Size = New System.Drawing.Size(58, 17)
+        Me.chkScraperShowActors.TabIndex = 8
+        Me.chkScraperShowActors.Text = "Actors"
+        Me.chkScraperShowActors.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowStudio
+        '
+        Me.chkScraperShowStudio.AutoSize = True
+        Me.chkScraperShowStudio.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowStudio.Location = New System.Drawing.Point(6, 125)
+        Me.chkScraperShowStudio.Name = "chkScraperShowStudio"
+        Me.chkScraperShowStudio.Size = New System.Drawing.Size(60, 17)
+        Me.chkScraperShowStudio.TabIndex = 7
+        Me.chkScraperShowStudio.Text = "Studio"
+        Me.chkScraperShowStudio.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowPremiered
+        '
+        Me.chkScraperShowPremiered.AutoSize = True
+        Me.chkScraperShowPremiered.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowPremiered.Location = New System.Drawing.Point(6, 93)
+        Me.chkScraperShowPremiered.Margin = New System.Windows.Forms.Padding(3, 0, 3, 0)
+        Me.chkScraperShowPremiered.Name = "chkScraperShowPremiered"
+        Me.chkScraperShowPremiered.Size = New System.Drawing.Size(77, 17)
+        Me.chkScraperShowPremiered.TabIndex = 5
+        Me.chkScraperShowPremiered.Text = "Premiered"
+        Me.chkScraperShowPremiered.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowEGU
+        '
+        Me.chkScraperShowEGU.AutoSize = True
+        Me.chkScraperShowEGU.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowEGU.Location = New System.Drawing.Point(6, 29)
+        Me.chkScraperShowEGU.Name = "chkScraperShowEGU"
+        Me.chkScraperShowEGU.Size = New System.Drawing.Size(118, 17)
+        Me.chkScraperShowEGU.TabIndex = 1
+        Me.chkScraperShowEGU.Text = "EpisodeGuideURL"
+        Me.chkScraperShowEGU.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowMPAA
+        '
+        Me.chkScraperShowMPAA.AutoSize = True
+        Me.chkScraperShowMPAA.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowMPAA.Location = New System.Drawing.Point(6, 61)
+        Me.chkScraperShowMPAA.Name = "chkScraperShowMPAA"
+        Me.chkScraperShowMPAA.Size = New System.Drawing.Size(56, 17)
+        Me.chkScraperShowMPAA.TabIndex = 3
+        Me.chkScraperShowMPAA.Text = "MPAA"
+        Me.chkScraperShowMPAA.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowPlot
+        '
+        Me.chkScraperShowPlot.AutoSize = True
+        Me.chkScraperShowPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowPlot.Location = New System.Drawing.Point(6, 77)
+        Me.chkScraperShowPlot.Name = "chkScraperShowPlot"
+        Me.chkScraperShowPlot.Size = New System.Drawing.Size(46, 17)
+        Me.chkScraperShowPlot.TabIndex = 4
+        Me.chkScraperShowPlot.Text = "Plot"
+        Me.chkScraperShowPlot.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowGenre
+        '
+        Me.chkScraperShowGenre.AutoSize = True
+        Me.chkScraperShowGenre.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowGenre.Location = New System.Drawing.Point(6, 45)
+        Me.chkScraperShowGenre.Name = "chkScraperShowGenre"
+        Me.chkScraperShowGenre.Size = New System.Drawing.Size(57, 17)
+        Me.chkScraperShowGenre.TabIndex = 2
+        Me.chkScraperShowGenre.Text = "Genre"
+        Me.chkScraperShowGenre.UseVisualStyleBackColor = True
+        '
+        'chkScraperShowTitle
+        '
+        Me.chkScraperShowTitle.AutoSize = True
+        Me.chkScraperShowTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperShowTitle.Location = New System.Drawing.Point(6, 13)
+        Me.chkScraperShowTitle.Name = "chkScraperShowTitle"
+        Me.chkScraperShowTitle.Size = New System.Drawing.Size(47, 17)
+        Me.chkScraperShowTitle.TabIndex = 0
+        Me.chkScraperShowTitle.Text = "Title"
+        Me.chkScraperShowTitle.UseVisualStyleBackColor = True
+        '
+        'pnlMain
+        '
+        Me.pnlMain.AutoScroll = True
+        Me.pnlMain.BackColor = System.Drawing.Color.White
+        Me.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlMain.Location = New System.Drawing.Point(251, 147)
+        Me.pnlMain.Name = "pnlMain"
+        Me.pnlMain.Size = New System.Drawing.Size(640, 440)
+        Me.pnlMain.TabIndex = 9
+        '
+        'gbScraperFields
+        '
+        Me.gbScraperFields.Controls.Add(Me.chkCertification)
+        Me.gbScraperFields.Controls.Add(Me.chkTop250)
+        Me.gbScraperFields.Controls.Add(Me.chkCountry)
+        Me.gbScraperFields.Controls.Add(Me.txtGenreLimit)
+        Me.gbScraperFields.Controls.Add(Me.lblLimit2)
+        Me.gbScraperFields.Controls.Add(Me.txtActorLimit)
+        Me.gbScraperFields.Controls.Add(Me.lblLimit)
+        Me.gbScraperFields.Controls.Add(Me.chkCrew)
+        Me.gbScraperFields.Controls.Add(Me.chkMusicBy)
+        Me.gbScraperFields.Controls.Add(Me.chkProducers)
+        Me.gbScraperFields.Controls.Add(Me.chkWriters)
+        Me.gbScraperFields.Controls.Add(Me.chkStudio)
+        Me.gbScraperFields.Controls.Add(Me.chkRuntime)
+        Me.gbScraperFields.Controls.Add(Me.chkPlot)
+        Me.gbScraperFields.Controls.Add(Me.chkOutline)
+        Me.gbScraperFields.Controls.Add(Me.chkGenre)
+        Me.gbScraperFields.Controls.Add(Me.chkDirector)
+        Me.gbScraperFields.Controls.Add(Me.chkTagline)
+        Me.gbScraperFields.Controls.Add(Me.chkCast)
+        Me.gbScraperFields.Controls.Add(Me.chkVotes)
+        Me.gbScraperFields.Controls.Add(Me.chkTrailer)
+        Me.gbScraperFields.Controls.Add(Me.chkRating)
+        Me.gbScraperFields.Controls.Add(Me.chkRelease)
+        Me.gbScraperFields.Controls.Add(Me.chkMPAA)
+        Me.gbScraperFields.Controls.Add(Me.chkYear)
+        Me.gbScraperFields.Controls.Add(Me.chkTitle)
+        Me.gbScraperFields.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbScraperFields.Location = New System.Drawing.Point(8, 236)
+        Me.gbScraperFields.Name = "gbScraperFields"
+        Me.gbScraperFields.Size = New System.Drawing.Size(322, 185)
+        Me.gbScraperFields.TabIndex = 67
+        Me.gbScraperFields.TabStop = False
+        Me.gbScraperFields.Text = "Scraper Fields - Global"
         '
         'chkCertification
         '
@@ -6756,37 +6787,37 @@ Partial Class dlgSettings
         Me.chkTitle.Text = "Title"
         Me.chkTitle.UseVisualStyleBackColor = True
         '
-        'GroupBox26
+        'gbScraperMetaData
         '
-        Me.GroupBox26.Controls.Add(Me.GroupBox28)
-        Me.GroupBox26.Controls.Add(Me.chkIFOScan)
-        Me.GroupBox26.Controls.Add(Me.cbLanguages)
-        Me.GroupBox26.Controls.Add(Me.Label31)
-        Me.GroupBox26.Controls.Add(Me.gbRTFormat)
-        Me.GroupBox26.Controls.Add(Me.chkScanMediaInfo)
-        Me.GroupBox26.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox26.Location = New System.Drawing.Point(168, 6)
-        Me.GroupBox26.Name = "GroupBox26"
-        Me.GroupBox26.Size = New System.Drawing.Size(434, 176)
-        Me.GroupBox26.TabIndex = 63
-        Me.GroupBox26.TabStop = False
-        Me.GroupBox26.Text = "Meta Data"
+        Me.gbScraperMetaData.Controls.Add(Me.gbScraperFileType)
+        Me.gbScraperMetaData.Controls.Add(Me.chkIFOScan)
+        Me.gbScraperMetaData.Controls.Add(Me.cbLanguages)
+        Me.gbScraperMetaData.Controls.Add(Me.Label31)
+        Me.gbScraperMetaData.Controls.Add(Me.gbScraperDurationFormat)
+        Me.gbScraperMetaData.Controls.Add(Me.chkScanMediaInfo)
+        Me.gbScraperMetaData.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbScraperMetaData.Location = New System.Drawing.Point(170, 6)
+        Me.gbScraperMetaData.Name = "gbScraperMetaData"
+        Me.gbScraperMetaData.Size = New System.Drawing.Size(455, 176)
+        Me.gbScraperMetaData.TabIndex = 63
+        Me.gbScraperMetaData.TabStop = False
+        Me.gbScraperMetaData.Text = "Meta Data"
         '
-        'GroupBox28
+        'gbScraperFileType
         '
-        Me.GroupBox28.Controls.Add(Me.lstMetaData)
-        Me.GroupBox28.Controls.Add(Me.txtDefFIExt)
-        Me.GroupBox28.Controls.Add(Me.Label34)
-        Me.GroupBox28.Controls.Add(Me.btnRemoveMetaDataFT)
-        Me.GroupBox28.Controls.Add(Me.btnEditMetaDataFT)
-        Me.GroupBox28.Controls.Add(Me.btnNewMetaDataFT)
-        Me.GroupBox28.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox28.Location = New System.Drawing.Point(249, 10)
-        Me.GroupBox28.Name = "GroupBox28"
-        Me.GroupBox28.Size = New System.Drawing.Size(183, 144)
-        Me.GroupBox28.TabIndex = 8
-        Me.GroupBox28.TabStop = False
-        Me.GroupBox28.Text = "Defaults by File Type"
+        Me.gbScraperFileType.Controls.Add(Me.lstMetaData)
+        Me.gbScraperFileType.Controls.Add(Me.txtDefFIExt)
+        Me.gbScraperFileType.Controls.Add(Me.Label34)
+        Me.gbScraperFileType.Controls.Add(Me.btnRemoveMetaDataFT)
+        Me.gbScraperFileType.Controls.Add(Me.btnEditMetaDataFT)
+        Me.gbScraperFileType.Controls.Add(Me.btnNewMetaDataFT)
+        Me.gbScraperFileType.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbScraperFileType.Location = New System.Drawing.Point(266, 8)
+        Me.gbScraperFileType.Name = "gbScraperFileType"
+        Me.gbScraperFileType.Size = New System.Drawing.Size(183, 144)
+        Me.gbScraperFileType.TabIndex = 8
+        Me.gbScraperFileType.TabStop = False
+        Me.gbScraperFileType.Text = "Defaults by File Type"
         '
         'lstMetaData
         '
@@ -6881,25 +6912,25 @@ Partial Class dlgSettings
         Me.Label31.Text = "Display Overlay if Video Contains an Audio Stream With the Following Language:"
         Me.Label31.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'gbRTFormat
+        'gbScraperDurationFormat
         '
-        Me.gbRTFormat.Controls.Add(Me.Label51)
-        Me.gbRTFormat.Controls.Add(Me.txtRuntimeFormat)
-        Me.gbRTFormat.Controls.Add(Me.chkUseMIDuration)
-        Me.gbRTFormat.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbRTFormat.Location = New System.Drawing.Point(6, 50)
-        Me.gbRTFormat.Name = "gbRTFormat"
-        Me.gbRTFormat.Size = New System.Drawing.Size(234, 64)
-        Me.gbRTFormat.TabIndex = 9
-        Me.gbRTFormat.TabStop = False
-        Me.gbRTFormat.Text = "Duration Format"
+        Me.gbScraperDurationFormat.Controls.Add(Me.Label51)
+        Me.gbScraperDurationFormat.Controls.Add(Me.txtRuntimeFormat)
+        Me.gbScraperDurationFormat.Controls.Add(Me.chkUseMIDuration)
+        Me.gbScraperDurationFormat.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbScraperDurationFormat.Location = New System.Drawing.Point(6, 50)
+        Me.gbScraperDurationFormat.Name = "gbScraperDurationFormat"
+        Me.gbScraperDurationFormat.Size = New System.Drawing.Size(254, 64)
+        Me.gbScraperDurationFormat.TabIndex = 9
+        Me.gbScraperDurationFormat.TabStop = False
+        Me.gbScraperDurationFormat.Text = "Duration Format"
         '
         'Label51
         '
-        Me.Label51.Font = New System.Drawing.Font("Segoe UI", 7.0!)
-        Me.Label51.Location = New System.Drawing.Point(160, 10)
+        Me.Label51.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label51.Location = New System.Drawing.Point(169, 15)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(72, 50)
+        Me.Label51.Size = New System.Drawing.Size(79, 41)
         Me.Label51.TabIndex = 23
         Me.Label51.Text = "<h>=Hours" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "<m>=Minutes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "<s>=Seconds"
         Me.Label51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -6934,27 +6965,27 @@ Partial Class dlgSettings
         Me.chkScanMediaInfo.Text = "Scan Meta Data"
         Me.chkScanMediaInfo.UseVisualStyleBackColor = True
         '
-        'GroupBox10
+        'gbScraperGlobalLocks
         '
-        Me.GroupBox10.Controls.Add(Me.chkLockSubtitle)
-        Me.GroupBox10.Controls.Add(Me.chkLockMPAA)
-        Me.GroupBox10.Controls.Add(Me.chkLockLanguageA)
-        Me.GroupBox10.Controls.Add(Me.chkLockLanguageV)
-        Me.GroupBox10.Controls.Add(Me.chkLockOutline)
-        Me.GroupBox10.Controls.Add(Me.chkLockPlot)
-        Me.GroupBox10.Controls.Add(Me.chkLockTrailer)
-        Me.GroupBox10.Controls.Add(Me.chkLockGenre)
-        Me.GroupBox10.Controls.Add(Me.chkLockRealStudio)
-        Me.GroupBox10.Controls.Add(Me.chkLockRating)
-        Me.GroupBox10.Controls.Add(Me.chkLockTagline)
-        Me.GroupBox10.Controls.Add(Me.chkLockTitle)
-        Me.GroupBox10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox10.Location = New System.Drawing.Point(8, 6)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(156, 224)
-        Me.GroupBox10.TabIndex = 1
-        Me.GroupBox10.TabStop = False
-        Me.GroupBox10.Text = "Global Locks"
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockSubtitle)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockMPAA)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockLanguageA)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockLanguageV)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockOutline)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockPlot)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockTrailer)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockGenre)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockRealStudio)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockRating)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockTagline)
+        Me.gbScraperGlobalLocks.Controls.Add(Me.chkLockTitle)
+        Me.gbScraperGlobalLocks.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbScraperGlobalLocks.Location = New System.Drawing.Point(8, 6)
+        Me.gbScraperGlobalLocks.Name = "gbScraperGlobalLocks"
+        Me.gbScraperGlobalLocks.Size = New System.Drawing.Size(156, 224)
+        Me.gbScraperGlobalLocks.TabIndex = 1
+        Me.gbScraperGlobalLocks.TabStop = False
+        Me.gbScraperGlobalLocks.Text = "Global Locks"
         '
         'chkLockSubtitle
         '
@@ -7079,28 +7110,28 @@ Partial Class dlgSettings
         Me.chkLockTitle.Text = "Lock Title"
         Me.chkLockTitle.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'gbScraperMiscellaneous
         '
-        Me.GroupBox1.Controls.Add(Me.txtOutlineLimit)
-        Me.GroupBox1.Controls.Add(Me.chkPlotForOutline)
-        Me.GroupBox1.Controls.Add(Me.chkUseMPAAFSK)
-        Me.GroupBox1.Controls.Add(Me.chkOnlyValueForCert)
-        Me.GroupBox1.Controls.Add(Me.cbForce)
-        Me.GroupBox1.Controls.Add(Me.chkForceTitle)
-        Me.GroupBox1.Controls.Add(Me.chkOutlineForPlot)
-        Me.GroupBox1.Controls.Add(Me.chkCastWithImg)
-        Me.GroupBox1.Controls.Add(Me.chkUseCertForMPAA)
-        Me.GroupBox1.Controls.Add(Me.chkFullCast)
-        Me.GroupBox1.Controls.Add(Me.chkFullCrew)
-        Me.GroupBox1.Controls.Add(Me.cbCert)
-        Me.GroupBox1.Controls.Add(Me.chkCert)
-        Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(313, 187)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(289, 233)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Miscellaneous"
+        Me.gbScraperMiscellaneous.Controls.Add(Me.txtOutlineLimit)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkPlotForOutline)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkUseMPAAFSK)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkOnlyValueForCert)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.cbForce)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkForceTitle)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkOutlineForPlot)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkCastWithImg)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkUseCertForMPAA)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkFullCast)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkFullCrew)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.cbCert)
+        Me.gbScraperMiscellaneous.Controls.Add(Me.chkCert)
+        Me.gbScraperMiscellaneous.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.gbScraperMiscellaneous.Location = New System.Drawing.Point(336, 188)
+        Me.gbScraperMiscellaneous.Name = "gbScraperMiscellaneous"
+        Me.gbScraperMiscellaneous.Size = New System.Drawing.Size(289, 233)
+        Me.gbScraperMiscellaneous.TabIndex = 0
+        Me.gbScraperMiscellaneous.TabStop = False
+        Me.gbScraperMiscellaneous.Text = "Miscellaneous"
         '
         'txtOutlineLimit
         '
@@ -7252,13 +7283,13 @@ Partial Class dlgSettings
         'pnlScraper
         '
         Me.pnlScraper.BackColor = System.Drawing.Color.White
-        Me.pnlScraper.Controls.Add(Me.GroupBox10)
-        Me.pnlScraper.Controls.Add(Me.gbOptions)
-        Me.pnlScraper.Controls.Add(Me.GroupBox1)
-        Me.pnlScraper.Controls.Add(Me.GroupBox26)
-        Me.pnlScraper.Location = New System.Drawing.Point(830, 720)
+        Me.pnlScraper.Controls.Add(Me.gbScraperGlobalLocks)
+        Me.pnlScraper.Controls.Add(Me.gbScraperFields)
+        Me.pnlScraper.Controls.Add(Me.gbScraperMiscellaneous)
+        Me.pnlScraper.Controls.Add(Me.gbScraperMetaData)
+        Me.pnlScraper.Location = New System.Drawing.Point(900, 900)
         Me.pnlScraper.Name = "pnlScraper"
-        Me.pnlScraper.Size = New System.Drawing.Size(617, 426)
+        Me.pnlScraper.Size = New System.Drawing.Size(635, 435)
         Me.pnlScraper.TabIndex = 14
         Me.pnlScraper.Visible = False
         '
@@ -7270,20 +7301,10 @@ Partial Class dlgSettings
         Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 64)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(892, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(894, 25)
         Me.ToolStrip1.Stretch = True
         Me.ToolStrip1.TabIndex = 4
         Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'pnlMain
-        '
-        Me.pnlMain.AutoScroll = True
-        Me.pnlMain.BackColor = System.Drawing.Color.White
-        Me.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlMain.Location = New System.Drawing.Point(251, 147)
-        Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(636, 402)
-        Me.pnlMain.TabIndex = 9
         '
         'gbHelp
         '
@@ -7321,7 +7342,7 @@ Partial Class dlgSettings
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.gbHelp)
         Me.Panel2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel2.Location = New System.Drawing.Point(5, 555)
+        Me.Panel2.Location = New System.Drawing.Point(5, 592)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
@@ -7332,9 +7353,10 @@ Partial Class dlgSettings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.CancelButton = Me.btnCancel
-        Me.ClientSize = New System.Drawing.Size(892, 628)
-        Me.Controls.Add(Me.pnlShows)
+        Me.ClientSize = New System.Drawing.Size(894, 666)
+        Me.Controls.Add(Me.pnlTVScraper)
         Me.Controls.Add(Me.pnlGeneral)
+        Me.Controls.Add(Me.pnlShows)
         Me.Controls.Add(Me.pnlSources)
         Me.Controls.Add(Me.pnlTVSources)
         Me.Controls.Add(Me.pnlImages)
@@ -7353,7 +7375,6 @@ Partial Class dlgSettings
         Me.Controls.Add(Me.pnlExtensions)
         Me.Controls.Add(Me.pnlXBMCCom)
         Me.Controls.Add(Me.pnlMain)
-        Me.Controls.Add(Me.pnlTVScraper)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -7363,8 +7384,8 @@ Partial Class dlgSettings
         Me.Name = "dlgSettings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "ss"
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
+        Me.gbGeneralMiscellaneous.ResumeLayout(False)
+        Me.gbGeneralMiscellaneous.PerformLayout()
         Me.GroupBox29.ResumeLayout(False)
         Me.GroupBox29.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -7373,13 +7394,13 @@ Partial Class dlgSettings
         Me.tpStandard.PerformLayout()
         Me.tpExpert.ResumeLayout(False)
         Me.tpExpert.PerformLayout()
-        Me.GroupBox12.ResumeLayout(False)
-        Me.GroupBox12.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox25.ResumeLayout(False)
-        Me.GroupBox25.PerformLayout()
-        Me.GroupBox8.ResumeLayout(False)
+        Me.gbMoviesMiscellaneous.ResumeLayout(False)
+        Me.gbMoviesMiscellaneous.PerformLayout()
+        Me.gbMoviesMediaList.ResumeLayout(False)
+        Me.gbMoviesMediaList.PerformLayout()
+        Me.gbMoviesSortToken.ResumeLayout(False)
+        Me.gbMoviesSortToken.PerformLayout()
+        Me.gbSourcesFileNaming.ResumeLayout(False)
         Me.GroupBox21.ResumeLayout(False)
         Me.GroupBox21.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
@@ -7388,33 +7409,33 @@ Partial Class dlgSettings
         Me.GroupBox6.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
-        Me.GroupBox14.ResumeLayout(False)
-        Me.GroupBox14.PerformLayout()
+        Me.gbImagesPoster.ResumeLayout(False)
+        Me.gbImagesPoster.PerformLayout()
         CType(Me.tbPosterQual, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox13.ResumeLayout(False)
-        Me.GroupBox13.PerformLayout()
+        Me.gbImagesFanart.ResumeLayout(False)
+        Me.gbImagesFanart.PerformLayout()
         CType(Me.tbFanartQual, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox17.ResumeLayout(False)
-        Me.GroupBox17.PerformLayout()
+        Me.gbImagesImages.ResumeLayout(False)
+        Me.gbImagesCaching.ResumeLayout(False)
+        Me.gbImagesCaching.PerformLayout()
         Me.pnlTop.ResumeLayout(False)
         Me.pnlTop.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlGeneral.ResumeLayout(False)
-        Me.gbInterface.ResumeLayout(False)
-        Me.gbInterface.PerformLayout()
+        Me.gbGeneralInterface.ResumeLayout(False)
+        Me.gbGeneralInterface.PerformLayout()
         Me.pnlXBMCCom.ResumeLayout(False)
         Me.gbProxy.ResumeLayout(False)
         Me.gbProxy.PerformLayout()
         Me.gbCreds.ResumeLayout(False)
         Me.gbCreds.PerformLayout()
         Me.pnlMovies.ResumeLayout(False)
-        Me.gbGenreFilter.ResumeLayout(False)
-        Me.gbFilters.ResumeLayout(False)
-        Me.gbFilters.PerformLayout()
-        Me.GroupBox27.ResumeLayout(False)
-        Me.GroupBox16.ResumeLayout(False)
-        Me.GroupBox16.PerformLayout()
+        Me.gbMoviesGenreFilter.ResumeLayout(False)
+        Me.gbMoviesFilters.ResumeLayout(False)
+        Me.gbMoviesFilters.PerformLayout()
+        Me.gbMoviesMissingFilter.ResumeLayout(False)
+        Me.gbSourcesBackdrops.ResumeLayout(False)
+        Me.gbSourcesBackdrops.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         CType(Me.pbCurrent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlExtensions.ResumeLayout(False)
@@ -7423,15 +7444,15 @@ Partial Class dlgSettings
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox18.PerformLayout()
         Me.pnlSources.ResumeLayout(False)
-        Me.GroupBox19.ResumeLayout(False)
-        Me.GroupBox19.PerformLayout()
+        Me.gbSourcesMiscellaneous.ResumeLayout(False)
+        Me.gbSourcesMiscellaneous.PerformLayout()
         Me.pnlImages.ResumeLayout(False)
-        Me.GroupBox15.ResumeLayout(False)
-        Me.GroupBox15.PerformLayout()
-        Me.GroupBox23.ResumeLayout(False)
-        Me.GroupBox23.PerformLayout()
-        Me.GroupBox24.ResumeLayout(False)
-        Me.GroupBox24.PerformLayout()
+        Me.gbImagesTrailers.ResumeLayout(False)
+        Me.gbImagesTrailers.PerformLayout()
+        Me.gbImagesExtrathumbs.ResumeLayout(False)
+        Me.gbImagesExtrathumbs.PerformLayout()
+        Me.gbImagesSizing.ResumeLayout(False)
+        Me.gbImagesSizing.PerformLayout()
         Me.pnlTVSources.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
@@ -7458,18 +7479,18 @@ Partial Class dlgSettings
         Me.gbShowRegex.ResumeLayout(False)
         Me.gbShowRegex.PerformLayout()
         Me.pnlShows.ResumeLayout(False)
-        Me.gbTVListOptions.ResumeLayout(False)
-        Me.gbTVListOptions.PerformLayout()
+        Me.gbShowMediaList.ResumeLayout(False)
+        Me.gbShowMediaList.PerformLayout()
         Me.gbEpisodeListOptions.ResumeLayout(False)
         Me.gbEpisodeListOptions.PerformLayout()
         Me.gbSeasonListOptions.ResumeLayout(False)
         Me.gbSeasonListOptions.PerformLayout()
         Me.gbShowListOptions.ResumeLayout(False)
         Me.gbShowListOptions.PerformLayout()
-        Me.gbTVMisc.ResumeLayout(False)
-        Me.gbTVMisc.PerformLayout()
-        Me.gbEpFilter.ResumeLayout(False)
-        Me.gbEpFilter.PerformLayout()
+        Me.gbShowsMiscellaneous.ResumeLayout(False)
+        Me.gbShowsMiscellaneous.PerformLayout()
+        Me.gbShowEpFilter.ResumeLayout(False)
+        Me.gbShowEpFilter.PerformLayout()
         Me.gbShowFilter.ResumeLayout(False)
         Me.gbShowFilter.PerformLayout()
         Me.pnlTVImages.ResumeLayout(False)
@@ -7501,32 +7522,34 @@ Partial Class dlgSettings
         Me.TabPage8.ResumeLayout(False)
         Me.TabPage8.PerformLayout()
         Me.pnlTVScraper.ResumeLayout(False)
-        Me.GroupBox32.ResumeLayout(False)
-        Me.GroupBox35.ResumeLayout(False)
-        Me.GroupBox34.ResumeLayout(False)
-        Me.GroupBox33.ResumeLayout(False)
-        Me.gbEpLocks.ResumeLayout(False)
-        Me.gbShowLocks.ResumeLayout(False)
-        Me.GroupBox31.ResumeLayout(False)
-        Me.GroupBox31.PerformLayout()
-        Me.gbTVMIDefaults.ResumeLayout(False)
-        Me.gbTVMIDefaults.PerformLayout()
+        Me.gbTVScraperGlobalLocks.ResumeLayout(False)
+        Me.gbTVScraperEpLocks.ResumeLayout(False)
+        Me.gbTVScraperShowLocks.ResumeLayout(False)
+        Me.gbTVScraperMetaData.ResumeLayout(False)
+        Me.gbTVScraperMetaData.PerformLayout()
+        Me.gbTVScraperFileType.ResumeLayout(False)
+        Me.gbTVScraperFileType.PerformLayout()
         Me.gbTVScraperOptions.ResumeLayout(False)
         Me.gbTVScraperOptions.PerformLayout()
-        Me.gbLanguage.ResumeLayout(False)
-        Me.gbLanguage.PerformLayout()
-        Me.gbOptions.ResumeLayout(False)
-        Me.gbOptions.PerformLayout()
-        Me.GroupBox26.ResumeLayout(False)
-        Me.GroupBox26.PerformLayout()
-        Me.GroupBox28.ResumeLayout(False)
-        Me.GroupBox28.PerformLayout()
-        Me.gbRTFormat.ResumeLayout(False)
-        Me.gbRTFormat.PerformLayout()
-        Me.GroupBox10.ResumeLayout(False)
-        Me.GroupBox10.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.gbTVScraperLanguage.ResumeLayout(False)
+        Me.gbTVScraperLanguage.PerformLayout()
+        Me.gbTVScraperEpisode.ResumeLayout(False)
+        Me.gbTVScraperEpisode.PerformLayout()
+        Me.gbTVScraperFields.ResumeLayout(False)
+        Me.gbTVScraperShow.ResumeLayout(False)
+        Me.gbTVScraperShow.PerformLayout()
+        Me.gbScraperFields.ResumeLayout(False)
+        Me.gbScraperFields.PerformLayout()
+        Me.gbScraperMetaData.ResumeLayout(False)
+        Me.gbScraperMetaData.PerformLayout()
+        Me.gbScraperFileType.ResumeLayout(False)
+        Me.gbScraperFileType.PerformLayout()
+        Me.gbScraperDurationFormat.ResumeLayout(False)
+        Me.gbScraperDurationFormat.PerformLayout()
+        Me.gbScraperGlobalLocks.ResumeLayout(False)
+        Me.gbScraperGlobalLocks.PerformLayout()
+        Me.gbScraperMiscellaneous.ResumeLayout(False)
+        Me.gbScraperMiscellaneous.PerformLayout()
         Me.pnlScraper.ResumeLayout(False)
         Me.gbHelp.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -7550,7 +7573,7 @@ Partial Class dlgSettings
     Friend WithEvents chkCleanMovieNFOb As System.Windows.Forms.CheckBox
     Friend WithEvents chkCleanMovieNFO As System.Windows.Forms.CheckBox
     Friend WithEvents chkCleanMovieFanartJPG As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbGeneralMiscellaneous As System.Windows.Forms.GroupBox
     Friend WithEvents chkLogErrors As System.Windows.Forms.CheckBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents chkOverwriteNfo As System.Windows.Forms.CheckBox
@@ -7563,7 +7586,7 @@ Partial Class dlgSettings
     Friend WithEvents lblFanartSize As System.Windows.Forms.Label
     Friend WithEvents lblPosterSize As System.Windows.Forms.Label
     Friend WithEvents cbPosterSize As System.Windows.Forms.ComboBox
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbMoviesMediaList As System.Windows.Forms.GroupBox
     Friend WithEvents chkMovieTrailerCol As System.Windows.Forms.CheckBox
     Friend WithEvents chkMovieInfoCol As System.Windows.Forms.CheckBox
     Friend WithEvents chkMovieFanartCol As System.Windows.Forms.CheckBox
@@ -7571,7 +7594,7 @@ Partial Class dlgSettings
     Friend WithEvents btnMovieRem As System.Windows.Forms.Button
     Friend WithEvents btnMovieAddFolder As System.Windows.Forms.Button
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbSourcesFileNaming As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
     Friend WithEvents chkFolderJPG As System.Windows.Forms.CheckBox
@@ -7585,7 +7608,7 @@ Partial Class dlgSettings
     Friend WithEvents chkMovieNFO As System.Windows.Forms.CheckBox
     Friend WithEvents chkMovieNameFanartJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkFanartJPG As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbImagesImages As System.Windows.Forms.GroupBox
     Friend WithEvents chkMovieNameDotFanartJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkSingleScrapeImages As System.Windows.Forms.CheckBox
     Friend WithEvents chkCleanMovieNameJPG As System.Windows.Forms.CheckBox
@@ -7593,15 +7616,15 @@ Partial Class dlgSettings
     Friend WithEvents chkCleanPosterJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkCleanPosterTBN As System.Windows.Forms.CheckBox
     Friend WithEvents chkCleanDotFanartJPG As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox12 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbMoviesMiscellaneous As System.Windows.Forms.GroupBox
     Friend WithEvents chkMarkNew As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox13 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbImagesFanart As System.Windows.Forms.GroupBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents chkResizeFanart As System.Windows.Forms.CheckBox
     Friend WithEvents txtFanartWidth As System.Windows.Forms.TextBox
     Friend WithEvents txtFanartHeight As System.Windows.Forms.TextBox
-    Friend WithEvents GroupBox14 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbImagesPoster As System.Windows.Forms.GroupBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents chkResizePoster As System.Windows.Forms.CheckBox
@@ -7627,7 +7650,7 @@ Partial Class dlgSettings
     Friend WithEvents txtMovieExt As System.Windows.Forms.TextBox
     Friend WithEvents lstMovieExts As System.Windows.Forms.ListBox
     Friend WithEvents chkUpdates As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox16 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbSourcesBackdrops As System.Windows.Forms.GroupBox
     Friend WithEvents txtBDPath As System.Windows.Forms.TextBox
     Friend WithEvents btnBrowse As System.Windows.Forms.Button
     Friend WithEvents chkAutoBD As System.Windows.Forms.CheckBox
@@ -7637,11 +7660,11 @@ Partial Class dlgSettings
     Friend WithEvents lbGenre As System.Windows.Forms.CheckedListBox
     Friend WithEvents chkUseETasFA As System.Windows.Forms.CheckBox
     Friend WithEvents pnlImages As System.Windows.Forms.Panel
-    Friend WithEvents GroupBox17 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbImagesCaching As System.Windows.Forms.GroupBox
     Friend WithEvents chkPersistImgCache As System.Windows.Forms.CheckBox
     Friend WithEvents chkUseImgCache As System.Windows.Forms.CheckBox
     Friend WithEvents chkUseImgCacheUpdaters As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox19 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbSourcesMiscellaneous As System.Windows.Forms.GroupBox
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents txtSkipLessThan As System.Windows.Forms.TextBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
@@ -7684,8 +7707,8 @@ Partial Class dlgSettings
     Friend WithEvents btnEditSource As System.Windows.Forms.Button
     Friend WithEvents chkShowGenresText As System.Windows.Forms.CheckBox
     Friend WithEvents chkDisplayYear As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox23 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox24 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbImagesExtrathumbs As System.Windows.Forms.GroupBox
+    Friend WithEvents gbImagesSizing As System.Windows.Forms.GroupBox
     Friend WithEvents chkETPadding As System.Windows.Forms.CheckBox
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents Label29 As System.Windows.Forms.Label
@@ -7694,7 +7717,7 @@ Partial Class dlgSettings
     Friend WithEvents rbETCustom As System.Windows.Forms.RadioButton
     Friend WithEvents rbETNative As System.Windows.Forms.RadioButton
     Friend WithEvents chkMovieNameMultiOnly As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox25 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbMoviesSortToken As System.Windows.Forms.GroupBox
     Friend WithEvents btnRemoveToken As System.Windows.Forms.Button
     Friend WithEvents btnAddToken As System.Windows.Forms.Button
     Friend WithEvents txtSortToken As System.Windows.Forms.TextBox
@@ -7705,7 +7728,7 @@ Partial Class dlgSettings
     Friend WithEvents chkAutoDetectVTS As System.Windows.Forms.CheckBox
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents cbIntLang As System.Windows.Forms.ComboBox
-    Friend WithEvents GroupBox27 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbMoviesMissingFilter As System.Windows.Forms.GroupBox
     Friend WithEvents chkMissingExtra As System.Windows.Forms.CheckBox
     Friend WithEvents chkMissingSubs As System.Windows.Forms.CheckBox
     Friend WithEvents chkMissingTrailer As System.Windows.Forms.CheckBox
@@ -7729,7 +7752,7 @@ Partial Class dlgSettings
     Friend WithEvents chkCleanDB As System.Windows.Forms.CheckBox
     Friend WithEvents chkIgnoreLastScan As System.Windows.Forms.CheckBox
     Friend WithEvents pnlShows As System.Windows.Forms.Panel
-    Friend WithEvents gbEpFilter As System.Windows.Forms.GroupBox
+    Friend WithEvents gbShowEpFilter As System.Windows.Forms.GroupBox
     Friend WithEvents btnEpFilterDown As System.Windows.Forms.Button
     Friend WithEvents btnEpFilterUp As System.Windows.Forms.Button
     Friend WithEvents chkEpProperCase As System.Windows.Forms.CheckBox
@@ -7745,7 +7768,7 @@ Partial Class dlgSettings
     Friend WithEvents btnAddShowFilter As System.Windows.Forms.Button
     Friend WithEvents txtShowFilter As System.Windows.Forms.TextBox
     Friend WithEvents lstShowFilters As System.Windows.Forms.ListBox
-    Friend WithEvents gbFilters As System.Windows.Forms.GroupBox
+    Friend WithEvents gbMoviesFilters As System.Windows.Forms.GroupBox
     Friend WithEvents btnDown As System.Windows.Forms.Button
     Friend WithEvents btnUp As System.Windows.Forms.Button
     Friend WithEvents chkProperCase As System.Windows.Forms.CheckBox
@@ -7753,11 +7776,11 @@ Partial Class dlgSettings
     Friend WithEvents btnAddFilter As System.Windows.Forms.Button
     Friend WithEvents txtFilter As System.Windows.Forms.TextBox
     Friend WithEvents lstFilters As System.Windows.Forms.ListBox
-    Friend WithEvents gbGenreFilter As System.Windows.Forms.GroupBox
+    Friend WithEvents gbMoviesGenreFilter As System.Windows.Forms.GroupBox
     Friend WithEvents gbMiscTVSourceOpts As System.Windows.Forms.GroupBox
     Friend WithEvents chkTVIgnoreLastScan As System.Windows.Forms.CheckBox
     Friend WithEvents chkTVCleanDB As System.Windows.Forms.CheckBox
-    Friend WithEvents gbInterface As System.Windows.Forms.GroupBox
+    Friend WithEvents gbGeneralInterface As System.Windows.Forms.GroupBox
     Friend WithEvents cbEpTheme As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents cbTVShowTheme As System.Windows.Forms.ComboBox
@@ -7813,7 +7836,7 @@ Partial Class dlgSettings
     Friend WithEvents TabPage7 As System.Windows.Forms.TabPage
     Friend WithEvents pnlTVScraper As System.Windows.Forms.Panel
     Friend WithEvents cbRatingRegion As System.Windows.Forms.ComboBox
-    Friend WithEvents gbTVMisc As System.Windows.Forms.GroupBox
+    Friend WithEvents gbShowsMiscellaneous As System.Windows.Forms.GroupBox
     Friend WithEvents lblRatingRegion As System.Windows.Forms.Label
     Friend WithEvents gbTVNaming As System.Windows.Forms.GroupBox
     Friend WithEvents gbShowFanart As System.Windows.Forms.GroupBox
@@ -7842,7 +7865,7 @@ Partial Class dlgSettings
     Friend WithEvents chkSeasonFanartJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkSeasonNameJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkSeasonNameTBN As System.Windows.Forms.CheckBox
-    Friend WithEvents gbTVListOptions As System.Windows.Forms.GroupBox
+    Friend WithEvents gbShowMediaList As System.Windows.Forms.GroupBox
     Friend WithEvents gbEpisodeListOptions As System.Windows.Forms.GroupBox
     Friend WithEvents chkEpisodeNfoCol As System.Windows.Forms.CheckBox
     Friend WithEvents chkEpisodeFanartCol As System.Windows.Forms.CheckBox
@@ -7894,14 +7917,14 @@ Partial Class dlgSettings
     Friend WithEvents chkSourceFromFolder As System.Windows.Forms.CheckBox
     Friend WithEvents chkSortBeforeScan As System.Windows.Forms.CheckBox
     Friend WithEvents gbTVScraperOptions As System.Windows.Forms.GroupBox
-    Friend WithEvents gbLanguage As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperLanguage As System.Windows.Forms.GroupBox
     Friend WithEvents lblTVLanguagePreferred As System.Windows.Forms.Label
     Friend WithEvents btnTVLanguageFetch As System.Windows.Forms.Button
     Friend WithEvents cbTVLanguage As System.Windows.Forms.ComboBox
     Friend WithEvents txtTVDBMirror As System.Windows.Forms.TextBox
     Friend WithEvents lblTVDBMirror As System.Windows.Forms.Label
-    Friend WithEvents GroupBox26 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox28 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbScraperMetaData As System.Windows.Forms.GroupBox
+    Friend WithEvents gbScraperFileType As System.Windows.Forms.GroupBox
     Friend WithEvents lstMetaData As System.Windows.Forms.ListBox
     Friend WithEvents txtDefFIExt As System.Windows.Forms.TextBox
     Friend WithEvents Label34 As System.Windows.Forms.Label
@@ -7911,10 +7934,10 @@ Partial Class dlgSettings
     Friend WithEvents chkIFOScan As System.Windows.Forms.CheckBox
     Friend WithEvents cbLanguages As System.Windows.Forms.ComboBox
     Friend WithEvents Label31 As System.Windows.Forms.Label
-    Friend WithEvents gbRTFormat As System.Windows.Forms.GroupBox
+    Friend WithEvents gbScraperDurationFormat As System.Windows.Forms.GroupBox
     Friend WithEvents chkScanMediaInfo As System.Windows.Forms.CheckBox
     Friend WithEvents chkUseMIDuration As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox10 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbScraperGlobalLocks As System.Windows.Forms.GroupBox
     Friend WithEvents chkLockOutline As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockPlot As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockTrailer As System.Windows.Forms.CheckBox
@@ -7923,7 +7946,7 @@ Partial Class dlgSettings
     Friend WithEvents chkLockRating As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockTagline As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockTitle As System.Windows.Forms.CheckBox
-    Friend WithEvents gbOptions As System.Windows.Forms.GroupBox
+    Friend WithEvents gbScraperFields As System.Windows.Forms.GroupBox
     Friend WithEvents chkTop250 As System.Windows.Forms.CheckBox
     Friend WithEvents chkCountry As System.Windows.Forms.CheckBox
     Friend WithEvents txtGenreLimit As System.Windows.Forms.TextBox
@@ -7949,7 +7972,7 @@ Partial Class dlgSettings
     Friend WithEvents chkMPAA As System.Windows.Forms.CheckBox
     Friend WithEvents chkYear As System.Windows.Forms.CheckBox
     Friend WithEvents chkTitle As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbScraperMiscellaneous As System.Windows.Forms.GroupBox
     Friend WithEvents cbForce As System.Windows.Forms.ComboBox
     Friend WithEvents chkForceTitle As System.Windows.Forms.CheckBox
     Friend WithEvents chkOutlineForPlot As System.Windows.Forms.CheckBox
@@ -7998,8 +8021,8 @@ Partial Class dlgSettings
     Friend WithEvents gbAllSeasonPoster As System.Windows.Forms.GroupBox
     Friend WithEvents chkSeasonAllJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkDisplayMissingEpisodes As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox31 As System.Windows.Forms.GroupBox
-    Friend WithEvents gbTVMIDefaults As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperMetaData As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperFileType As System.Windows.Forms.GroupBox
     Friend WithEvents lstTVMetaData As System.Windows.Forms.ListBox
     Friend WithEvents txtTVDefFIExt As System.Windows.Forms.TextBox
     Friend WithEvents Label49 As System.Windows.Forms.Label
@@ -8009,25 +8032,25 @@ Partial Class dlgSettings
     Friend WithEvents cboTVMetaDataOverlay As System.Windows.Forms.ComboBox
     Friend WithEvents Label50 As System.Windows.Forms.Label
     Friend WithEvents chkTVScanMetaData As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox32 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox33 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperFields As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperGlobalLocks As System.Windows.Forms.GroupBox
     Friend WithEvents chkEpLockPlot As System.Windows.Forms.CheckBox
     Friend WithEvents chkShowLockStudio As System.Windows.Forms.CheckBox
     Friend WithEvents chkEpLockRating As System.Windows.Forms.CheckBox
     Friend WithEvents chkEpLockTitle As System.Windows.Forms.CheckBox
-    Friend WithEvents gbEpLocks As System.Windows.Forms.GroupBox
-    Friend WithEvents gbShowLocks As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperEpLocks As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperShowLocks As System.Windows.Forms.GroupBox
     Friend WithEvents chkShowLockPlot As System.Windows.Forms.CheckBox
     Friend WithEvents chkShowLockGenre As System.Windows.Forms.CheckBox
     Friend WithEvents chkShowLockRating As System.Windows.Forms.CheckBox
     Friend WithEvents chkShowLockTitle As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox35 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperShow As System.Windows.Forms.GroupBox
     Friend WithEvents chkScraperShowEGU As System.Windows.Forms.CheckBox
     Friend WithEvents chkScraperShowMPAA As System.Windows.Forms.CheckBox
     Friend WithEvents chkScraperShowPlot As System.Windows.Forms.CheckBox
     Friend WithEvents chkScraperShowGenre As System.Windows.Forms.CheckBox
     Friend WithEvents chkScraperShowTitle As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox34 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbTVScraperEpisode As System.Windows.Forms.GroupBox
     Friend WithEvents chkScraperEpTitle As System.Windows.Forms.CheckBox
     Friend WithEvents chkScraperEpEpisode As System.Windows.Forms.CheckBox
     Friend WithEvents chkScraperEpSeason As System.Windows.Forms.CheckBox
@@ -8047,7 +8070,7 @@ Partial Class dlgSettings
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents pnlMain As System.Windows.Forms.Panel
     Friend WithEvents pbCurrent As System.Windows.Forms.PictureBox
-    Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
+    Friend WithEvents gbImagesTrailers As System.Windows.Forms.GroupBox
     Friend WithEvents chkDeleteAllTrailers As System.Windows.Forms.CheckBox
     Friend WithEvents chkOverwriteTrailer As System.Windows.Forms.CheckBox
     Friend WithEvents chkNoDLTrailer As System.Windows.Forms.CheckBox
