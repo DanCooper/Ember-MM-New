@@ -226,6 +226,7 @@ Public Class EmberNativeScraperModule
         _setup.chkMusicBy.Checked = ConfigOptions.bMusicBy
         _setup.chkCrew.Checked = ConfigOptions.bOtherCrew
         _setup.chkCountry.Checked = ConfigOptions.bCountry
+        _setup.chkCountryFull.Checked = MySettings.CountryFull
         _setup.chkTop250.Checked = ConfigOptions.bTop250
         _setup.chkCertification.Checked = ConfigOptions.bCert
         _setup.chkOFDBTitle.Checked = MySettings.UseOFDBTitle
@@ -286,6 +287,7 @@ Public Class EmberNativeScraperModule
         MySettings.UseOFDBPlot = AdvancedSettings.GetBooleanSetting("UseOFDBPlot", False)
         MySettings.UseOFDBGenre = AdvancedSettings.GetBooleanSetting("UseOFDBGenre", False)
         MySettings.DownloadTrailers = AdvancedSettings.GetBooleanSetting("DownloadTraliers", False)
+        MySettings.CountryFull = AdvancedSettings.GetBooleanSetting("DoCountryFull", False)
 
         MySettings.TrailerTimeout = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerTimeout", "10"))
         MySettings.UseIMPA = AdvancedSettings.GetBooleanSetting("UseIMPA", False)
@@ -461,6 +463,7 @@ Public Class EmberNativeScraperModule
         AdvancedSettings.SetBooleanSetting("UseOFDBPlot", MySettings.UseOFDBPlot)
         AdvancedSettings.SetBooleanSetting("UseOFDBGenre", MySettings.UseOFDBGenre)
         AdvancedSettings.SetBooleanSetting("DownloadTraliers", MySettings.DownloadTrailers)
+        AdvancedSettings.SetBooleanSetting("DoCountryFull", MySettings.CountryFull)
 
         AdvancedSettings.SetSetting("TrailerTimeout", MySettings.TrailerTimeout.ToString)
         AdvancedSettings.SetBooleanSetting("UseIMPA", MySettings.UseIMPA)
@@ -512,6 +515,7 @@ Public Class EmberNativeScraperModule
         MySettings.UseOFDBOutline = _setup.chkOFDBOutline.Checked
         MySettings.UseOFDBPlot = _setup.chkOFDBPlot.Checked
         MySettings.UseOFDBGenre = _setup.chkOFDBGenre.Checked
+        MySettings.CountryFull = _setup.chkCountryFull.Checked
         ConfigOptions.bTitle = _setup.chkTitle.Checked
         ConfigOptions.bYear = _setup.chkYear.Checked
         ConfigOptions.bMPAA = _setup.chkMPAA.Checked
@@ -693,6 +697,7 @@ Public Class EmberNativeScraperModule
         Dim ManualETSize As String
         Dim ActorThumbsSize As String
         Dim UseTMDBTrailerPref As String
+        Dim CountryFull As Boolean
 #End Region 'Fields
 
     End Structure

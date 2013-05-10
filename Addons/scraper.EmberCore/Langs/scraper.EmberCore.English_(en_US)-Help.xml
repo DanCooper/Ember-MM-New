@@ -30,6 +30,7 @@
   <string control="NativeMovieInfo_chkMPAA">Enable scraping movie MPAA.</string>
   <string control="NativeMovieInfo_chkYear">Enable scraping movie year.</string>
   <string control="NativeMovieInfo_chkTitle">Enable scraping movie title.</string>
+  <string control="NativeMovieInfo_chkCountryFull">Replace "USA" and "UK" with "United States of America" and "United Kingdom".</string>
   <string control="NativeMovieMedia_cbEnabled">Enable or disable this module.</string>
   <string control="NativeMovieMedia_btnUp">Move this scraper module up in order. (Scraper modules will be processed in order from top to bottom)</string>
   <string control="NativeMovieMedia_btnDown">Move this scraper module down in order. (Scraper modules will be processed in order from top to bottom)</string>

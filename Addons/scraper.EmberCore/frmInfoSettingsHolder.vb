@@ -161,6 +161,16 @@ Public Class frmInfoSettingsHolder
 
     Private Sub chkCountry_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkCountry.CheckedChanged
         RaiseEvent ModuleSettingsChanged()
+
+        Me.chkCountryFull.Enabled = Me.chkCountry.Checked
+
+        If Not Me.chkCountry.Checked Then
+            Me.chkCountryFull.Checked = False
+        End If
+    End Sub
+
+    Private Sub chkCountryFull_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkCountryFull.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
     End Sub
 
     Private Sub chkTrailer_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrailer.CheckedChanged
@@ -219,12 +229,13 @@ Public Class frmInfoSettingsHolder
         Me.chkCertification.Text = Master.eLang.GetString(722, "Certification", True)
         Me.Label2.Text = Master.eLang.GetString(168, "Scrape Order", True)
         Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
-		Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
-		Me.chkCountry.Text = Master.eLang.GetString(301, "Country", True)
-		Me.chkFullCast.Text = Master.eLang.GetString(512, "Scrape Full Cast", True)
-		Me.chkFullCrew.Text = Master.eLang.GetString(513, "Scrape Full Crew", True)
-		Me.chkTop250.Text = Master.eLang.GetString(868, "Top250", True)
-		Me.GroupBox30.Text = Master.eLang.GetString(106, "IMDB")
+        Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
+        Me.chkCountry.Text = Master.eLang.GetString(301, "Country", True)
+        Me.chkCountryFull.Text = Master.eLang.GetString(116, "Use Full Names")
+        Me.chkFullCast.Text = Master.eLang.GetString(512, "Scrape Full Cast", True)
+        Me.chkFullCrew.Text = Master.eLang.GetString(513, "Scrape Full Crew", True)
+        Me.chkTop250.Text = Master.eLang.GetString(868, "Top250", True)
+        Me.GroupBox30.Text = Master.eLang.GetString(106, "IMDB")
         Me.GroupBox15.Text = Master.eLang.GetString(107, "OFDB (German)")
         Me.lblOFDBWarning.Text = String.Format(Master.eLang.GetString(115, "OFDB allows only 100 queries in a certain time-frame.{0}After you exceed the usage limits, your IP is blocked for a while and Ember uses IMDB data instead (English only)."), vbCrLf)
     End Sub

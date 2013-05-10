@@ -115,4 +115,5 @@
   <string id="113">Save Fanart In:</string>
   <string id="114">Open In Browser</string>
   <string id="115">OFDB allows only 100 queries in a certain time-frame.{0}After you exceed the usage limits, your IP is blocked for a while and Ember uses IMDB data instead (English only).</string>
+  <string id="116">Use Full Names</string>
 </strings>

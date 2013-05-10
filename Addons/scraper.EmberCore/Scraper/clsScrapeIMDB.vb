@@ -459,236 +459,235 @@ Namespace IMDB
 
                         If Cou.Count > 0 Then
 
-                            'fix for display country flag in XBMC! 
-                            If Strings.Join(Cou.ToArray, " / ").Trim.ToUpper.Contains("USA") Then
-                                IMDBMovie.Country = "United States of America"
-                            ElseIf Strings.Join(Cou.ToArray, " / ").Trim.ToUpper.Contains("UK") Then
-                                IMDBMovie.Country = "United Kingdom"
+                            If AdvancedSettings.GetBooleanSetting("DoCountryFull", False) Then
+                                IMDBMovie.Country = Strings.Join(Cou.ToArray, " / ").Trim()
+                                IMDBMovie.Country = Replace(IMDBMovie.Country, "USA", "United States of America")
+                                IMDBMovie.Country = Replace(IMDBMovie.Country, "UK", "United Kingdom")
                             Else
                                 IMDBMovie.Country = Strings.Join(Cou.ToArray, " / ").Trim()
                             End If
 
                         End If
-                    End If
-
-
-                End If
-
-                If bwIMDB.CancellationPending Then Return Nothing
-
-                'Get genres of the movie
-                If Options.bGenre AndAlso (String.IsNullOrEmpty(IMDBMovie.Genre) OrElse Not Master.eSettings.LockGenre) Then
-                    If Not String.IsNullOrEmpty(ofdbGenre) Then
-                        IMDBMovie.Genre = ofdbGenre
-                    Else
-                        D = 0 : W = 0
-                        D = HTML.IndexOf("<h5>Genre:</h5>")
-                        'Check if doesnt find genres
-                        If D > 0 Then
-                            W = HTML.IndexOf("</div>", D)
-
-                            If W > 0 Then
-                                Dim rGenres As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN)
-
-                                Dim Gen = From M In rGenres _
-                                          Select N = Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString) Where Not N.Contains("more") Take If(Master.eSettings.GenreLimit > 0, Master.eSettings.GenreLimit, 999999)
-                                If Gen.Count > 0 Then
-                                    Dim tGenre As String = Strings.Join(Gen.ToArray, "/").Trim
-                                    tGenre = StringUtils.GenreFilter(tGenre)
-                                    If Not String.IsNullOrEmpty(tGenre) Then
-                                        IMDBMovie.Genre = Strings.Join(tGenre.Split(Convert.ToChar("/")), " / ").Trim
-                                    End If
-                                End If
-                            End If
-                        End If
-                    End If
-                End If
-
-                If bwIMDB.CancellationPending Then Return Nothing
-
-                If Options.bOutline AndAlso (String.IsNullOrEmpty(IMDBMovie.Outline) OrElse Not Master.eSettings.LockOutline) Then
-
-                    If Not String.IsNullOrEmpty(ofdbOutline) Then
-                        IMDBMovie.Outline = ofdbOutline
-                    Else
-                        'Get the Plot Outline
-                        D = 0 : W = 0
-
-                        Try
-                            If IMDBMovie.Title.Contains("(VG)") Then
-                                D = If(HTML.IndexOf("<h5>Plot Summary:</h5>") > 0, HTML.IndexOf("<h5>Plot Summary:</h5>"), HTML.IndexOf("<h5>Tagline:</h5>"))
-                                If D > 0 Then W = HTML.IndexOf("</div>", D)
-                            Else
-                                tempD = If(HTML.IndexOf("<h5>Plot:</h5>") > 0, HTML.IndexOf("<h5>Plot:</h5>"), HTML.IndexOf("<h5>Plot Summary:</h5>"))
-                                D = If(tempD > 0, HTML.IndexOf("<div class=""info-content"">", tempD), 0)
-                                If D <= 0 Then D = HTML.IndexOf("<h5>Plot Synopsis:</h5>")
-                                If D > 0 Then
-                                    W = HTML.IndexOf("<a class=", D)
-                                    If W > 0 Then
-                                        W = HTML.IndexOf("</div>", D)
-                                    Else
-                                        IMDBMovie.Outline = String.Empty
-                                        GoTo mplot
-                                    End If
-                                Else
-                                    IMDBMovie.Outline = String.Empty
-                                    GoTo mPlot 'This plot synopsis is empty
-                                End If
-                            End If
-                            Dim PlotOutline As String = HTML.Substring(D, W - D).Remove(0, 26)
-
-                            PlotOutline = Web.HttpUtility.HtmlDecode(If(PlotOutline.Contains("is empty") OrElse PlotOutline.Contains("View full synopsis") _
-                                               , String.Empty, PlotOutline.Replace("|", String.Empty).Replace("&raquo;", String.Empty)).Trim)
-                            'check if outline has links to other IMDB entry
-                            If Not String.IsNullOrEmpty(PlotOutline) Then
-                                For Each rMatch As Match In Regex.Matches(PlotOutline, HREF_PATTERN_4)
-                                    PlotOutline = PlotOutline.Replace(rMatch.Value, rMatch.Groups("text").Value.Trim)
-                                Next
-                                IMDBMovie.Outline = Regex.Replace(PlotOutline, HREF_PATTERN, String.Empty).Trim
-                            Else
-                                IMDBMovie.Outline = String.Empty
-                            End If
-
-                        Catch ex As Exception
-                            IMDBMovie.Outline = String.Empty
-                        End Try
-                    End If
-                End If
-
-                If bwIMDB.CancellationPending Then Return Nothing
-
-mPlot:
-                'Get the full Plot
-                If Options.bPlot AndAlso (String.IsNullOrEmpty(IMDBMovie.Plot) OrElse Not Master.eSettings.LockPlot) Then
-                    If Not String.IsNullOrEmpty(ofdbPlot) Then
-                        IMDBMovie.Plot = ofdbPlot
-                    Else
-                        Dim FullPlotP As String = Regex.Match(PlotHtml, "<p class=.plotpar.>(.*?)</p>", RegexOptions.Singleline Or RegexOptions.IgnoreCase Or RegexOptions.Multiline).Groups(1).Value.ToString.Trim
-                        Dim FullPlotI As String = Regex.Match(PlotHtml, "<p class=.plotpar.>(.*?)<i>", RegexOptions.Singleline Or RegexOptions.IgnoreCase Or RegexOptions.Multiline).Groups(1).Value.ToString.Trim
-                        Dim FullPlot As String = If(FullPlotI.Length < FullPlotP.Length, FullPlotI, FullPlotP)
-                        If Not String.IsNullOrEmpty(FullPlot) Then
-                            For Each rMatch As Match In Regex.Matches(FullPlot, HREF_PATTERN_4)
-                                FullPlot = FullPlot.Replace(rMatch.Value, rMatch.Groups("text").Value.Trim)
-                            Next
-                            IMDBMovie.Plot = Web.HttpUtility.HtmlDecode(FullPlot.Replace("|", String.Empty)).Trim
                         End If
 
-                    End If
 
-                    If Master.eSettings.OutlineForPlot AndAlso String.IsNullOrEmpty(IMDBMovie.Plot) AndAlso Not String.IsNullOrEmpty(IMDBMovie.Outline) Then
-                        IMDBMovie.Plot = IMDBMovie.Outline
-                    End If
-                End If
-
-                If bwIMDB.CancellationPending Then Return Nothing
-
-                'Get the movie duration
-                If Options.bRuntime Then IMDBMovie.Runtime = Web.HttpUtility.HtmlDecode(Regex.Match(HTML, "<h5>Runtime:</h5>[^0-9]*([^<]*)").Groups(1).Value.Trim)
-
-                'Get Production Studio
-                If Options.bStudio AndAlso (String.IsNullOrEmpty(IMDBMovie.Studio) OrElse Not Master.eSettings.LockStudio) Then
-                    D = 0 : W = 0
-                    If FullCrew Then
-                        D = HTML.IndexOf("<b class=""blackcatheader"">Production Companies</b>")
-                        If D > 0 Then W = HTML.IndexOf("</ul>", D)
-                        If D > 0 AndAlso W > 0 Then
-                            'only get the first one
-                            Dim Ps = From P1 In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
-                                     Where Not DirectCast(P1, Match).Groups("name").ToString = String.Empty _
-                                     Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString) Take 1
-                            IMDBMovie.Studio = Ps(0).ToString.Trim
-                        End If
-                    Else
-                        D = HTML.IndexOf("<h5>Company:</h5>")
-                        If D > 0 Then W = HTML.IndexOf("</div>", D)
-                        If D > 0 AndAlso W > 0 Then
-                            IMDBMovie.Studio = Web.HttpUtility.HtmlDecode(Regex.Match(HTML.Substring(D, W - D), HREF_PATTERN).Groups("name").ToString.Trim)
-                        End If
-                    End If
-                End If
-
-                If bwIMDB.CancellationPending Then Return Nothing
-
-                'Get Writers
-                If Options.bWriters Then
-                    D = 0 : W = 0
-                    D = HTML.IndexOf("<h5>Writer")
-                    If D > 0 Then W = HTML.IndexOf("</div>", D)
-                    If D > 0 AndAlso W > 0 Then
-                        Dim q = From M In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
-                                Where Not DirectCast(M, Match).Groups("name").ToString.Trim = "more" _
-                                AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim = "(more)" _
-                                AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim = "WGA" _
-                                AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim.Contains("see more") _
-                                Select Writer = Web.HttpUtility.HtmlDecode(String.Concat(DirectCast(M, Match).Groups("name").ToString, If(FullCrew, " (writer)", String.Empty)))
-
-                        If q.Count > 0 Then
-                            IMDBMovie.OldCredits = Strings.Join(q.ToArray, " / ").Trim
-                        End If
-                    End If
-                End If
-
-                If bwIMDB.CancellationPending Then Return Nothing
-
-                'Get All Other Info
-                If FullCrew Then
-
-                    D = 0 : W = 0
-                    D = HTML.IndexOf("Directed by</a></h5>")
-                    If D > 0 Then W = HTML.IndexOf("</body>", D)
-                    If D > 0 AndAlso W > 0 Then
-                        Dim qTables As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), TABLE_PATTERN)
-
-                        For Each M As Match In qTables
-
-                            If bwIMDB.CancellationPending Then Return Nothing
-
-                            'Producers
-                            If Options.bProducers AndAlso M.ToString.Contains("Produced by</a></h5>") Then
-                                Dim Pr = From Po In Regex.Matches(M.ToString, "<td\svalign=""top"">(.*?)</td>") _
-                                Where Not Po.ToString.Contains(String.Concat("http://", IMDBURL, "/Glossary/")) _
-                                Let P1 = Regex.Match(Po.ToString, HREF_PATTERN_2) _
-                                Where Not String.IsNullOrEmpty(P1.Groups("name").ToString) _
-                                Select Producer = Web.HttpUtility.HtmlDecode(String.Concat(P1.Groups("name").ToString, " (producer)"))
-
-                                If Pr.Count > 0 Then
-                                    IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Pr.ToArray, " / ").Trim)
-                                End If
-                            End If
-
-                            'Music by
-                            If Options.bMusicBy AndAlso M.ToString.Contains("Original Music by</a></h5>") Then
-                                Dim Mu = From Mo In Regex.Matches(M.ToString, "<td\svalign=""top"">(.*?)</td>") _
-                                Let M1 = Regex.Match(Mo.ToString, HREF_PATTERN) _
-                                Where Not String.IsNullOrEmpty(M1.Groups("name").ToString) _
-                                Select Musician = Web.HttpUtility.HtmlDecode(String.Concat(M1.Groups("name").ToString, " (music by)"))
-
-                                If Mu.Count > 0 Then
-                                    IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Mu.ToArray, " / ").Trim)
-                                End If
-                            End If
-
-                        Next
                     End If
 
                     If bwIMDB.CancellationPending Then Return Nothing
 
-                    'Special Effects
-                    If Options.bOtherCrew Then
-                        D = HTML.IndexOf("<b class=""blackcatheader"">Special Effects</b>")
-                        If D > 0 Then W = HTML.IndexOf("</ul>", D)
-                        If D > 0 AndAlso W > 0 Then
-                            Dim Ps = From P1 In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
-                                     Where Not String.IsNullOrEmpty(DirectCast(P1, Match).Groups("name").ToString) _
-                                     Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString)
-                            If Ps.Count > 0 Then
-                                IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Ps.ToArray, " / ").Trim)
+                    'Get genres of the movie
+                    If Options.bGenre AndAlso (String.IsNullOrEmpty(IMDBMovie.Genre) OrElse Not Master.eSettings.LockGenre) Then
+                        If Not String.IsNullOrEmpty(ofdbGenre) Then
+                            IMDBMovie.Genre = ofdbGenre
+                        Else
+                            D = 0 : W = 0
+                            D = HTML.IndexOf("<h5>Genre:</h5>")
+                            'Check if doesnt find genres
+                            If D > 0 Then
+                                W = HTML.IndexOf("</div>", D)
+
+                                If W > 0 Then
+                                    Dim rGenres As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN)
+
+                                    Dim Gen = From M In rGenres _
+                                              Select N = Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString) Where Not N.Contains("more") Take If(Master.eSettings.GenreLimit > 0, Master.eSettings.GenreLimit, 999999)
+                                    If Gen.Count > 0 Then
+                                        Dim tGenre As String = Strings.Join(Gen.ToArray, "/").Trim
+                                        tGenre = StringUtils.GenreFilter(tGenre)
+                                        If Not String.IsNullOrEmpty(tGenre) Then
+                                            IMDBMovie.Genre = Strings.Join(tGenre.Split(Convert.ToChar("/")), " / ").Trim
+                                        End If
+                                    End If
+                                End If
                             End If
                         End If
                     End If
-                End If
 
-                Return True
+                    If bwIMDB.CancellationPending Then Return Nothing
+
+                    If Options.bOutline AndAlso (String.IsNullOrEmpty(IMDBMovie.Outline) OrElse Not Master.eSettings.LockOutline) Then
+
+                        If Not String.IsNullOrEmpty(ofdbOutline) Then
+                            IMDBMovie.Outline = ofdbOutline
+                        Else
+                            'Get the Plot Outline
+                            D = 0 : W = 0
+
+                            Try
+                                If IMDBMovie.Title.Contains("(VG)") Then
+                                    D = If(HTML.IndexOf("<h5>Plot Summary:</h5>") > 0, HTML.IndexOf("<h5>Plot Summary:</h5>"), HTML.IndexOf("<h5>Tagline:</h5>"))
+                                    If D > 0 Then W = HTML.IndexOf("</div>", D)
+                                Else
+                                    tempD = If(HTML.IndexOf("<h5>Plot:</h5>") > 0, HTML.IndexOf("<h5>Plot:</h5>"), HTML.IndexOf("<h5>Plot Summary:</h5>"))
+                                    D = If(tempD > 0, HTML.IndexOf("<div class=""info-content"">", tempD), 0)
+                                    If D <= 0 Then D = HTML.IndexOf("<h5>Plot Synopsis:</h5>")
+                                    If D > 0 Then
+                                        W = HTML.IndexOf("<a class=", D)
+                                        If W > 0 Then
+                                            W = HTML.IndexOf("</div>", D)
+                                        Else
+                                            IMDBMovie.Outline = String.Empty
+                                            GoTo mplot
+                                        End If
+                                    Else
+                                        IMDBMovie.Outline = String.Empty
+                                        GoTo mPlot 'This plot synopsis is empty
+                                    End If
+                                End If
+                                Dim PlotOutline As String = HTML.Substring(D, W - D).Remove(0, 26)
+
+                                PlotOutline = Web.HttpUtility.HtmlDecode(If(PlotOutline.Contains("is empty") OrElse PlotOutline.Contains("View full synopsis") _
+                                                   , String.Empty, PlotOutline.Replace("|", String.Empty).Replace("&raquo;", String.Empty)).Trim)
+                                'check if outline has links to other IMDB entry
+                                If Not String.IsNullOrEmpty(PlotOutline) Then
+                                    For Each rMatch As Match In Regex.Matches(PlotOutline, HREF_PATTERN_4)
+                                        PlotOutline = PlotOutline.Replace(rMatch.Value, rMatch.Groups("text").Value.Trim)
+                                    Next
+                                    IMDBMovie.Outline = Regex.Replace(PlotOutline, HREF_PATTERN, String.Empty).Trim
+                                Else
+                                    IMDBMovie.Outline = String.Empty
+                                End If
+
+                            Catch ex As Exception
+                                IMDBMovie.Outline = String.Empty
+                            End Try
+                        End If
+                    End If
+
+                    If bwIMDB.CancellationPending Then Return Nothing
+
+mPlot:
+                    'Get the full Plot
+                    If Options.bPlot AndAlso (String.IsNullOrEmpty(IMDBMovie.Plot) OrElse Not Master.eSettings.LockPlot) Then
+                        If Not String.IsNullOrEmpty(ofdbPlot) Then
+                            IMDBMovie.Plot = ofdbPlot
+                        Else
+                            Dim FullPlotP As String = Regex.Match(PlotHtml, "<p class=.plotpar.>(.*?)</p>", RegexOptions.Singleline Or RegexOptions.IgnoreCase Or RegexOptions.Multiline).Groups(1).Value.ToString.Trim
+                            Dim FullPlotI As String = Regex.Match(PlotHtml, "<p class=.plotpar.>(.*?)<i>", RegexOptions.Singleline Or RegexOptions.IgnoreCase Or RegexOptions.Multiline).Groups(1).Value.ToString.Trim
+                            Dim FullPlot As String = If(FullPlotI.Length < FullPlotP.Length, FullPlotI, FullPlotP)
+                            If Not String.IsNullOrEmpty(FullPlot) Then
+                                For Each rMatch As Match In Regex.Matches(FullPlot, HREF_PATTERN_4)
+                                    FullPlot = FullPlot.Replace(rMatch.Value, rMatch.Groups("text").Value.Trim)
+                                Next
+                                IMDBMovie.Plot = Web.HttpUtility.HtmlDecode(FullPlot.Replace("|", String.Empty)).Trim
+                            End If
+
+                        End If
+
+                        If Master.eSettings.OutlineForPlot AndAlso String.IsNullOrEmpty(IMDBMovie.Plot) AndAlso Not String.IsNullOrEmpty(IMDBMovie.Outline) Then
+                            IMDBMovie.Plot = IMDBMovie.Outline
+                        End If
+                    End If
+
+                    If bwIMDB.CancellationPending Then Return Nothing
+
+                    'Get the movie duration
+                    If Options.bRuntime Then IMDBMovie.Runtime = Web.HttpUtility.HtmlDecode(Regex.Match(HTML, "<h5>Runtime:</h5>[^0-9]*([^<]*)").Groups(1).Value.Trim)
+
+                    'Get Production Studio
+                    If Options.bStudio AndAlso (String.IsNullOrEmpty(IMDBMovie.Studio) OrElse Not Master.eSettings.LockStudio) Then
+                        D = 0 : W = 0
+                        If FullCrew Then
+                            D = HTML.IndexOf("<b class=""blackcatheader"">Production Companies</b>")
+                            If D > 0 Then W = HTML.IndexOf("</ul>", D)
+                            If D > 0 AndAlso W > 0 Then
+                                'only get the first one
+                                Dim Ps = From P1 In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
+                                         Where Not DirectCast(P1, Match).Groups("name").ToString = String.Empty _
+                                         Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString) Take 1
+                                IMDBMovie.Studio = Ps(0).ToString.Trim
+                            End If
+                        Else
+                            D = HTML.IndexOf("<h5>Company:</h5>")
+                            If D > 0 Then W = HTML.IndexOf("</div>", D)
+                            If D > 0 AndAlso W > 0 Then
+                                IMDBMovie.Studio = Web.HttpUtility.HtmlDecode(Regex.Match(HTML.Substring(D, W - D), HREF_PATTERN).Groups("name").ToString.Trim)
+                            End If
+                        End If
+                    End If
+
+                    If bwIMDB.CancellationPending Then Return Nothing
+
+                    'Get Writers
+                    If Options.bWriters Then
+                        D = 0 : W = 0
+                        D = HTML.IndexOf("<h5>Writer")
+                        If D > 0 Then W = HTML.IndexOf("</div>", D)
+                        If D > 0 AndAlso W > 0 Then
+                            Dim q = From M In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
+                                    Where Not DirectCast(M, Match).Groups("name").ToString.Trim = "more" _
+                                    AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim = "(more)" _
+                                    AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim = "WGA" _
+                                    AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim.Contains("see more") _
+                                    Select Writer = Web.HttpUtility.HtmlDecode(String.Concat(DirectCast(M, Match).Groups("name").ToString, If(FullCrew, " (writer)", String.Empty)))
+
+                            If q.Count > 0 Then
+                                IMDBMovie.OldCredits = Strings.Join(q.ToArray, " / ").Trim
+                            End If
+                        End If
+                    End If
+
+                    If bwIMDB.CancellationPending Then Return Nothing
+
+                    'Get All Other Info
+                    If FullCrew Then
+
+                        D = 0 : W = 0
+                        D = HTML.IndexOf("Directed by</a></h5>")
+                        If D > 0 Then W = HTML.IndexOf("</body>", D)
+                        If D > 0 AndAlso W > 0 Then
+                            Dim qTables As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), TABLE_PATTERN)
+
+                            For Each M As Match In qTables
+
+                                If bwIMDB.CancellationPending Then Return Nothing
+
+                                'Producers
+                                If Options.bProducers AndAlso M.ToString.Contains("Produced by</a></h5>") Then
+                                    Dim Pr = From Po In Regex.Matches(M.ToString, "<td\svalign=""top"">(.*?)</td>") _
+                                    Where Not Po.ToString.Contains(String.Concat("http://", IMDBURL, "/Glossary/")) _
+                                    Let P1 = Regex.Match(Po.ToString, HREF_PATTERN_2) _
+                                    Where Not String.IsNullOrEmpty(P1.Groups("name").ToString) _
+                                    Select Producer = Web.HttpUtility.HtmlDecode(String.Concat(P1.Groups("name").ToString, " (producer)"))
+
+                                    If Pr.Count > 0 Then
+                                        IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Pr.ToArray, " / ").Trim)
+                                    End If
+                                End If
+
+                                'Music by
+                                If Options.bMusicBy AndAlso M.ToString.Contains("Original Music by</a></h5>") Then
+                                    Dim Mu = From Mo In Regex.Matches(M.ToString, "<td\svalign=""top"">(.*?)</td>") _
+                                    Let M1 = Regex.Match(Mo.ToString, HREF_PATTERN) _
+                                    Where Not String.IsNullOrEmpty(M1.Groups("name").ToString) _
+                                    Select Musician = Web.HttpUtility.HtmlDecode(String.Concat(M1.Groups("name").ToString, " (music by)"))
+
+                                    If Mu.Count > 0 Then
+                                        IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Mu.ToArray, " / ").Trim)
+                                    End If
+                                End If
+
+                            Next
+                        End If
+
+                        If bwIMDB.CancellationPending Then Return Nothing
+
+                        'Special Effects
+                        If Options.bOtherCrew Then
+                            D = HTML.IndexOf("<b class=""blackcatheader"">Special Effects</b>")
+                            If D > 0 Then W = HTML.IndexOf("</ul>", D)
+                            If D > 0 AndAlso W > 0 Then
+                                Dim Ps = From P1 In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
+                                         Where Not String.IsNullOrEmpty(DirectCast(P1, Match).Groups("name").ToString) _
+                                         Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString)
+                                If Ps.Count > 0 Then
+                                    IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Ps.ToArray, " / ").Trim)
+                                End If
+                            End If
+                        End If
+                    End If
+
+                    Return True
             Catch ex As Exception
                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
                 Return False
