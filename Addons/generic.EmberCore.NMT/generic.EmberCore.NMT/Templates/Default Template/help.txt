@@ -3,3 +3,4 @@ SETUP NOTES
 For this template you need to:
 Set TV Show Poster as -Poster- and 
 All Season Poster as -Banner-
+Also don't use any .tbn files. always choose a .jpg option.

@@ -1,3 +1,12 @@
+Although this is a very young module, it should be able to fulfill all your need as a jukebox builder.
+We are welcome to new features and improvements, and the time/effort that will be spent on it, depend not only but in a great amount on the number of users that will be using it as primary jukebox builder.
+So, please give us your feedback.
+
+http://www.embermm.com/boards/1/topics/770
+
+Thank you
+
+
 Version 1.0.18
  - Fix return to Main Tv Show Index not being position in the correct Show
  
