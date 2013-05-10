@@ -3686,7 +3686,7 @@ Public Class Settings
         Me._externaltvdbapikey = String.Empty
         Me._scanordermodify = False
         Me._tvscanordermodify = False
-        Me._tvupdatetime = Enums.TVUpdateTime.Week
+        Me._tvupdatetime = Enums.TVUpdateTime.Always
         Me._nofilterepisode = True
         Me._onlytvimagesforselectedlangauge = True
         Me._alwaysgetenglishtvimages = True
