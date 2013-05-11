@@ -235,6 +235,7 @@ Public Class Settings
     Private _resizeshowfanart As Boolean
     Private _resizeshowposter As Boolean
     Private _runtimemask As String
+    Private _epruntimemask As String
     Private _scanmediainfo As Boolean
     Private _scanordermodify As Boolean
     Private _scantvmediainfo As Boolean
@@ -348,6 +349,7 @@ Public Class Settings
     Private _useimgcache As Boolean
     Private _useimgcacheupdater As Boolean
     Private _usemiduration As Boolean
+    Private _useepduration As Boolean
     Private _validexts As List(Of String)
     Private _version As String
     Private _videotsparent As Boolean
@@ -2307,6 +2309,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property EPRuntimeMask() As String
+        Get
+            Return Me._epruntimemask
+        End Get
+        Set(ByVal value As String)
+            Me._epruntimemask = value
+        End Set
+    End Property
+
     Public Property ScanMediaInfo() As Boolean
         Get
             Return Me._scanmediainfo
@@ -3261,6 +3272,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property UseEPDuration() As Boolean
+        Get
+            Return Me._useepduration
+        End Get
+        Set(ByVal value As Boolean)
+            Me._useepduration = value
+        End Set
+    End Property
+
     Public Property ValidExts() As List(Of String)
         Get
             Return Me._validexts
@@ -3551,7 +3571,9 @@ Public Class Settings
         Me._bdpath = String.Empty
         Me._autobd = False
         Me._usemiduration = False
+        Me._useepduration = False
         Me._runtimemask = "<m>"     'emm-r
+        Me._epruntimemask = "<m>"
         Me._genrefilter = "English"
         Me._useetasfa = False
         Me._useimgcache = False

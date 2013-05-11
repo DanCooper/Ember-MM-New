@@ -2126,6 +2126,11 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkUseEPDuration_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseEPDuration.CheckedChanged
+        Me.txtEPRuntimeFormat.Enabled = Me.chkUseEPDuration.Checked
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkVideoTSParent_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.SetApplyButton(True)
         Me.sResult.NeedsUpdate = True
@@ -2433,6 +2438,9 @@ Public Class dlgSettings
             Me.chkUseMIDuration.Checked = Master.eSettings.UseMIDuration
             Me.txtRuntimeFormat.Enabled = Master.eSettings.UseMIDuration
             Me.txtRuntimeFormat.Text = Master.eSettings.RuntimeMask
+            Me.chkUseEPDuration.Checked = Master.eSettings.UseEPDuration
+            Me.txtEPRuntimeFormat.Enabled = Master.eSettings.UseEPDuration
+            Me.txtEPRuntimeFormat.Text = Master.eSettings.EPRuntimeMask
             Me.chkUseImgCache.Checked = Master.eSettings.UseImgCache
             Me.chkUseImgCacheUpdaters.Checked = Master.eSettings.UseImgCacheUpdaters
             Me.chkPersistImgCache.Checked = Master.eSettings.PersistImgCache
@@ -3522,6 +3530,8 @@ Public Class dlgSettings
             End If
             Master.eSettings.UseMIDuration = Me.chkUseMIDuration.Checked
             Master.eSettings.RuntimeMask = Me.txtRuntimeFormat.Text
+            Master.eSettings.UseEPDuration = Me.chkUseEPDuration.Checked
+            Master.eSettings.EPRuntimeMask = Me.txtEPRuntimeFormat.Text
             Master.eSettings.UseImgCache = Me.chkUseImgCache.Checked
             Master.eSettings.UseImgCacheUpdaters = Me.chkUseImgCacheUpdaters.Checked
             Master.eSettings.PersistImgCache = Me.chkPersistImgCache.Checked
@@ -3912,6 +3922,8 @@ Public Class dlgSettings
         Me.chkCert.Text = Master.eLang.GetString(514, "Use Certification Language:")
         Me.gbScraperDurationFormat.Text = Master.eLang.GetString(515, "Duration Format")
         Me.chkUseMIDuration.Text = Master.eLang.GetString(516, "Use Duration for Runtime")
+        Me.gbTVScraperDuration.Text = Master.eLang.GetString(515, "Duration Format")
+        Me.chkUseEPDuration.Text = Master.eLang.GetString(516, "Use Duration for Runtime")
         Me.chkScanMediaInfo.Text = Master.eLang.GetString(517, "Scan Meta Data")
         Me.chkTVScanMetaData.Text = Me.chkScanMediaInfo.Text
         Me.btnOK.Text = Master.eLang.GetString(179, "OK")
@@ -4612,6 +4624,10 @@ Public Class dlgSettings
     End Sub
 
     Private Sub txtRuntimeFormat_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtRuntimeFormat.TextChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub txtEPRuntimeFormat_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtEPRuntimeFormat.TextChanged
         Me.SetApplyButton(True)
     End Sub
 
