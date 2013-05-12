@@ -1,3 +1,26 @@
+Changelog 1.3.0.13 (12.05.2013)
+
+Ember Main:
+- fixed: subtitle lock (Cocotus)
+- fixed: renamed some video codecs to make it XBMC compatible
+- fixed: all setting pages sizes
+- fixed: movie is watched when playcount is 0
+- fixed: errorlog viewer not display errors
+- fixed: file stacking not work with brackets "(CD1)" * Warning: XBMC does not support brackets
+- fixed: search field lost focus when no title matched
+- fixed: search field lost focus when the filter is changed (dropdown)
+- changed: search filter refresh list when is changed (dropdown)
+- added: "Role" & "Credit" to search field
+- added: runtime format for episodes
+- added: small fanart in main window
+- added: button "Enable Poster Glass Overlay" (disabled by default)
+- added: option "Full Country Names" in Native Scraper (IMDB) * If activated Ember use "United States of America" & "United Kingdom" instead of "USA" & "UK"
+- added: default template for NMT module
+- fixed/added: TMDB scraper no longer use plot as outline / new option "Use Plot As Outline If Outline Is Empty" and "Outline Limit" (works only with TMDB scraper atm)
+               How does the outline limit: Ember shortens the plot to the specified number of characters. The last point is searched. All characters after this point will be deleted. If the string should be empty only the first sentence of the plot is used.
+
+
+
 Changelog 1.3.0.12 (02.05.2013):
 
 Movie List Exporter Module: (Cocotus)
