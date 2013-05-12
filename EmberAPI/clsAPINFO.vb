@@ -1150,8 +1150,11 @@ Public Class NFO
                 For Each tVid As MediaInfo.Video In _TVEpDB.TVEp.FileInfo.StreamDetails.Video
                     cTotal = cTotal + tVid.Duration
                 Next
-                '_TVEpDB.TVEp.Runtime = cTotal
-                _TVEpDB.TVEp.Runtime = MediaInfo.FormatDuration(MediaInfo.DurationToSeconds(cTotal, True), Master.eSettings.EPRuntimeMask)
+                If Master.eSettings.UseEPDuration Then
+                    _TVEpDB.TVEp.Runtime = MediaInfo.FormatDuration(MediaInfo.DurationToSeconds(cTotal, True), Master.eSettings.EPRuntimeMask)
+                Else
+                    _TVEpDB.TVEp.Runtime = cTotal
+                End If
             End If
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
