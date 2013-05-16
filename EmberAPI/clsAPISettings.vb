@@ -189,6 +189,7 @@ Public Class Settings
     Private _moviewatchedCol As Boolean
     Private _nodisplayfanart As Boolean
     Private _nodisplayposter As Boolean
+    Private _nodisplayfanartsmall As Boolean
     Private _posterglassoverlay As Boolean
     Private _noepfilters As Boolean
     Private _nofilterepisode As Boolean
@@ -1802,6 +1803,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._nodisplayposter = value
+        End Set
+    End Property
+
+    Public Property NoDisplayFanartSmall() As Boolean
+        Get
+            Return Me._nodisplayfanartsmall
+        End Get
+        Set(ByVal value As Boolean)
+            Me._nodisplayfanartsmall = value
         End Set
     End Property
 
@@ -3594,6 +3604,7 @@ Public Class Settings
         Me._nosaveimagestonfo = False
         Me._showdims = False
         Me._nodisplayposter = False
+        Me._nodisplayfanartsmall = False
         Me._nodisplayfanart = False
         Me._posterglassoverlay = False
         Me._outlineforplot = False

@@ -884,7 +884,7 @@ Public Class frmMain
             End If
 
             If Not Master.eSettings.NoDisplayPoster Then Me.MainPoster.FromFile(Master.currShow.EpPosterPath)
-            If Not Master.eSettings.NoDisplayPoster Then Me.MainFanartSmall.FromFile(Master.currShow.EpFanartPath)
+            If Not Master.eSettings.NoDisplayFanartSmall Then Me.MainFanartSmall.FromFile(Master.currShow.EpFanartPath)
 
             If bwLoadEpInfo.CancellationPending Then
                 e.Cancel = True
@@ -968,7 +968,7 @@ Public Class frmMain
             End If
 
             If Not Master.eSettings.NoDisplayPoster Then Me.MainPoster.FromFile(Master.currMovie.PosterPath)
-            If Not Master.eSettings.NoDisplayPoster Then Me.MainFanartSmall.FromFile(Master.currMovie.FanartPath)
+            If Not Master.eSettings.NoDisplayFanartSmall Then Me.MainFanartSmall.FromFile(Master.currMovie.FanartPath)
             'read nfo if it's there
 
             'wait for mediainfo to update the nfo
@@ -1022,7 +1022,7 @@ Public Class frmMain
             End If
 
             If Not Master.eSettings.NoDisplayPoster Then Me.MainPoster.FromFile(Master.currShow.SeasonPosterPath)
-            If Not Master.eSettings.NoDisplayPoster Then Me.MainFanartSmall.FromFile(Master.currShow.SeasonFanartPath)
+            If Not Master.eSettings.NoDisplayFanartSmall Then Me.MainFanartSmall.FromFile(Master.currShow.SeasonFanartPath)
 
             If bwLoadSeasonInfo.CancellationPending Then
                 e.Cancel = True
@@ -1090,7 +1090,7 @@ Public Class frmMain
             End If
 
             If Not Master.eSettings.NoDisplayPoster Then Me.MainPoster.FromFile(Master.currShow.ShowPosterPath)
-            If Not Master.eSettings.NoDisplayPoster Then Me.MainFanartSmall.FromFile(Master.currShow.ShowFanartPath)
+            If Not Master.eSettings.NoDisplayFanartSmall Then Me.MainFanartSmall.FromFile(Master.currShow.ShowFanartPath)
 
             If Master.eSettings.DisplayAllSeason AndAlso Master.eSettings.AllSeasonPosterEnabled Then
                 Me.MainAllSeason.FromFile(Master.currShow.SeasonPosterPath)

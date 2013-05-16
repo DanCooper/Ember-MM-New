@@ -31,6 +31,7 @@ Partial Class dlgSettings
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgSettings))
         Me.gbGeneralMiscellaneous = New System.Windows.Forms.GroupBox()
+        Me.chkNoDisplayFanartSmall = New System.Windows.Forms.CheckBox()
         Me.chkPosterGlassOverlay = New System.Windows.Forms.CheckBox()
         Me.chkSpecialDateAdd = New System.Windows.Forms.CheckBox()
         Me.chkShowGenresText = New System.Windows.Forms.CheckBox()
@@ -732,6 +733,7 @@ Partial Class dlgSettings
         '
         'gbGeneralMiscellaneous
         '
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkNoDisplayFanartSmall)
         Me.gbGeneralMiscellaneous.Controls.Add(Me.chkPosterGlassOverlay)
         Me.gbGeneralMiscellaneous.Controls.Add(Me.chkSpecialDateAdd)
         Me.gbGeneralMiscellaneous.Controls.Add(Me.chkShowGenresText)
@@ -752,11 +754,22 @@ Partial Class dlgSettings
         Me.gbGeneralMiscellaneous.TabStop = False
         Me.gbGeneralMiscellaneous.Text = "Miscellaneous"
         '
+        'chkNoDisplayFanartSmall
+        '
+        Me.chkNoDisplayFanartSmall.AutoSize = True
+        Me.chkNoDisplayFanartSmall.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkNoDisplayFanartSmall.Location = New System.Drawing.Point(10, 144)
+        Me.chkNoDisplayFanartSmall.Name = "chkNoDisplayFanartSmall"
+        Me.chkNoDisplayFanartSmall.Size = New System.Drawing.Size(169, 17)
+        Me.chkNoDisplayFanartSmall.TabIndex = 12
+        Me.chkNoDisplayFanartSmall.Text = "Do Not Display Small Fanart"
+        Me.chkNoDisplayFanartSmall.UseVisualStyleBackColor = True
+        '
         'chkPosterGlassOverlay
         '
         Me.chkPosterGlassOverlay.AutoSize = True
         Me.chkPosterGlassOverlay.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkPosterGlassOverlay.Location = New System.Drawing.Point(10, 178)
+        Me.chkPosterGlassOverlay.Location = New System.Drawing.Point(10, 194)
         Me.chkPosterGlassOverlay.Name = "chkPosterGlassOverlay"
         Me.chkPosterGlassOverlay.Size = New System.Drawing.Size(167, 17)
         Me.chkPosterGlassOverlay.TabIndex = 11
@@ -767,7 +780,7 @@ Partial Class dlgSettings
         '
         Me.chkSpecialDateAdd.AutoSize = True
         Me.chkSpecialDateAdd.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSpecialDateAdd.Location = New System.Drawing.Point(10, 212)
+        Me.chkSpecialDateAdd.Location = New System.Drawing.Point(10, 228)
         Me.chkSpecialDateAdd.Name = "chkSpecialDateAdd"
         Me.chkSpecialDateAdd.Size = New System.Drawing.Size(196, 17)
         Me.chkSpecialDateAdd.TabIndex = 10
@@ -778,7 +791,7 @@ Partial Class dlgSettings
         '
         Me.chkShowGenresText.AutoSize = True
         Me.chkShowGenresText.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowGenresText.Location = New System.Drawing.Point(10, 195)
+        Me.chkShowGenresText.Location = New System.Drawing.Point(10, 211)
         Me.chkShowGenresText.Name = "chkShowGenresText"
         Me.chkShowGenresText.Size = New System.Drawing.Size(166, 17)
         Me.chkShowGenresText.TabIndex = 9
@@ -801,7 +814,7 @@ Partial Class dlgSettings
         '
         Me.chkNoDisplayFanart.AutoSize = True
         Me.chkNoDisplayFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkNoDisplayFanart.Location = New System.Drawing.Point(10, 144)
+        Me.chkNoDisplayFanart.Location = New System.Drawing.Point(10, 160)
         Me.chkNoDisplayFanart.Name = "chkNoDisplayFanart"
         Me.chkNoDisplayFanart.Size = New System.Drawing.Size(139, 17)
         Me.chkNoDisplayFanart.TabIndex = 7
@@ -834,7 +847,7 @@ Partial Class dlgSettings
         '
         Me.chkShowDims.AutoSize = True
         Me.chkShowDims.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowDims.Location = New System.Drawing.Point(10, 161)
+        Me.chkShowDims.Location = New System.Drawing.Point(10, 177)
         Me.chkShowDims.Name = "chkShowDims"
         Me.chkShowDims.Size = New System.Drawing.Size(160, 17)
         Me.chkShowDims.TabIndex = 8
@@ -1934,7 +1947,7 @@ Partial Class dlgSettings
         Me.Label24.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.Location = New System.Drawing.Point(3, 127)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(47, 13)
+        Me.Label24.Size = New System.Drawing.Size(46, 13)
         Me.Label24.TabIndex = 9
         Me.Label24.Text = "Quality:"
         '
@@ -2079,7 +2092,7 @@ Partial Class dlgSettings
         Me.Label26.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.Location = New System.Drawing.Point(2, 131)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(47, 13)
+        Me.Label26.Size = New System.Drawing.Size(46, 13)
         Me.Label26.TabIndex = 9
         Me.Label26.Text = "Quality:"
         '
@@ -2353,7 +2366,7 @@ Partial Class dlgSettings
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(61, 38)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(246, 13)
+        Me.Label2.Size = New System.Drawing.Size(245, 13)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Configure Ember's appearance and operation."
         '
@@ -2417,7 +2430,7 @@ Partial Class dlgSettings
         Me.pnlGeneral.BackColor = System.Drawing.Color.White
         Me.pnlGeneral.Controls.Add(Me.gbGeneralInterface)
         Me.pnlGeneral.Controls.Add(Me.gbGeneralMiscellaneous)
-        Me.pnlGeneral.Location = New System.Drawing.Point(900, 900)
+        Me.pnlGeneral.Location = New System.Drawing.Point(251, 147)
         Me.pnlGeneral.Name = "pnlGeneral"
         Me.pnlGeneral.Size = New System.Drawing.Size(635, 435)
         Me.pnlGeneral.TabIndex = 10
@@ -3206,7 +3219,7 @@ Partial Class dlgSettings
         Me.lblPreferredQuality.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPreferredQuality.Location = New System.Drawing.Point(31, 189)
         Me.lblPreferredQuality.Name = "lblPreferredQuality"
-        Me.lblPreferredQuality.Size = New System.Drawing.Size(97, 13)
+        Me.lblPreferredQuality.Size = New System.Drawing.Size(96, 13)
         Me.lblPreferredQuality.TabIndex = 6
         Me.lblPreferredQuality.Text = "Preferred Quality:"
         '
@@ -4887,7 +4900,7 @@ Partial Class dlgSettings
         Me.lblAllSPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAllSPosterQ.Location = New System.Drawing.Point(3, 141)
         Me.lblAllSPosterQ.Name = "lblAllSPosterQ"
-        Me.lblAllSPosterQ.Size = New System.Drawing.Size(47, 13)
+        Me.lblAllSPosterQ.Size = New System.Drawing.Size(46, 13)
         Me.lblAllSPosterQ.TabIndex = 10
         Me.lblAllSPosterQ.Text = "Quality:"
         '
@@ -5047,7 +5060,7 @@ Partial Class dlgSettings
         Me.lblShowPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblShowPosterQ.Location = New System.Drawing.Point(3, 141)
         Me.lblShowPosterQ.Name = "lblShowPosterQ"
-        Me.lblShowPosterQ.Size = New System.Drawing.Size(47, 13)
+        Me.lblShowPosterQ.Size = New System.Drawing.Size(46, 13)
         Me.lblShowPosterQ.TabIndex = 10
         Me.lblShowPosterQ.Text = "Quality:"
         '
@@ -5181,7 +5194,7 @@ Partial Class dlgSettings
         Me.lblShowFanartQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblShowFanartQ.Location = New System.Drawing.Point(3, 118)
         Me.lblShowFanartQ.Name = "lblShowFanartQ"
-        Me.lblShowFanartQ.Size = New System.Drawing.Size(47, 13)
+        Me.lblShowFanartQ.Size = New System.Drawing.Size(46, 13)
         Me.lblShowFanartQ.TabIndex = 8
         Me.lblShowFanartQ.Text = "Quality:"
         '
@@ -5326,7 +5339,7 @@ Partial Class dlgSettings
         Me.lblSeaPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSeaPosterQ.Location = New System.Drawing.Point(3, 118)
         Me.lblSeaPosterQ.Name = "lblSeaPosterQ"
-        Me.lblSeaPosterQ.Size = New System.Drawing.Size(47, 13)
+        Me.lblSeaPosterQ.Size = New System.Drawing.Size(46, 13)
         Me.lblSeaPosterQ.TabIndex = 8
         Me.lblSeaPosterQ.Text = "Quality:"
         '
@@ -5460,7 +5473,7 @@ Partial Class dlgSettings
         Me.lblSeaFanartQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSeaFanartQ.Location = New System.Drawing.Point(3, 118)
         Me.lblSeaFanartQ.Name = "lblSeaFanartQ"
-        Me.lblSeaFanartQ.Size = New System.Drawing.Size(47, 13)
+        Me.lblSeaFanartQ.Size = New System.Drawing.Size(46, 13)
         Me.lblSeaFanartQ.TabIndex = 8
         Me.lblSeaFanartQ.Text = "Quality:"
         '
@@ -5604,7 +5617,7 @@ Partial Class dlgSettings
         Me.lblEpPosterQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEpPosterQ.Location = New System.Drawing.Point(1, 78)
         Me.lblEpPosterQ.Name = "lblEpPosterQ"
-        Me.lblEpPosterQ.Size = New System.Drawing.Size(47, 13)
+        Me.lblEpPosterQ.Size = New System.Drawing.Size(46, 13)
         Me.lblEpPosterQ.TabIndex = 6
         Me.lblEpPosterQ.Text = "Quality:"
         '
@@ -5718,7 +5731,7 @@ Partial Class dlgSettings
         Me.lblEpFanartQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEpFanartQ.Location = New System.Drawing.Point(3, 118)
         Me.lblEpFanartQ.Name = "lblEpFanartQ"
-        Me.lblEpFanartQ.Size = New System.Drawing.Size(47, 13)
+        Me.lblEpFanartQ.Size = New System.Drawing.Size(46, 13)
         Me.lblEpFanartQ.TabIndex = 8
         Me.lblEpFanartQ.Text = "Quality:"
         '
@@ -8186,4 +8199,5 @@ Partial Class dlgSettings
     Friend WithEvents gbTVScraperDuration As System.Windows.Forms.GroupBox
     Friend WithEvents txtEPRuntimeFormat As System.Windows.Forms.TextBox
     Friend WithEvents chkUseEPDuration As System.Windows.Forms.CheckBox
+    Friend WithEvents chkNoDisplayFanartSmall As System.Windows.Forms.CheckBox
 End Class
