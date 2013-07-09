@@ -159,13 +159,24 @@ Public Class dlgOfflineHolder
         End If
         Me.bwCreateHolder.ReportProgress(2, Master.eLang.GetString(4, "Building Movie"))
         Using ffmpeg As New Process()
+
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            '                                                ffmpeg info                                                     '
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            ' -r      = fps                                                                                                  '
+            ' -an     = disable audio recording                                                                              '
+            ' -i      = creating a video from many images                                                                    '
+            ' -q:v n  = constant qualitiy(:video) (but a variable bitrate), "n" 1 (excellent quality) and 31 (worst quality) '
+            ' -b:v n  = bitrate(:video)                                                                                      '
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
             ffmpeg.StartInfo.FileName = Functions.GetFFMpeg
             ffmpeg.EnableRaisingEvents = False
             ffmpeg.StartInfo.UseShellExecute = False
             ffmpeg.StartInfo.CreateNoWindow = True
             ffmpeg.StartInfo.RedirectStandardOutput = True
             ffmpeg.StartInfo.RedirectStandardError = True
-            ffmpeg.StartInfo.Arguments = String.Format(" -qscale 5 -r 25 -b 1200 -an -i ""{0}\image%d.jpg"" ""{1}""", buildPath, tMovie.Filename)
+            ffmpeg.StartInfo.Arguments = String.Format(" -r 25 -an -i ""{0}\image%d.jpg"" -q:v 1 -b:v 40000k ""{1}""", buildPath, tMovie.Filename)
             ffmpeg.Start()
             ffmpeg.WaitForExit()
             ffmpeg.Close()
@@ -197,6 +208,7 @@ Public Class dlgOfflineHolder
         End If
 
         tMovie.Movie.SortTitle = tMovie.ListTitle
+
         If Not String.IsNullOrEmpty(tMovie.PosterPath) Then
             'File.Copy(tMovie.PosterPath, Path.Combine(destPath, Path.GetFileName(tMovie.PosterPath).ToString))
             Dim poster As New EmberAPI.Images
@@ -211,6 +223,20 @@ Public Class dlgOfflineHolder
             fanart.FromFile(tMovie.FanartPath)
             tMovie.FanartPath = fanart.SaveAsFanart(tMovie)
             'tMovie.FanartPath = Path.Combine(destPath, Path.GetFileName(tMovie.FanartPath).ToString)
+        End If
+
+        If Not String.IsNullOrEmpty(tMovie.ExtraPath) Then
+            DirectoryCopy(Directory.GetParent(tMovie.ExtraPath).FullName, Path.Combine(destPath, "extrathumbs"))
+        End If
+
+        If Master.eSettings.ScraperActorThumbs Then
+            For Each act As MediaContainers.Person In tMovie.Movie.Actors
+                Dim img As New Images
+                img.FromWeb(act.Thumb)
+                If Not IsNothing(img.Image) Then
+                    img.SaveAsActorThumb(act, Directory.GetParent(tMovie.Filename).FullName, tMovie)
+                End If
+            Next
         End If
         tMovie = Master.DB.SaveMovieToDB(tMovie, True, False, True)
 
@@ -554,17 +580,25 @@ Public Class dlgOfflineHolder
         Try
             tMovie.Movie.Clear()
             tMovie.Movie.Title = txtMovieName.Text
+            Dim tempExtraPath As String = Path.Combine(Directory.GetParent(Directory.GetParent(tMovie.Filename).FullName).FullName, "extrathumbs")
             'Functions.SetScraperMod(Enums.ModType.DoSearch, True)
             Functions.SetScraperMod(Enums.ModType.NFO, True, True)
             Functions.SetScraperMod(Enums.ModType.Poster, True, False)
             Functions.SetScraperMod(Enums.ModType.Fanart, True, False)
+            Functions.SetScraperMod(Enums.ModType.Extra, True, False)
             If Not ModulesManager.Instance.MovieScrapeOnly(tMovie, Enums.ScrapeType.SingleScrape, Master.DefaultOptions) Then
                 Me.txtMovieName.Text = String.Format("{0} [OffLine]", tMovie.Movie.Title)
                 'Dim sPath As String = Path.Combine(Master.TempPath, "fanart.jpg")
+                If Directory.Exists(tempExtraPath) Then
+                    FileUtils.Delete.DeleteDirectory(tempExtraPath)
+                End If
                 Dim fResults As New Containers.ImgResult
                 ModulesManager.Instance.ScraperSelectImageOfType(tMovie, Enums.ImageType.Fanart, fResults, True)
                 If Not String.IsNullOrEmpty(fResults.ImagePath) Then
                     tMovie.FanartPath = fResults.ImagePath
+                    If Directory.Exists(tempExtraPath) Then
+                        tMovie.ExtraPath = Path.Combine(tempExtraPath, "thumb1.jpg")
+                    End If
                     If Not Master.eSettings.NoSaveImagesToNfo Then tMovie.Movie.Fanart = fResults.Fanart
                 End If
                 'sPath = Path.Combine(Master.TempPath, "poster.jpg")
