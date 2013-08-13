@@ -1,3 +1,26 @@
+Changelog 1.3.0.14 (13.08.2013)
+
+Ember Main:
+- fixed: "Cancel Scraper" button is covered
+- fixed: MediaInfo Duration Scan (http://forum.xbmc.org/showthread.php?tid=169900) (Cocotus)
+- fixed: sabnzbd bug (http://forum.xbmc.org/showthread.php?tid=166850) (redglory)
+- added: handling of TVShow specials (mh)
+- added: option to disable the "Small Fanart" in main view
+
+Offline Media Manager:
+- fixed: Ember don't create placeholder
+- added: Extrathumbs and Actor Thumbs (if activated in settings)
+
+Languages:
+- added: Chinese (sxczmnb)
+- added: Dutch (Shemhazai2)
+- added: Norwegian (Dragen)
+- added: Portuguese Brazil/Portugal (pingo.mister & gabne)
+- added: Spanish (93% finished) (orbtwin)
+- added: Italian (81% finished) (Wolf666)
+
+
+
 Changelog 1.3.0.13 (12.05.2013)
 
 Ember Main:
