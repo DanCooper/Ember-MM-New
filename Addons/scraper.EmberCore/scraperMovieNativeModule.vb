@@ -122,6 +122,8 @@ Public Class EmberNativeScraperModule
                 If MySettings.UseIMPA OrElse MySettings.UseMPDB OrElse MySettings.UseTMDB Then Return True
             Case Enums.PostScraperCapabilities.Trailer
                 If MySettings.DownloadTrailers Then Return True
+            Case Enums.PostScraperCapabilities.Actor
+                If Master.eSettings.ScraperActorThumbs Then Return True
         End Select
         Return False
     End Function

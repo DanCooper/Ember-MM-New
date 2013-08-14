@@ -6288,6 +6288,11 @@ doCancel:
         Me.MovieScrapeData(False, Enums.ScrapeType.FullAuto, Master.DefaultOptions)
     End Sub
 
+    Private Sub mnuAllAutoActor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAllAutoActor.Click
+        Functions.SetScraperMod(Enums.ModType.Actor, True)
+        Me.MovieScrapeData(False, Enums.ScrapeType.FullAuto, Master.DefaultOptions)
+    End Sub
+
     Private Sub mnuFilterAskAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuFilterAskAll.Click, mnuTrayFilterAskAll.Click
         Functions.SetScraperMod(Enums.ModType.All, True)
         Me.MovieScrapeData(False, Enums.ScrapeType.FilterAsk, Master.DefaultOptions)
@@ -6427,6 +6432,11 @@ doCancel:
 
     Private Sub mnuMarkAutoTrailer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuMarkAutoTrailer.Click
         Functions.SetScraperMod(Enums.ModType.Trailer, True)
+        Me.MovieScrapeData(False, Enums.ScrapeType.MarkAuto, Master.DefaultOptions)
+    End Sub
+
+    Private Sub mnuMarkAutoActor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuMarkAutoActor.Click
+        Functions.SetScraperMod(Enums.ModType.Actor, True)
         Me.MovieScrapeData(False, Enums.ScrapeType.MarkAuto, Master.DefaultOptions)
     End Sub
 
@@ -8050,6 +8060,10 @@ doCancel:
                 Me.mnuFilterAutoTrailer.Enabled = TrailerAllowed
                 Me.mnuFilterAskTrailer.Enabled = TrailerAllowed
 
+                Dim ActorAllowed As Boolean = ModulesManager.Instance.QueryPostScraperCapabilities(Enums.PostScraperCapabilities.Actor)
+                Me.mnuAllAutoActor.Enabled = ActorAllowed
+                Me.mnuMarkAutoActor.Enabled = ActorAllowed
+
                 Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLNewcommand.CommandText = String.Concat("SELECT COUNT(id) AS mcount FROM movies WHERE mark = 1;")
                     Using SQLcount As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
@@ -8402,6 +8416,7 @@ doCancel:
                 .mnuAllAutoExtra.Text = Master.eLang.GetString(74, "Extrathumbs Only")
                 .mnuAllAutoTrailer.Text = Master.eLang.GetString(75, "Trailer Only")
                 .mnuAllAutoMI.Text = Master.eLang.GetString(76, "Meta Data Only")
+                .mnuAllAutoActor.Text = Master.eLang.GetString(894, "Actor Thumbs Only")
                 .FullAskToolStripMenuItem.Text = Master.eLang.GetString(77, "Ask (Require Input If No Exact Match)")
                 .mnuAllAskAll.Text = mnuAllAutoAll.Text
                 .mnuAllAskNfo.Text = .mnuAllAutoNfo.Text
@@ -8451,6 +8466,7 @@ doCancel:
                 .mnuMarkAutoExtra.Text = .mnuAllAutoExtra.Text
                 .mnuMarkAutoTrailer.Text = .mnuAllAutoTrailer.Text
                 .mnuMarkAutoMI.Text = .mnuAllAutoMI.Text
+                .mnuMarkAutoActor.Text = .mnuAllAutoActor.Text
                 .AskRequireInputIfNoExactMatchToolStripMenuItem.Text = .FullAskToolStripMenuItem.Text
                 .mnuMarkAskAll.Text = .mnuAllAutoAll.Text
                 .mnuMarkAskNfo.Text = .mnuAllAutoNfo.Text
