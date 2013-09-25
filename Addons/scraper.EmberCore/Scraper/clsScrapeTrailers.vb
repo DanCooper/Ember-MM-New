@@ -25,6 +25,7 @@ Imports System.Text
 Imports System.Text.RegularExpressions
 Imports System.Xml
 Imports EmberAPI
+Imports WatTmdb
 
 Public Class Trailers
 
@@ -34,15 +35,28 @@ Public Class Trailers
 
     Private WebPage As New HTTP
     Private _ImdbID As String = String.Empty
+    Private _TmdbID As String = String.Empty
     Private _ImdbTrailerPage As String = String.Empty
-    Private _TrailerList As New List(Of String)    
+    Private _TrailerList As New List(Of String)
+    Private _TMDBConf As V3.TmdbConfiguration
+    Private _TMDBConfE As V3.TmdbConfiguration
+    Private _TMDBApi As V3.Tmdb
+    Private _TMDBApiE As V3.Tmdb
+    Private _TMDBApiA As V3.Tmdb
+    Private _MySettings As EmberNativeScraperModule.sMySettings
 
 #End Region 'Fields
 
 #Region "Constructors"
 
-    Public Sub New()
+    Public Sub New(ByRef tTMDBConf As V3.TmdbConfiguration, ByRef tTMDBConfE As V3.TmdbConfiguration, ByRef tTMDBApi As V3.Tmdb, ByRef tTMDBApiE As V3.Tmdb, ByRef tTMDBApiA As V3.Tmdb, ByRef tMySettings As EmberNativeScraperModule.sMySettings)
         Me.Clear()
+        _TMDBConf = tTMDBConf
+        _TMDBConfE = tTMDBConfE
+        _TMDBApi = tTMDBApi
+        _TMDBApiE = tTMDBApiE
+        _TMDBApiA = tTMDBApiA
+        _MySettings = tMySettings
         AddHandler WebPage.ProgressUpdated, AddressOf DownloadProgressUpdated
     End Sub
 
@@ -89,13 +103,13 @@ Public Class Trailers
         RaiseEvent ProgressUpdated(iPercent)
     End Sub
 
-    Public Function DownloadSingleTrailer(ByVal sPath As String, ByVal ImdbID As String, ByVal isSingle As Boolean, ByVal currNfoTrailer As String) As String
+    Public Function DownloadSingleTrailer(ByVal sPath As String, ByVal ImdbID As String, ByVal TmdbID As String, ByVal isSingle As Boolean, ByVal currNfoTrailer As String) As String
         Dim tURL As String = String.Empty
         Try
             Me._TrailerList.Clear()
 
             If Not Master.eSettings.UpdaterTrailersNoDownload AndAlso IsAllowedToDownload(sPath, isSingle, currNfoTrailer, True) Then
-                Me.GetTrailers(ImdbID, True)
+                Me.GetTrailers(ImdbID, TmdbID, True)
 
                 If Me._TrailerList.Count > 0 Then
 
@@ -121,7 +135,7 @@ Public Class Trailers
                                     If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.HD720pVP8) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.HD720pVP8).URL
                                     ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.HQVP8) Then
-                                        tLink = YT.VideoLinks(Enums.TrailerQuality.HQVP8).URL                                    
+                                        tLink = YT.VideoLinks(Enums.TrailerQuality.HQVP8).URL
                                     ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQVP8) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.SQVP8).URL
                                     End If
@@ -133,7 +147,7 @@ Public Class Trailers
                                     ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQFLV) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.SQFLV).URL
                                     End If
-                                Case Enums.TrailerQuality.HD720pVP8                                
+                                Case Enums.TrailerQuality.HD720pVP8
                                     If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.HQVP8) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.HQVP8).URL
                                     ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQVP8) Then
@@ -174,7 +188,7 @@ Public Class Trailers
                     End If
                 End If
             ElseIf Master.eSettings.UpdaterTrailersNoDownload AndAlso IsAllowedToDownload(sPath, isSingle, currNfoTrailer, False) Then
-                Me.GetTrailers(ImdbID, True)
+                Me.GetTrailers(ImdbID, TmdbID, True)
 
                 If Me._TrailerList.Count > 0 Then
                     tURL = Me._TrailerList.Item(0).ToString
@@ -201,10 +215,11 @@ Public Class Trailers
         Return tURL
     End Function
 
-    Public Function GetTrailers(ByVal ImdbID As String, Optional ByVal BreakAfterFound As Boolean = True) As List(Of String)
+    Public Function GetTrailers(ByVal ImdbID As String, ByVal TmdbID As String, Optional ByVal BreakAfterFound As Boolean = True) As List(Of String)
         Me._ImdbID = ImdbID
+        Me._TmdbID = TmdbID
         If AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", False) Then
-            Me.GetImdbTrailer()
+            Me.GetIMDBTrailer()
         End If
         If AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", False) Then
             Me.GetTMDBTrailer()
@@ -250,11 +265,15 @@ Public Class Trailers
     End Sub
 
     Private Sub GetTMDBTrailer()
-        Dim TMDB As New TMDB.Scraper
-        Dim YT As String = TMDB.GetTrailers(_ImdbID)
+        Dim TMDB As New TMDB.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
+        Dim YT As List(Of String)
 
-        If Not String.IsNullOrEmpty(YT) Then
-            Me._TrailerList.Add(YT)
+        YT = TMDB.GetTrailers(_TmdbID)
+
+        If Not YT.Count = 0 Then
+            For Each ast In YT
+                Me._TrailerList.Add(ast)
+            Next
         End If
 
         TMDB = Nothing

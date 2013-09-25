@@ -120,7 +120,7 @@ Namespace TMDB
 
 			If bwTMDB.CancellationPending Then Return Nothing
 			Try
-				images = _TMDBApi.GetMovieImages(CInt(imdbID), _MySettings.TMDBLanguage)
+                images = _TMDBApi.GetMovieImages(CInt(imdbID), _MySettings.TMDBLanguage)
 				If sType = "poster" Then
 					If IsNothing(images.posters) OrElse images.posters.Count = 0 Then
 						images = _TMDBApiE.GetMovieImages(CInt(imdbID))
@@ -130,7 +130,7 @@ Namespace TMDB
 					End If
 				Else
 					If IsNothing(images.backdrops) OrElse images.backdrops.Count = 0 Then
-						images = _TMDBApiE.GetMovieImages(CInt(imdbID))
+                        images = _TMDBApiE.GetMovieImages(CInt(imdbID))
 						If IsNothing(images.backdrops) OrElse images.backdrops.Count = 0 Then
 							Return alPosters
 						End If
@@ -149,7 +149,7 @@ Namespace TMDB
 							Select Case aSize.size
 								Case "original"
 									aW = tmdbI.width
-									aH = tmdbI.width
+                                    aH = tmdbI.height
 								Case Else
 									aW = aSize.width
 									aH = CInt(aW / tmdbI.aspect_ratio)
@@ -165,7 +165,7 @@ Namespace TMDB
 							Select Case aSize.size
 								Case "original"
 									aW = tmdbI.width
-									aH = tmdbI.width
+                                    aH = tmdbI.height
 								Case Else
 									aW = aSize.width
 									aH = CInt(aW / tmdbI.aspect_ratio)

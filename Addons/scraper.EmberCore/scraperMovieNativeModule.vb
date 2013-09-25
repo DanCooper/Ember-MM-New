@@ -19,8 +19,10 @@
 ' ################################################################################
 
 Imports System.IO
-
 Imports EmberAPI
+Imports RestSharp
+Imports WatTmdb
+Imports EmberScraperModule.TMDB
 
 ''' <summary>
 ''' Native Scraper
@@ -43,12 +45,18 @@ Public Class EmberNativeScraperModule
     ''' </summary>
     ''' <remarks></remarks>
     Private IMDB As New IMDB.Scraper
-    Private MySettings As New _MySettings
+    Private _TMDB As TMDB.Scraper
+    Private _MySettings As New sMySettings
     Private _Name As String = "Ember Native Movie Scrapers"
     Private _PostScraperEnabled As Boolean = False
     Private _ScraperEnabled As Boolean = False
     Private _setup As frmInfoSettingsHolder
     Private _setupPost As frmMediaSettingsHolder
+    Private _TMDBConf As V3.TmdbConfiguration
+    Private _TMDBConfE As V3.TmdbConfiguration
+    Private _TMDBApi As V3.Tmdb
+    Private _TMDBApiE As V3.Tmdb
+    Private _TMDBApiA As V3.Tmdb
 
 #End Region 'Fields
 
@@ -117,11 +125,11 @@ Public Class EmberNativeScraperModule
     Function QueryPostScraperCapabilities(ByVal cap As Enums.PostScraperCapabilities) As Boolean Implements Interfaces.EmberMovieScraperModule.QueryPostScraperCapabilities
         Select Case cap
             Case Enums.PostScraperCapabilities.Fanart
-                If MySettings.UseTMDB Then Return True
+                If _MySettings.UseTMDB Then Return True
             Case Enums.PostScraperCapabilities.Poster
-                If MySettings.UseIMPA OrElse MySettings.UseMPDB OrElse MySettings.UseTMDB Then Return True
+                If _MySettings.UseIMPA OrElse _MySettings.UseMPDB OrElse _MySettings.UseTMDB Then Return True
             Case Enums.PostScraperCapabilities.Trailer
-                If MySettings.DownloadTrailers Then Return True
+                If _MySettings.DownloadTrailers Then Return True
             Case Enums.PostScraperCapabilities.Actor
                 If Master.eSettings.ScraperActorThumbs Then Return True
         End Select
@@ -129,20 +137,27 @@ Public Class EmberNativeScraperModule
     End Function
 
     Function DownloadTrailer(ByRef DBMovie As Structures.DBMovie, ByRef sURL As String) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.DownloadTrailer
-        Using dTrailer As New dlgTrailer
-            dTrailer.IMDBURL = MySettings.IMDBURL
-            sURL = dTrailer.ShowDialog(DBMovie.Movie.IMDBID, DBMovie.Filename)
+        'Using dTrailer As New dlgTrailer
+        '    dTrailer.IMDBURL = _MySettings.IMDBURL
+        '    sURL = dTrailer.ShowDialog(DBMovie.Movie.IMDBID, DBMovie.Filename)
+        'End Using
+        'Return New Interfaces.ModuleResult With {.breakChain = False}
+        If String.IsNullOrEmpty(DBMovie.Movie.TMDBID) Then
+            _TMDB.GetMovieID(DBMovie)
+        End If
+        Using dTrailer As New dlgTrailer(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
+            sURL = dTrailer.ShowDialog(DBMovie.Movie.IMDBID, DBMovie.Movie.TMDBID, DBMovie.Filename)
         End Using
         Return New Interfaces.ModuleResult With {.breakChain = False}
     End Function
 
     Function GetMovieStudio(ByRef DBMovie As Structures.DBMovie, ByRef studio As List(Of String)) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.GetMovieStudio
         Dim IMDB As New IMDB.Scraper
-        IMDB.UseOFDBTitle = MySettings.UseOFDBTitle
-        IMDB.UseOFDBOutline = MySettings.UseOFDBOutline
-        IMDB.UseOFDBPlot = MySettings.UseOFDBPlot
-        IMDB.UseOFDBGenre = MySettings.UseOFDBGenre
-        IMDB.IMDBURL = MySettings.IMDBURL
+        IMDB.UseOFDBTitle = _MySettings.UseOFDBTitle
+        IMDB.UseOFDBOutline = _MySettings.UseOFDBOutline
+        IMDB.UseOFDBPlot = _MySettings.UseOFDBPlot
+        IMDB.UseOFDBGenre = _MySettings.UseOFDBGenre
+        IMDB.IMDBURL = _MySettings.IMDBURL
         studio = IMDB.GetMovieStudios(DBMovie.Movie.IMDBID)
         Return New Interfaces.ModuleResult With {.breakChain = False}
     End Function
@@ -168,6 +183,20 @@ Public Class EmberNativeScraperModule
     Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberMovieScraperModule.Init
         _AssemblyName = sAssemblyName
         LoadSettings()
+        'Must be after Load settings to retrieve the correct API key
+        _TMDBApi = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey, _MySettings.TMDBLanguage)
+        If IsNothing(_TMDBApi) Then
+            Master.eLog.WriteToErrorLog(Master.eLang.GetString(119, "TheMovieDB API is missing or not valid"), _TMDBApi.Error.status_message, "Info")
+        Else
+            If Not IsNothing(_TMDBApi.Error) AndAlso _TMDBApi.Error.status_message.Length > 0 Then
+                Master.eLog.WriteToErrorLog(_TMDBApi.Error.status_message, _TMDBApi.Error.status_code.ToString(), "Error")
+            End If
+        End If
+        _TMDBConf = _TMDBApi.GetConfiguration()
+        _TMDBApiE = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey)
+        _TMDBApiA = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey, "")
+        _TMDBConfE = _TMDBApiE.GetConfiguration()
+        _TMDB = New TMDB.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
     End Sub
 
     Function InjectSetupPostScraper() As Containers.SettingsPanel Implements Interfaces.EmberMovieScraperModule.InjectSetupPostScraper
@@ -175,19 +204,19 @@ Public Class EmberNativeScraperModule
         _setupPost = New frmMediaSettingsHolder
         LoadSettings()
         _setupPost.cbEnabled.Checked = _PostScraperEnabled
-        _setupPost.chkTrailerIMDB.Checked = MySettings.UseIMDBTrailer
-        _setupPost.chkTrailerTMDB.Checked = MySettings.UseTMDBTrailer
-        _setupPost.cbTrailerTMDBPref.Text = MySettings.UseTMDBTrailerPref
-        _setupPost.chkTrailerTMDBXBMC.Checked = MySettings.UseTMDBTrailerXBMC
+        _setupPost.chkTrailerIMDB.Checked = _MySettings.UseIMDBTrailer
+        _setupPost.chkTrailerTMDB.Checked = _MySettings.UseTMDBTrailer
+        _setupPost.cbTrailerTMDBPref.Text = _MySettings.UseTMDBTrailerPref
+        _setupPost.chkTrailerTMDBXBMC.Checked = _MySettings.UseTMDBTrailerXBMC
         _setupPost.chkScrapePoster.Checked = ConfigScrapeModifier.Poster
         _setupPost.chkScrapeFanart.Checked = ConfigScrapeModifier.Fanart
-        _setupPost.chkUseTMDB.Checked = MySettings.UseTMDB
-        _setupPost.chkUseIMPA.Checked = MySettings.UseIMPA
-        _setupPost.chkUseMPDB.Checked = MySettings.UseMPDB
-        _setupPost.cbManualETSize.Text = MySettings.ManualETSize
-        _setupPost.cbActorThumbsSize.Text = MySettings.ActorThumbsSize
-        _setupPost.txtTimeout.Text = MySettings.TrailerTimeout.ToString
-        _setupPost.chkDownloadTrailer.Checked = MySettings.DownloadTrailers
+        _setupPost.chkUseTMDB.Checked = _MySettings.UseTMDB
+        _setupPost.chkUseIMPA.Checked = _MySettings.UseIMPA
+        _setupPost.chkUseMPDB.Checked = _MySettings.UseMPDB
+        _setupPost.cbManualETSize.Text = _MySettings.ManualETSize
+        _setupPost.cbActorThumbsSize.Text = _MySettings.ActorThumbsSize
+        _setupPost.txtTimeout.Text = _MySettings.TrailerTimeout.ToString
+        _setupPost.chkDownloadTrailer.Checked = _MySettings.DownloadTrailers
         _setupPost.CheckTrailer()
         _setupPost.orderChanged()
         Spanel.Name = String.Concat(Me._Name, "PostScraper")
@@ -228,20 +257,20 @@ Public Class EmberNativeScraperModule
         _setup.chkMusicBy.Checked = ConfigOptions.bMusicBy
         _setup.chkCrew.Checked = ConfigOptions.bOtherCrew
         _setup.chkCountry.Checked = ConfigOptions.bCountry
-        _setup.chkCountryFull.Checked = MySettings.CountryFull
+        _setup.chkCountryFull.Checked = _MySettings.CountryFull
         _setup.chkTop250.Checked = ConfigOptions.bTop250
         _setup.chkCertification.Checked = ConfigOptions.bCert
-        _setup.chkOFDBTitle.Checked = MySettings.UseOFDBTitle
-        _setup.chkOFDBOutline.Checked = MySettings.UseOFDBOutline
-        _setup.chkOFDBPlot.Checked = MySettings.UseOFDBPlot
-        _setup.chkOFDBGenre.Checked = MySettings.UseOFDBGenre
+        _setup.chkOFDBTitle.Checked = _MySettings.UseOFDBTitle
+        _setup.chkOFDBOutline.Checked = _MySettings.UseOFDBOutline
+        _setup.chkOFDBPlot.Checked = _MySettings.UseOFDBPlot
+        _setup.chkOFDBGenre.Checked = _MySettings.UseOFDBGenre
         _setup.chkFullCast.Checked = ConfigOptions.bFullCast
         _setup.chkFullCrew.Checked = ConfigOptions.bFullCrew
 
-        If String.IsNullOrEmpty(MySettings.IMDBURL) Then
-            MySettings.IMDBURL = "akas.imdb.com"
+        If String.IsNullOrEmpty(_MySettings.IMDBURL) Then
+            _MySettings.IMDBURL = "akas.imdb.com"
         End If
-        _setup.txtIMDBURL.Text = MySettings.IMDBURL
+        _setup.txtIMDBURL.Text = _MySettings.IMDBURL
         _setup.orderChanged()
         SPanel.Name = String.Concat(Me._Name, "Scraper")
         SPanel.Text = Master.eLang.GetString(104, "Ember Native Movie Scrapers")
@@ -283,24 +312,24 @@ Public Class EmberNativeScraperModule
         ConfigOptions.bFullCast = AdvancedSettings.GetBooleanSetting("FullCast", True)
         ConfigOptions.bFullCrew = AdvancedSettings.GetBooleanSetting("FullCrew", True)
 
-        MySettings.IMDBURL = AdvancedSettings.GetSetting("IMDBURL", "akas.imdb.com")
-        MySettings.UseOFDBTitle = AdvancedSettings.GetBooleanSetting("UseOFDBTitle", False)
-        MySettings.UseOFDBOutline = AdvancedSettings.GetBooleanSetting("UseOFDBOutline", False)
-        MySettings.UseOFDBPlot = AdvancedSettings.GetBooleanSetting("UseOFDBPlot", False)
-        MySettings.UseOFDBGenre = AdvancedSettings.GetBooleanSetting("UseOFDBGenre", False)
-        MySettings.DownloadTrailers = AdvancedSettings.GetBooleanSetting("DownloadTraliers", False)
-        MySettings.CountryFull = AdvancedSettings.GetBooleanSetting("DoCountryFull", False)
+        _MySettings.IMDBURL = AdvancedSettings.GetSetting("IMDBURL", "akas.imdb.com")
+        _MySettings.UseOFDBTitle = AdvancedSettings.GetBooleanSetting("UseOFDBTitle", False)
+        _MySettings.UseOFDBOutline = AdvancedSettings.GetBooleanSetting("UseOFDBOutline", False)
+        _MySettings.UseOFDBPlot = AdvancedSettings.GetBooleanSetting("UseOFDBPlot", False)
+        _MySettings.UseOFDBGenre = AdvancedSettings.GetBooleanSetting("UseOFDBGenre", False)
+        _MySettings.DownloadTrailers = AdvancedSettings.GetBooleanSetting("DownloadTraliers", False)
+        _MySettings.CountryFull = AdvancedSettings.GetBooleanSetting("DoCountryFull", False)
 
-        MySettings.TrailerTimeout = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerTimeout", "10"))
-        MySettings.UseIMPA = AdvancedSettings.GetBooleanSetting("UseIMPA", False)
-        MySettings.UseMPDB = AdvancedSettings.GetBooleanSetting("UseMPDB", False)
-        MySettings.UseTMDB = AdvancedSettings.GetBooleanSetting("UseTMDB", True)
-        MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
-        MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", True)
-        MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False)
-        MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "thumb"))
-        MySettings.ActorThumbsSize = Convert.ToString(AdvancedSettings.GetSetting("ActorThumbsSize", "SY275_SX400"))
-        MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
+        _MySettings.TrailerTimeout = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerTimeout", "10"))
+        _MySettings.UseIMPA = AdvancedSettings.GetBooleanSetting("UseIMPA", False)
+        _MySettings.UseMPDB = AdvancedSettings.GetBooleanSetting("UseMPDB", False)
+        _MySettings.UseTMDB = AdvancedSettings.GetBooleanSetting("UseTMDB", True)
+        _MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
+        _MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", True)
+        _MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False)
+        _MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "thumb"))
+        _MySettings.ActorThumbsSize = Convert.ToString(AdvancedSettings.GetSetting("ActorThumbsSize", "SY275_SX400"))
+        _MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
 
         ConfigScrapeModifier.DoSearch = True
         ConfigScrapeModifier.Meta = True
@@ -311,6 +340,12 @@ Public Class EmberNativeScraperModule
         ConfigScrapeModifier.Poster = AdvancedSettings.GetBooleanSetting("DoPoster", True)
         ConfigScrapeModifier.Fanart = AdvancedSettings.GetBooleanSetting("DoFanart", True)
         ConfigScrapeModifier.Trailer = AdvancedSettings.GetBooleanSetting("DoTrailer", True)
+
+        'fix
+        _MySettings.TMDBAPIKey = "44810eefccd9cb1fa1d57e7b0d67b08d"
+        _MySettings.FallBackEng = True
+        _MySettings.TMDBLanguage = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
+
     End Sub
 
     Function PostScraper(ByRef DBMovie As Structures.DBMovie, ByVal ScrapeType As Enums.ScrapeType) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.PostScraper
@@ -320,18 +355,26 @@ Public Class EmberNativeScraperModule
         Dim pResults As Containers.ImgResult
         Dim fResults As Containers.ImgResult
         Dim tURL As String = String.Empty
-        Dim Trailer As New Trailers
+        Dim Trailer As Trailers
+        Dim aScrapeImages As ScrapeImages
+
         LoadSettings()
+        If String.IsNullOrEmpty(DBMovie.Movie.TMDBID) Then
+            _TMDB.GetMovieID(DBMovie)
+        End If
         Dim saveModifier As Structures.ScrapeModifier = Master.GlobalScrapeMod
         Master.GlobalScrapeMod = Functions.ScrapeModifierAndAlso(Master.GlobalScrapeMod, ConfigScrapeModifier)
+        Trailer = New Trailers(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
+        'Trailer.IMDBURL = _MySettings.IMDBURL
 
-        Trailer.IMDBURL = MySettings.IMDBURL
         Dim doSave As Boolean = False
-        If Master.GlobalScrapeMod.Poster AndAlso (MySettings.UseIMPA OrElse MySettings.UseMPDB OrElse MySettings.UseTMDB) Then
+
+        aScrapeImages = New ScrapeImages(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
+        If Master.GlobalScrapeMod.Poster AndAlso (_MySettings.UseIMPA OrElse _MySettings.UseMPDB OrElse _MySettings.UseTMDB) Then
             Poster.Clear()
             If Poster.IsAllowedToDownload(DBMovie, Enums.ImageType.Posters) Then
                 pResults = New Containers.ImgResult
-                If ScrapeImages.GetPreferredImage(Poster, DBMovie.Movie.IMDBID, Enums.ImageType.Posters, pResults, DBMovie.Filename, False, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
+                If aScrapeImages.GetPreferredImage(Poster, DBMovie.Movie.IMDBID, DBMovie.Movie.TMDBID, Enums.ImageType.Posters, pResults, DBMovie.Filename, False, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
                     If Not IsNothing(Poster.Image) Then
                         pResults.ImagePath = Poster.SaveAsPoster(DBMovie)
                         If Not String.IsNullOrEmpty(pResults.ImagePath) Then
@@ -343,8 +386,8 @@ Public Class EmberNativeScraperModule
                         End If
                     ElseIf ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk Then
                         MsgBox(Master.eLang.GetString(76, "A poster of your preferred size could not be found. Please choose another."), MsgBoxStyle.Information, Master.eLang.GetString(77, "No Preferred Size"))
-                        Using dImgSelect As New dlgImgSelect
-                            dImgSelect.IMDBURL = MySettings.IMDBURL
+                        Using dImgSelect As New dlgImgSelect(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApi, _TMDBApiA, _MySettings)
+                            dImgSelect.IMDBURL = _MySettings.IMDBURL
                             pResults = dImgSelect.ShowDialog(DBMovie, Enums.ImageType.Posters)
                             If Not String.IsNullOrEmpty(pResults.ImagePath) Then
                                 DBMovie.PosterPath = pResults.ImagePath
@@ -359,12 +402,12 @@ Public Class EmberNativeScraperModule
             End If
         End If
         Dim didEts As Boolean
-        If Master.GlobalScrapeMod.Fanart AndAlso MySettings.UseTMDB Then
+        If Master.GlobalScrapeMod.Fanart AndAlso _MySettings.UseTMDB Then
             Fanart.Clear()
             If Fanart.IsAllowedToDownload(DBMovie, Enums.ImageType.Fanart) Then
                 fResults = New Containers.ImgResult
                 didEts = True
-                If ScrapeImages.GetPreferredImage(Fanart, DBMovie.Movie.IMDBID, Enums.ImageType.Fanart, fResults, DBMovie.Filename, Master.GlobalScrapeMod.Extra, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
+                If aScrapeImages.GetPreferredImage(Fanart, DBMovie.Movie.IMDBID, DBMovie.Movie.TMDBID, Enums.ImageType.Fanart, fResults, DBMovie.Filename, Master.GlobalScrapeMod.Extra, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
                     If Not IsNothing(Fanart.Image) Then
                         fResults.ImagePath = Fanart.SaveAsFanart(DBMovie)
                         If Not String.IsNullOrEmpty(fResults.ImagePath) Then
@@ -377,8 +420,8 @@ Public Class EmberNativeScraperModule
                     ElseIf ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk Then
                         MsgBox(Master.eLang.GetString(78, "Fanart of your preferred size could not be found. Please choose another."), MsgBoxStyle.Information, Master.eLang.GetString(77, "No Preferred Size:"))
 
-                        Using dImgSelect As New dlgImgSelect
-                            dImgSelect.IMDBURL = MySettings.IMDBURL
+                        Using dImgSelect As New dlgImgSelect(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
+                            dImgSelect.IMDBURL = _MySettings.IMDBURL
                             fResults = dImgSelect.ShowDialog(DBMovie, Enums.ImageType.Fanart)
                             If Not String.IsNullOrEmpty(fResults.ImagePath) Then
                                 DBMovie.FanartPath = fResults.ImagePath
@@ -392,8 +435,8 @@ Public Class EmberNativeScraperModule
                 End If
             End If
         End If
-        If Master.GlobalScrapeMod.Trailer AndAlso MySettings.DownloadTrailers Then
-            tURL = Trailer.DownloadSingleTrailer(DBMovie.Filename, DBMovie.Movie.IMDBID, DBMovie.isSingle, DBMovie.Movie.Trailer)
+        If Master.GlobalScrapeMod.Trailer AndAlso _MySettings.DownloadTrailers Then
+            tURL = Trailer.DownloadSingleTrailer(DBMovie.Filename, DBMovie.Movie.IMDBID, DBMovie.Movie.TMDBID, DBMovie.isSingle, DBMovie.Movie.Trailer)
             If Not String.IsNullOrEmpty(tURL) Then
                 If tURL.Substring(0, 22) = "http://www.youtube.com" Then
                     If AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False) Then
@@ -412,7 +455,7 @@ Public Class EmberNativeScraperModule
         If Master.GlobalScrapeMod.Extra Then
             If Master.eSettings.AutoET AndAlso DBMovie.isSingle Then
                 Try
-                    ScrapeImages.GetPreferredFAasET(DBMovie.Movie.IMDBID, DBMovie.Filename)
+                    aScrapeImages.GetPreferredFAasET(DBMovie.Movie.IMDBID, DBMovie.Movie.TMDBID, DBMovie.Filename)
                     RaiseEvent MovieScraperEvent(Enums.MovieScraperEventType.ThumbsItem, True)
                 Catch ex As Exception
                 End Try
@@ -456,28 +499,28 @@ Public Class EmberNativeScraperModule
         AdvancedSettings.SetBooleanSetting("DoCountry", ConfigOptions.bCountry)
         AdvancedSettings.SetBooleanSetting("DoTop250", ConfigOptions.bTop250)
         AdvancedSettings.SetBooleanSetting("DoCert", ConfigOptions.bCert)
-        AdvancedSettings.SetSetting("IMDBURL", MySettings.IMDBURL)
+        AdvancedSettings.SetSetting("IMDBURL", _MySettings.IMDBURL)
 
         AdvancedSettings.SetBooleanSetting("FullCast", ConfigOptions.bFullCast)
         AdvancedSettings.SetBooleanSetting("FullCrew", ConfigOptions.bFullCrew)
-        AdvancedSettings.SetBooleanSetting("UseOFDBTitle", MySettings.UseOFDBTitle)
-        AdvancedSettings.SetBooleanSetting("UseOFDBOutline", MySettings.UseOFDBOutline)
-        AdvancedSettings.SetBooleanSetting("UseOFDBPlot", MySettings.UseOFDBPlot)
-        AdvancedSettings.SetBooleanSetting("UseOFDBGenre", MySettings.UseOFDBGenre)
-        AdvancedSettings.SetBooleanSetting("DownloadTraliers", MySettings.DownloadTrailers)
-        AdvancedSettings.SetBooleanSetting("DoCountryFull", MySettings.CountryFull)
+        AdvancedSettings.SetBooleanSetting("UseOFDBTitle", _MySettings.UseOFDBTitle)
+        AdvancedSettings.SetBooleanSetting("UseOFDBOutline", _MySettings.UseOFDBOutline)
+        AdvancedSettings.SetBooleanSetting("UseOFDBPlot", _MySettings.UseOFDBPlot)
+        AdvancedSettings.SetBooleanSetting("UseOFDBGenre", _MySettings.UseOFDBGenre)
+        AdvancedSettings.SetBooleanSetting("DownloadTraliers", _MySettings.DownloadTrailers)
+        AdvancedSettings.SetBooleanSetting("DoCountryFull", _MySettings.CountryFull)
 
-        AdvancedSettings.SetSetting("TrailerTimeout", MySettings.TrailerTimeout.ToString)
-        AdvancedSettings.SetBooleanSetting("UseIMPA", MySettings.UseIMPA)
-        AdvancedSettings.SetBooleanSetting("UseMPDB", MySettings.UseMPDB)
-        AdvancedSettings.SetBooleanSetting("UseTMDB", MySettings.UseTMDB)
-        AdvancedSettings.SetBooleanSetting("UseIMDBTrailer", MySettings.UseIMDBTrailer)
-        AdvancedSettings.SetBooleanSetting("UseTMDBTrailer", MySettings.UseTMDBTrailer)
-        AdvancedSettings.SetBooleanSetting("UseTMDBTrailerXBMC", MySettings.UseTMDBTrailerXBMC)
+        AdvancedSettings.SetSetting("TrailerTimeout", _MySettings.TrailerTimeout.ToString)
+        AdvancedSettings.SetBooleanSetting("UseIMPA", _MySettings.UseIMPA)
+        AdvancedSettings.SetBooleanSetting("UseMPDB", _MySettings.UseMPDB)
+        AdvancedSettings.SetBooleanSetting("UseTMDB", _MySettings.UseTMDB)
+        AdvancedSettings.SetBooleanSetting("UseIMDBTrailer", _MySettings.UseIMDBTrailer)
+        AdvancedSettings.SetBooleanSetting("UseTMDBTrailer", _MySettings.UseTMDBTrailer)
+        AdvancedSettings.SetBooleanSetting("UseTMDBTrailerXBMC", _MySettings.UseTMDBTrailerXBMC)
 
-        AdvancedSettings.SetSetting("ManualETSize", MySettings.ManualETSize.ToString)
-        AdvancedSettings.SetSetting("ActorThumbsSize", MySettings.ActorThumbsSize.ToString)
-        AdvancedSettings.SetSetting("UseTMDBTrailerPref", MySettings.UseTMDBTrailerPref.ToString)
+        AdvancedSettings.SetSetting("ManualETSize", _MySettings.ManualETSize.ToString)
+        AdvancedSettings.SetSetting("ActorThumbsSize", _MySettings.ActorThumbsSize.ToString)
+        AdvancedSettings.SetSetting("UseTMDBTrailerPref", _MySettings.UseTMDBTrailerPref.ToString)
 
         AdvancedSettings.SetBooleanSetting("DoPoster", ConfigScrapeModifier.Poster)
         AdvancedSettings.SetBooleanSetting("DoFanart", ConfigScrapeModifier.Fanart)
@@ -485,17 +528,17 @@ Public Class EmberNativeScraperModule
     End Sub
 
     Sub SaveSetupPostScraper(ByVal DoDispose As Boolean) Implements Interfaces.EmberMovieScraperModule.SaveSetupPostScraper
-        MySettings.DownloadTrailers = _setupPost.chkDownloadTrailer.Checked
-        MySettings.UseIMDBTrailer = _setupPost.chkTrailerIMDB.Checked
-        MySettings.UseTMDBTrailer = _setupPost.chkTrailerTMDB.Checked
-        MySettings.UseTMDBTrailerXBMC = _setupPost.chkTrailerTMDBXBMC.Checked
-        MySettings.TrailerTimeout = Convert.ToInt32(_setupPost.txtTimeout.Text)
-        MySettings.UseTMDB = _setupPost.chkUseTMDB.Checked
-        MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
-        MySettings.UseMPDB = _setupPost.chkUseMPDB.Checked
-        MySettings.ManualETSize = _setupPost.cbManualETSize.Text
-        MySettings.ActorThumbsSize = _setupPost.cbActorThumbsSize.Text
-        MySettings.UseTMDBTrailerPref = _setupPost.cbTrailerTMDBPref.Text
+        _MySettings.DownloadTrailers = _setupPost.chkDownloadTrailer.Checked
+        _MySettings.UseIMDBTrailer = _setupPost.chkTrailerIMDB.Checked
+        _MySettings.UseTMDBTrailer = _setupPost.chkTrailerTMDB.Checked
+        _MySettings.UseTMDBTrailerXBMC = _setupPost.chkTrailerTMDBXBMC.Checked
+        _MySettings.TrailerTimeout = Convert.ToInt32(_setupPost.txtTimeout.Text)
+        _MySettings.UseTMDB = _setupPost.chkUseTMDB.Checked
+        _MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
+        _MySettings.UseMPDB = _setupPost.chkUseMPDB.Checked
+        _MySettings.ManualETSize = _setupPost.cbManualETSize.Text
+        _MySettings.ActorThumbsSize = _setupPost.cbActorThumbsSize.Text
+        _MySettings.UseTMDBTrailerPref = _setupPost.cbTrailerTMDBPref.Text
         ConfigScrapeModifier.Poster = _setupPost.chkScrapePoster.Checked
         ConfigScrapeModifier.Fanart = _setupPost.chkScrapeFanart.Checked
         SaveSettings()
@@ -509,15 +552,15 @@ Public Class EmberNativeScraperModule
 
     Sub SaveSetupScraper(ByVal DoDispose As Boolean) Implements Interfaces.EmberMovieScraperModule.SaveSetupScraper
         If Not String.IsNullOrEmpty(_setup.txtIMDBURL.Text) Then
-            MySettings.IMDBURL = Strings.Replace(_setup.txtIMDBURL.Text, "http://", String.Empty)
+            _MySettings.IMDBURL = Strings.Replace(_setup.txtIMDBURL.Text, "http://", String.Empty)
         Else
-            MySettings.IMDBURL = "akas.imdb.com"
+            _MySettings.IMDBURL = "akas.imdb.com"
         End If
-        MySettings.UseOFDBTitle = _setup.chkOFDBTitle.Checked
-        MySettings.UseOFDBOutline = _setup.chkOFDBOutline.Checked
-        MySettings.UseOFDBPlot = _setup.chkOFDBPlot.Checked
-        MySettings.UseOFDBGenre = _setup.chkOFDBGenre.Checked
-        MySettings.CountryFull = _setup.chkCountryFull.Checked
+        _MySettings.UseOFDBTitle = _setup.chkOFDBTitle.Checked
+        _MySettings.UseOFDBOutline = _setup.chkOFDBOutline.Checked
+        _MySettings.UseOFDBPlot = _setup.chkOFDBPlot.Checked
+        _MySettings.UseOFDBGenre = _setup.chkOFDBGenre.Checked
+        _MySettings.CountryFull = _setup.chkCountryFull.Checked
         ConfigOptions.bTitle = _setup.chkTitle.Checked
         ConfigOptions.bYear = _setup.chkYear.Checked
         ConfigOptions.bMPAA = _setup.chkMPAA.Checked
@@ -553,11 +596,11 @@ Public Class EmberNativeScraperModule
 
     Function Scraper(ByRef DBMovie As Structures.DBMovie, ByRef ScrapeType As Enums.ScrapeType, ByRef Options As Structures.ScrapeOptions) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.Scraper
         'LoadSettings()
-        IMDB.IMDBURL = MySettings.IMDBURL
-        IMDB.UseOFDBTitle = MySettings.UseOFDBTitle
-        IMDB.UseOFDBOutline = MySettings.UseOFDBOutline
-        IMDB.UseOFDBPlot = MySettings.UseOFDBPlot
-        IMDB.UseOFDBGenre = MySettings.UseOFDBGenre
+        IMDB.IMDBURL = _MySettings.IMDBURL
+        IMDB.UseOFDBTitle = _MySettings.UseOFDBTitle
+        IMDB.UseOFDBOutline = _MySettings.UseOFDBOutline
+        IMDB.UseOFDBPlot = _MySettings.UseOFDBPlot
+        IMDB.UseOFDBGenre = _MySettings.UseOFDBGenre
         Dim tTitle As String = String.Empty
         Dim OldTitle As String = DBMovie.Movie.Title
 
@@ -589,7 +632,7 @@ Public Class EmberNativeScraperModule
             End Select
             If ScrapeType = Enums.ScrapeType.SingleScrape Then
                 Using dSearch As New dlgIMDBSearchResults
-                    dSearch.IMDBURL = MySettings.IMDBURL
+                    dSearch.IMDBURL = _MySettings.IMDBURL
                     Dim tmpTitle As String = DBMovie.Movie.Title
                     If String.IsNullOrEmpty(tmpTitle) Then
                         If FileUtils.Common.isVideoTS(DBMovie.Filename) Then
@@ -652,16 +695,19 @@ Public Class EmberNativeScraperModule
     End Function
 
     Function SelectImageOfType(ByRef mMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.SelectImageOfType
+        If String.IsNullOrEmpty(mMovie.Movie.TMDBID) Then
+            _TMDB.GetMovieID(mMovie)
+        End If
         If preload AndAlso _DLType = Enums.ImageType.Fanart AndAlso Not IsNothing(dFImgSelect) Then
             pResults = dFImgSelect.ShowDialog()
             dFImgSelect = Nothing
         Else
-            Using dImgSelect As New dlgImgSelect
+            Using dImgSelect As New dlgImgSelect(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
                 If preload Then
-                    dFImgSelect = New dlgImgSelect
+                    dFImgSelect = New dlgImgSelect(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
                     dFImgSelect.PreLoad(mMovie, Enums.ImageType.Fanart, _isEdit)
                 End If
-                dImgSelect.IMDBURL = MySettings.IMDBURL
+                dImgSelect.IMDBURL = _MySettings.IMDBURL
                 pResults = dImgSelect.ShowDialog(mMovie, _DLType, _isEdit)
             End Using
         End If
@@ -679,7 +725,7 @@ Public Class EmberNativeScraperModule
 
 #Region "Nested Types"
 
-    Structure _MySettings
+    Structure sMySettings
 
 #Region "Fields"
 
@@ -700,6 +746,12 @@ Public Class EmberNativeScraperModule
         Dim ActorThumbsSize As String
         Dim UseTMDBTrailerPref As String
         Dim CountryFull As Boolean
+
+        'fix
+        Dim TMDBAPIKey As String
+        Dim TMDBLanguage As String
+        Dim FallBackEng As Boolean
+
 #End Region 'Fields
 
     End Structure

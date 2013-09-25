@@ -21,6 +21,8 @@
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports EmberAPI
+Imports WatTmdb
+Imports EmberScraperModule.EmberNativeScraperModule
 
 Public Class dlgTrailer
 
@@ -28,11 +30,19 @@ Public Class dlgTrailer
 
     Public IMDBURL As String
 
+    Private _MySettings As New sMySettings
+    Private _TMDBConf As V3.TmdbConfiguration
+    Private _TMDBConfE As V3.TmdbConfiguration
+    Private _TMDBApi As V3.Tmdb
+    Private _TMDBApiE As V3.Tmdb
+    Private _TMDBApiA As V3.Tmdb
+
     Friend WithEvents bwCompileList As New System.ComponentModel.BackgroundWorker
     Friend WithEvents bwDownloadTrailer As New System.ComponentModel.BackgroundWorker
 
-    Private cTrailer As New Trailers
+    Private cTrailer As Trailers
     Private imdbID As String = String.Empty
+    Private tmdbID As String = String.Empty
     Private prePath As String = String.Empty
     Private sPath As String = String.Empty
     Private tArray As New List(Of String)
@@ -42,8 +52,24 @@ Public Class dlgTrailer
 
 #Region "Methods"
 
-    Public Overloads Function ShowDialog(ByVal _imdbID As String, ByVal _sPath As String) As String
+    Public Sub New(ByRef tTMDBConf As V3.TmdbConfiguration, ByRef tTMDBConfE As V3.TmdbConfiguration, ByRef tTMDBApi As V3.Tmdb, ByRef tTMDBApiE As V3.Tmdb, ByRef tTMDBApiA As V3.Tmdb, ByRef tMySettings As EmberNativeScraperModule.sMySettings)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        _MySettings = tMySettings
+        _TMDBApi = tTMDBApi
+        _TMDBConf = tTMDBConf
+        _TMDBApiE = tTMDBApiE
+        _TMDBApiA = tTMDBApiA
+        _TMDBConfE = tTMDBConfE
+        cTrailer = New Trailers(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _TMDBApiA, _MySettings)
+    End Sub
+
+    Public Overloads Function ShowDialog(ByVal _imdbID As String, ByVal _tmdbID As String, ByVal _sPath As String) As String
         Me.imdbID = _imdbID
+        Me.tmdbID = _tmdbID
         Me.sPath = _sPath
 
         If MyBase.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -297,7 +323,7 @@ Public Class dlgTrailer
 
     Private Sub bwCompileList_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwCompileList.DoWork
         Try
-            tArray = cTrailer.GetTrailers(Me.imdbID, False)
+            tArray = cTrailer.GetTrailers(Me.imdbID, Me.tmdbID, False)
 
             If Me.bwCompileList.CancellationPending Then
                 e.Cancel = True

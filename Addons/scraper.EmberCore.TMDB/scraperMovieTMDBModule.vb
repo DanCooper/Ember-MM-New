@@ -187,10 +187,10 @@ Public Class EmberTMDBScraperModule
 				Master.eLog.WriteToErrorLog(_TMDBApi.Error.status_message, _TMDBApi.Error.status_code.ToString(), "Error")
 			End If
 		End If
-		_TMDBConf = _TMDBApi.GetConfiguration()
-			_TMDBApiE = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey)
-			_TMDBConfE = _TMDBApiE.GetConfiguration()
-			_TMDBg = New TMDBg.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
+        _TMDBConf = _TMDBApi.GetConfiguration()
+        _TMDBApiE = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey)
+        _TMDBConfE = _TMDBApiE.GetConfiguration()
+        _TMDBg = New TMDBg.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
 
 	End Sub
 

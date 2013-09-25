@@ -73,6 +73,10 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\RestSharp.104.1\lib\net35\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data.SQLite">
       <HintPath>..\..\packages\System.Data.SQLite.1.0.84.0\lib\net20\System.Data.SQLite.dll</HintPath>
@@ -295,6 +299,10 @@
       <Project>{208AA35E-C6AE-4D2D-A9DD-B6EFD19A4279}</Project>
       <Name>EmberAPI</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WatTmdb\WatTmdb.csproj">
+      <Project>{efc11645-fab4-4c30-a498-29f5ecdf77e8}</Project>
+      <Name>WatTmdb</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

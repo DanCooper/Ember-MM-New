@@ -19,6 +19,8 @@
 ' ################################################################################
 
 Imports EmberAPI
+Imports RestSharp
+Imports WatTmdb
 
 Namespace TMDB
 
@@ -28,9 +30,21 @@ Namespace TMDB
 
         Public IMDBURL As String
 
-        Friend WithEvents bwTMDB As New System.ComponentModel.BackgroundWorker
+        Private Const APIKey As String = "44810eefccd9cb1fa1d57e7b0d67b08d"
 
-        Private Const APIKey As String = "b1ecff8c76278262b27de1569f57f6bd"
+        'fix
+        Private _TMDBConf As V3.TmdbConfiguration
+        Private _TMDBConfE As V3.TmdbConfiguration
+        Private _TMDBApi As V3.Tmdb
+        Private _TMDBApiE As V3.Tmdb
+        Private _TMDBApiA As V3.Tmdb
+        Private _MySettings As EmberNativeScraperModule.sMySettings
+
+        Private backdrop_names(3) As v3Size
+        Private poster_names(5) As v3Size
+
+
+        Friend WithEvents bwTMDB As New System.ComponentModel.BackgroundWorker
 
 #End Region 'Fields
 
@@ -44,6 +58,46 @@ Namespace TMDB
 
 #Region "Methods"
 
+        Public Sub New(ByRef tTMDBConf As V3.TmdbConfiguration, ByRef tTMDBConfE As V3.TmdbConfiguration, ByRef tTMDBApi As V3.Tmdb, ByRef tTMDBApiE As V3.Tmdb, ByRef tTMDBApiA As V3.Tmdb, ByRef tMySettings As EmberNativeScraperModule.sMySettings)
+            _TMDBConf = tTMDBConf
+            _TMDBConfE = tTMDBConfE
+            _TMDBApi = tTMDBApi
+            _TMDBApiE = tTMDBApiE
+            _TMDBApiA = tTMDBApiA
+            _MySettings = tMySettings
+            ' v3 does not have description anymore
+            poster_names(0).description = "thumb"
+            poster_names(0).size = "w92"
+            poster_names(0).width = 92
+            poster_names(1).description = "w154"
+            poster_names(1).size = "w154"
+            poster_names(1).width = 154
+            poster_names(2).description = "cover"
+            poster_names(2).size = "w185"
+            poster_names(2).width = 185
+            poster_names(3).description = "w342"
+            poster_names(3).size = "w342"
+            poster_names(3).width = 342
+            poster_names(4).description = "mid"
+            poster_names(4).size = "w500"
+            poster_names(4).width = 500
+            poster_names(5).description = "original"
+            poster_names(5).size = "original"
+            poster_names(5).width = 0
+            backdrop_names(0).description = "thumb"
+            backdrop_names(0).size = "w300"
+            backdrop_names(0).width = 300
+            backdrop_names(1).description = "poster"
+            backdrop_names(1).size = "w780"
+            backdrop_names(1).width = 780
+            backdrop_names(2).description = "w1280"
+            backdrop_names(2).size = "w1280"
+            backdrop_names(2).width = 1280
+            backdrop_names(3).description = "original"
+            backdrop_names(3).size = "original"
+            backdrop_names(3).width = 0
+        End Sub
+
         Public Sub Cancel()
             If bwTMDB.IsBusy Then bwTMDB.CancelAsync()
 
@@ -53,142 +107,102 @@ Namespace TMDB
             End While
         End Sub
 
-        Public Sub GetImagesAsync(ByVal imdbID As String, ByVal sType As String)
+        Public Sub GetImagesAsync(ByVal imdbID As String, ByVal tmdbID As String, ByVal sType As String)
             Try
                 If Not bwTMDB.IsBusy Then
                     bwTMDB.WorkerSupportsCancellation = True
                     bwTMDB.WorkerReportsProgress = True
-                    bwTMDB.RunWorkerAsync(New Arguments With {.Parameter = imdbID, .sType = sType})
+                    bwTMDB.RunWorkerAsync(New Arguments With {.Parameter = imdbID, .Parameter2 = tmdbID, .sType = sType})
                 End If
             Catch ex As Exception
                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
             End Try
         End Sub
 
-        Public Function GetTMDBImages(ByVal imdbID As String, ByVal sType As String) As List(Of MediaContainers.Image)
-            Dim alPosters As New List(Of MediaContainers.Image)
-            Dim xmlTMDB As XDocument
-            Dim sHTTP As New HTTP
-
-            If bwTMDB.CancellationPending Then Return Nothing
+        Public Sub GetMovieID(ByRef DBMovie As Structures.DBMovie)
             Try
-                Dim ApiXML As String = sHTTP.DownloadData(String.Format("http://api.themoviedb.org/2.1/Movie.getImages/en/xml/{0}/tt{1}", APIKey, imdbID))
-				If Not String.IsNullOrEmpty(ApiXML) Then
-					Try
-						xmlTMDB = XDocument.Parse(ApiXML)
-					Catch
-						Return alPosters
-					End Try
+                Dim Movie As WatTmdb.V3.TmdbMovie
+                Dim MovieE As WatTmdb.V3.TmdbMovie
 
-					If bwTMDB.WorkerReportsProgress Then
-						bwTMDB.ReportProgress(1)
-					End If
+                If bwTMDB.CancellationPending Then Return
 
-					If bwTMDB.CancellationPending Then Return Nothing
-
-					If Not xmlTMDB...<OpenSearchDescription>...<movies>.Value = "Nothing found." Then
-						If sType = "poster" Then
-							Dim tmdbImages = From iNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<images>...<poster>.Elements Select iNode
-							If tmdbImages.Count > 0 Then
-								For Each tmdbI As XElement In tmdbImages
-									Dim parentID As String = tmdbI.Parent.Attribute("id").Value
-									If bwTMDB.CancellationPending Then Return Nothing
-									Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
-									alPosters.Add(tmpPoster)
-								Next
-							End If
-						ElseIf sType = "backdrop" Then
-							Dim tmdbImages = From iNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<images>...<backdrop>.Elements Select iNode
-							If tmdbImages.Count > 0 Then
-								For Each tmdbI As XElement In tmdbImages
-									Dim parentID As String = tmdbI.Parent.Attribute("id").Value
-									If bwTMDB.CancellationPending Then Return Nothing
-									Debug.Print("{0}/t{1}", tmdbI.@size, tmdbI.@url)
-									Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
-									alPosters.Add(tmpPoster)
-								Next
-							End If
-						End If
-					End If
-				End If
-
-                If bwTMDB.WorkerReportsProgress Then
-                    bwTMDB.ReportProgress(2)
+                Movie = _TMDBApi.GetMovieByIMDB(DBMovie.Movie.ID, _MySettings.TMDBLanguage)
+                MovieE = _TMDBApiE.GetMovieByIMDB(DBMovie.Movie.ID)
+                If IsNothing(Movie) AndAlso Not _MySettings.FallBackEng Then
+                    Return
                 End If
+
+                DBMovie.Movie.TMDBID = CStr(IIf(String.IsNullOrEmpty(Movie.id.ToString) AndAlso _MySettings.FallBackEng, MovieE.id.ToString, Movie.id.ToString))
+
             Catch ex As Exception
                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
             End Try
 
-            sHTTP = Nothing
+        End Sub
 
-            Return alPosters
-        End Function
-
-        Public Function GetTrailers(ByVal imdbID As String) As String
-            Dim xmlTMDB As XDocument
-            Dim sHTTP As New HTTP
-            Dim tLang As String
-
-            tLang = AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en")
+        Public Function GetTMDBImages(ByVal imdbID As String, ByVal tmdbID As String, ByVal sType As String) As List(Of MediaContainers.Image)
+            Dim alPosters As New List(Of MediaContainers.Image)
+            Dim images As V3.TmdbMovieImages
+            Dim aW, aH As Integer
 
             If bwTMDB.CancellationPending Then Return Nothing
             Try
-                Dim ApiXML As String = sHTTP.DownloadData(String.Format("http://api.themoviedb.org/2.1/Movie.imdbLookup/en/xml/{0}/tt{1}", APIKey, imdbID))
-                sHTTP = Nothing
-
-                If Not String.IsNullOrEmpty(ApiXML) Then
-                    Try
-                        xmlTMDB = XDocument.Parse(ApiXML)
-                    Catch
-                        Return String.Empty
-                    End Try
-
-                    If bwTMDB.WorkerReportsProgress Then
-                        bwTMDB.ReportProgress(1)
+                images = _TMDBApiA.GetMovieImages(CInt(tmdbID))
+                If sType = "poster" Then
+                    If IsNothing(images.posters) OrElse images.posters.Count = 0 Then
+                        images = _TMDBApiE.GetMovieImages(CInt(tmdbID))
+                        If IsNothing(images.posters) OrElse images.posters.Count = 0 Then
+                            Return alPosters
+                        End If
                     End If
-                    If bwTMDB.CancellationPending Then Return Nothing
-
-                    Dim tmdbNode = From xNode In xmlTMDB.Elements
-
-                    If tmdbNode.Count > 0 Then
-                        If Not tmdbNode(0).Value = "Your query didn't return any results." Then
-                            Dim movieID As String = xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<id>.Value
-                            Dim i As Integer
-
-
-                            For i = 0 To 1 Step 1
-                                sHTTP = New HTTP
-                                ApiXML = sHTTP.DownloadData(String.Format("http://api.themoviedb.org/2.1/Movie.getInfo/{0}/xml/{1}/{2}", tLang, APIKey, movieID))
-                                sHTTP = Nothing
-
-                                If Not String.IsNullOrEmpty(ApiXML) Then
-
-                                    Try
-                                        xmlTMDB = XDocument.Parse(ApiXML)
-                                    Catch
-                                        Return String.Empty
-                                    End Try
-
-                                    If bwTMDB.WorkerReportsProgress Then
-                                        bwTMDB.ReportProgress(2)
-                                    End If
-
-                                    If bwTMDB.CancellationPending Then Return Nothing
-
-                                    Dim Trailers = From tNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie> Select tNode.<trailer>
-                                    If Trailers.Count > 0 AndAlso Not String.IsNullOrEmpty(Trailers(0).Value) Then
-                                        If Trailers(0).Value.ToLower.IndexOf("youtube.com") > 0 Then
-                                            Return Trailers(0).Value
-                                            i += 1
-                                        End If
-                                    Else
-                                        tLang = "en"
-                                    End If
-                                End If
-                            Next
+                Else
+                    If IsNothing(images.backdrops) OrElse images.backdrops.Count = 0 Then
+                        images = _TMDBApiE.GetMovieImages(CInt(tmdbID))
+                        If IsNothing(images.backdrops) OrElse images.backdrops.Count = 0 Then
+                            Return alPosters
                         End If
                     End If
                 End If
+                If bwTMDB.WorkerReportsProgress Then
+                    bwTMDB.ReportProgress(1)
+                End If
+
+                If bwTMDB.CancellationPending Then Return Nothing
+
+                If sType = "poster" Then
+                    For Each tmdbI As V3.Poster In images.posters
+                        If bwTMDB.CancellationPending Then Return Nothing
+                        For Each aSize In poster_names
+                            Select Case aSize.size
+                                Case "original"
+                                    aW = tmdbI.width
+                                    aH = tmdbI.height
+                                Case Else
+                                    aW = aSize.width
+                                    aH = CInt(aW / tmdbI.aspect_ratio)
+                            End Select
+                            Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = tmdbI.file_path}
+                            alPosters.Add(tmpPoster)
+                        Next
+                    Next
+                ElseIf sType = "backdrop" Then
+                    For Each tmdbI As V3.Backdrop In images.backdrops
+                        If bwTMDB.CancellationPending Then Return Nothing
+                        For Each aSize In backdrop_names
+                            Select Case aSize.size
+                                Case "original"
+                                    aW = tmdbI.width
+                                    aH = tmdbI.height
+                                Case Else
+                                    aW = aSize.width
+                                    aH = CInt(aW / tmdbI.aspect_ratio)
+                            End Select
+                            Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = tmdbI.file_path}
+                            alPosters.Add(tmpPoster)
+                        Next
+                    Next
+                End If
+
                 If bwTMDB.WorkerReportsProgress Then
                     bwTMDB.ReportProgress(3)
                 End If
@@ -196,13 +210,53 @@ Namespace TMDB
                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
             End Try
 
-            Return String.Empty
+            Return alPosters
+        End Function
+
+        Public Function GetTrailers(ByVal tmdbID As String) As List(Of String)
+            Dim trailers As V3.TmdbMovieTrailers
+            Dim YT As New List(Of String)
+
+            Try
+                If bwTMDB.CancellationPending Then Return Nothing
+                trailers = _TMDBApi.GetMovieTrailers(CInt(tmdbID), _MySettings.TMDBLanguage)
+                If IsNothing(trailers.youtube) OrElse trailers.youtube.Count = 0 Then
+                    trailers = _TMDBApiE.GetMovieTrailers(CInt(tmdbID))
+                    If IsNothing(trailers.youtube) OrElse trailers.youtube.Count = 0 Then
+                        Return Nothing
+                    End If
+                End If
+
+                If bwTMDB.WorkerReportsProgress Then
+                    bwTMDB.ReportProgress(1)
+                End If
+                If bwTMDB.CancellationPending Then Return Nothing
+
+                'If bwTMDB.WorkerReportsProgress Then
+                '	bwTMDB.ReportProgress(2)
+                'End If
+
+                If trailers.youtube.Count > 0 Then
+                    For Each trailer In trailers.youtube
+                        YT.Add(String.Format("http://www.youtube.com/watch?v={0}{1})", trailer.source, CStr(IIf(trailer.size = "HD", "&hd=1", ""))))
+                    Next
+                End If
+
+                If bwTMDB.WorkerReportsProgress Then
+                    bwTMDB.ReportProgress(3)
+                End If
+
+            Catch ex As Exception
+                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            End Try
+
+            Return YT
         End Function
 
         Private Sub bwTMDB_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwTMDB.DoWork
             Dim Args As Arguments = DirectCast(e.Argument, Arguments)
             Try
-                e.Result = GetTMDBImages(Args.Parameter, Args.sType)
+                e.Result = GetTMDBImages(Args.Parameter, Args.Parameter2, Args.sType)
             Catch ex As Exception
                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
                 e.Result = Nothing
@@ -230,7 +284,20 @@ Namespace TMDB
 #Region "Fields"
 
             Dim Parameter As String
+            Dim Parameter2 As String
             Dim sType As String
+
+#End Region 'Fields
+
+        End Structure
+
+        Private Structure v3Size
+
+#Region "Fields"
+
+            Dim size As String
+            Dim description As String
+            Dim width As Integer
 
 #End Region 'Fields
 
