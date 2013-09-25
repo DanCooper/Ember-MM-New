@@ -1,3 +1,22 @@
+Changelog 1.3.0.15 (25.09.2013)
+
+Ember Main:
+- fixed: native scraper
+- fixed: genre [none] in tv show window does not disable all other genres
+- fixed: movie.nfo handling (Cocotus)
+- fixed: progressive setting in metadata (Cocotus)
+- fixed: -480p & -720p bug in season file name (rgls)
+- updated: ffmpeg
+
+Offline Media Manager:
+- fixed: tagline slider position and size
+- fixed: many other bugs
+- added: 1080 & DV PAL Wide
+- added: trailer support (if activated in settings)
+         ATTENTION: changing movie title is not possible in Offline Media Manager if you download trailers! Use the "Edit Movie" window.
+
+
+
 Changelog 1.3.0.14 (13.08.2013)
 
 Ember Main:
