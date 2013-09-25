@@ -50,6 +50,9 @@ Public Class Scanner
         Dim retSeason As New List(Of Seasons)
         Dim cSeason As Seasons
 
+        sPath = Strings.Replace(sPath, "-480p", String.Empty)
+        sPath = Strings.Replace(sPath, "-720p", String.Empty)
+
         For Each rShow As Settings.TVShowRegEx In Master.eSettings.TVShowRegexes
             Try
                 For Each sMatch As Match In Regex.Matches(If(rShow.SeasonFromDirectory, Directory.GetParent(sPath).Name, Path.GetFileNameWithoutExtension(sPath)), rShow.SeasonRegex, RegexOptions.IgnoreCase)
