@@ -141,7 +141,12 @@ Namespace TMDB
         End Sub
 
         Public Function GetTMDBImages(ByVal imdbID As String, ByVal tmdbID As String, ByVal sType As String) As List(Of MediaContainers.Image)
-            Dim alPosters As New List(Of MediaContainers.Image)
+            Dim alPosters As New List(Of MediaContainers.Image) 'main poster list
+            Dim alPostersP As New List(Of MediaContainers.Image) 'preferred language poster list
+            Dim alPostersE As New List(Of MediaContainers.Image) 'english poster list
+            Dim alPostersO As New List(Of MediaContainers.Image) 'all others poster list
+            Dim alPostersOs As New List(Of MediaContainers.Image) 'all others sorted poster list
+            Dim alPostersN As New List(Of MediaContainers.Image) 'neutral/none language poster list
             Dim images As V3.TmdbMovieImages
             Dim aW, aH As Integer
 
@@ -181,10 +186,31 @@ Namespace TMDB
                                     aW = aSize.width
                                     aH = CInt(aW / tmdbI.aspect_ratio)
                             End Select
-                            Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = tmdbI.file_path}
-                            alPosters.Add(tmpPoster)
+                            Dim tmpPoster As New MediaContainers.Image With {.ShortLang = tmdbI.iso_639_1, .LongLang = If(String.IsNullOrEmpty(tmdbI.iso_639_1), "", Localization.ISOGetLangByCode2(tmdbI.iso_639_1)), .URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = tmdbI.file_path}
+
+                            If tmpPoster.ShortLang = _MySettings.TMDBLanguage Then
+                                alPostersP.Add(tmpPoster)
+                            ElseIf tmpPoster.ShortLang = "en" Then
+                                alPostersE.Add(tmpPoster)
+                            ElseIf tmpPoster.ShortLang = "xx" Then
+                                alPostersN.Add(tmpPoster)
+                            ElseIf String.IsNullOrEmpty(tmpPoster.ShortLang) Then
+                                alPostersN.Add(tmpPoster)
+                            Else
+                                alPostersO.Add(tmpPoster)
+                            End If
                         Next
                     Next
+
+                    For Each xPoster As MediaContainers.Image In alPostersO.OrderBy(Function(p) (p.LongLang))
+                        alPostersOs.Add(xPoster)
+                    Next
+
+                    alPosters.AddRange(alPostersP)
+                    alPosters.AddRange(alPostersE)
+                    alPosters.AddRange(alPostersOs)
+                    alPosters.AddRange(alPostersN)
+
                 ElseIf sType = "backdrop" Then
                     For Each tmdbI As V3.Backdrop In images.backdrops
                         If bwTMDB.CancellationPending Then Return Nothing
@@ -197,7 +223,7 @@ Namespace TMDB
                                     aW = aSize.width
                                     aH = CInt(aW / tmdbI.aspect_ratio)
                             End Select
-                            Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = tmdbI.file_path}
+                            Dim tmpPoster As New MediaContainers.Image With {.ShortLang = tmdbI.iso_639_1, .LongLang = If(String.IsNullOrEmpty(tmdbI.iso_639_1), "", Localization.ISOGetLangByCode2(tmdbI.iso_639_1)), .URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = tmdbI.file_path}
                             alPosters.Add(tmpPoster)
                         Next
                     Next

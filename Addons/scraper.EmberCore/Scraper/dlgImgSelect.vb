@@ -187,7 +187,7 @@ Public Class dlgImgSelect
                 Me.lblImage(iIndex).BackColor = Color.White
                 Me.lblImage(iIndex).TextAlign = System.Drawing.ContentAlignment.MiddleCenter
                 If IsTMDBURL(sURL) Then
-                    Me.lblImage(iIndex).Text = Master.eLang.GetString(55, "Multiple")
+                    Me.lblImage(iIndex).Text = If(String.IsNullOrEmpty(poster.LongLang), Master.eLang.GetString(55, "Multiple"), Master.eLang.GetString(55, "Multiple") & Environment.NewLine & poster.LongLang)
                 Else
                     Me.lblImage(iIndex).Text = String.Format("{0}x{1} ({2})", Me.pbImage(iIndex).Image.Width.ToString, Me.pbImage(iIndex).Image.Height.ToString, sDescription)
                 End If
@@ -1080,7 +1080,7 @@ Public Class dlgImgSelect
             End If
 
             If posters.Count > 0 Then
-                For Each xPoster As MediaContainers.Image In posters.OrderBy(Function(p) RemoveServerURL(p.URL))
+                For Each xPoster As MediaContainers.Image In posters '.OrderBy(Function(p) RemoveServerURL(p.URL))
                     If Not IsNothing(xPoster.WebImage.Image) AndAlso (Me.DLType = Enums.ImageType.Fanart OrElse Not (IsTMDBURL(xPoster.URL) AndAlso Not xPoster.Description = "cover")) Then
                         Me.AddImage(xPoster.WebImage.Image, xPoster.Description, iIndex, xPoster.URL, xPoster.isChecked, xPoster)
                         iIndex += 1

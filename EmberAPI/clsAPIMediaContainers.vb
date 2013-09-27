@@ -1796,6 +1796,8 @@ Namespace MediaContainers
         Public Property URL As String
         Public Property WebImage As Images
         Public Property ParentID As String
+        Public Property ShortLang As String
+        Public Property LongLang As String
 #End Region 'Properties
 
 #Region "Methods"
