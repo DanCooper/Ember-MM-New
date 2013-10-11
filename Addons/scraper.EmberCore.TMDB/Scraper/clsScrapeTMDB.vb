@@ -211,7 +211,7 @@ Namespace TMDB
 
 				If trailers.youtube.Count > 0 Then
 					For Each trailer In trailers.youtube
-						YT.Add(String.Format("http://www.youtube.com/watch?v={0}{1})", trailer.source, CStr(IIf(trailer.size = "HD", "&hd=1", ""))))
+                        YT.Add(String.Format("http://www.youtube.com/watch?v={0}{1}", trailer.source, CStr(IIf(trailer.size = "HD", "&hd=1", ""))))
 					Next
 				End If
 
