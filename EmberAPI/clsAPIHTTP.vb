@@ -390,7 +390,7 @@ Public Class HTTP
 				End Using
 			End If
 		Catch ex As Exception
-			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error", False)
+            'Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error", False)
 		End Try
 	End Sub
 
