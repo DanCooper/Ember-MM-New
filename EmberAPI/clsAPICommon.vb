@@ -608,17 +608,19 @@ Public Class Enums
         Posters = 0
         Fanart = 1
         ASPoster = 2
+        Banner = 3
     End Enum
 
     Public Enum TVImageType As Integer
         All = 0
         ShowPoster = 1
         ShowFanart = 2
-        SeasonPoster = 3
-        SeasonFanart = 4
-        AllSeasonPoster = 5
-        EpisodePoster = 6
-        EpisodeFanart = 7
+        ShowBanner = 3
+        SeasonPoster = 4
+        SeasonFanart = 5
+        AllSeasonPoster = 6
+        EpisodePoster = 7
+        EpisodeFanart = 8
     End Enum
 
     Public Enum TVScraperEventType As Integer
@@ -1163,6 +1165,7 @@ Public Class Structures
         Dim ShowNfoPath As String
         Dim ShowPath As String
         Dim ShowPosterPath As String
+        Dim ShowBannerPath As String
         Dim Source As String
         Dim TVEp As MediaContainers.EpisodeDetails
         Dim TVShow As MediaContainers.TVShow

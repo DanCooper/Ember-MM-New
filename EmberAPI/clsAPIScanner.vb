@@ -697,6 +697,11 @@ Public Class Scanner
                 tShow.Poster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
+            If String.IsNullOrEmpty(tShow.Banner) AndAlso Master.eSettings.ShowBannerJPG Then
+                fName = Path.Combine(parPath, "banner.jpg")
+                tShow.Banner = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+            End If
+
             If Master.eSettings.ShowFanartJPG Then
                 fName = Path.Combine(parPath, "fanart.jpg")
                 tShow.Fanart = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
@@ -1429,6 +1434,7 @@ Public Class Scanner
                     tmpTVDB.ShowPath = TVContainer.ShowPath
                     tmpTVDB.ShowNfoPath = TVContainer.Nfo
                     tmpTVDB.ShowPosterPath = TVContainer.Poster
+                    tmpTVDB.ShowBannerPath = TVContainer.Banner
                     tmpTVDB.ShowFanartPath = TVContainer.Fanart
                     tmpTVDB.IsLockShow = False
                     tmpTVDB.IsMarkShow = False
@@ -1855,6 +1861,7 @@ Public Class Scanner
         Private _fanart As String
         Private _nfo As String
         Private _poster As String
+        Private _banner As String
         Private _showpath As String
         Private _source As String
 
@@ -1912,6 +1919,15 @@ Public Class Scanner
             End Get
             Set(ByVal value As String)
                 Me._poster = value
+            End Set
+        End Property
+
+        Public Property Banner() As String
+            Get
+                Return Me._banner
+            End Get
+            Set(ByVal value As String)
+                Me._banner = value
             End Set
         End Property
 

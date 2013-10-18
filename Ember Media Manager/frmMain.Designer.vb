@@ -295,6 +295,7 @@ Partial Class frmMain
         Me.mnuAllAutoExtra = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAllAutoTrailer = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAllAutoMI = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuAllAutoActor = New System.Windows.Forms.ToolStripMenuItem()
         Me.FullAskToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAllAskAll = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAllAskNfo = New System.Windows.Forms.ToolStripMenuItem()
@@ -346,6 +347,7 @@ Partial Class frmMain
         Me.mnuMarkAutoExtra = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuMarkAutoTrailer = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuMarkAutoMI = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuMarkAutoActor = New System.Windows.Forms.ToolStripMenuItem()
         Me.AskRequireInputIfNoExactMatchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuMarkAskAll = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuMarkAskNfo = New System.Windows.Forms.ToolStripMenuItem()
@@ -504,8 +506,6 @@ Partial Class frmMain
         Me.pnlLoadingSettings = New System.Windows.Forms.Panel()
         Me.tmrAppExit = New System.Windows.Forms.Timer(Me.components)
         Me.tmrKeyBuffer = New System.Windows.Forms.Timer(Me.components)
-        Me.mnuAllAutoActor = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuMarkAutoActor = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
         Me.scMain.Panel1.SuspendLayout()
@@ -3199,6 +3199,12 @@ Partial Class frmMain
         Me.mnuAllAutoMI.Size = New System.Drawing.Size(171, 22)
         Me.mnuAllAutoMI.Text = "Meta Data Only"
         '
+        'mnuAllAutoActor
+        '
+        Me.mnuAllAutoActor.Name = "mnuAllAutoActor"
+        Me.mnuAllAutoActor.Size = New System.Drawing.Size(171, 22)
+        Me.mnuAllAutoActor.Text = "Actor Thumbs Only"
+        '
         'FullAskToolStripMenuItem
         '
         Me.FullAskToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAllAskAll, Me.mnuAllAskNfo, Me.mnuAllAskPoster, Me.mnuAllAskFanart, Me.mnuAllAskExtra, Me.mnuAllAskTrailer, Me.mnuAllAskMI})
@@ -3515,6 +3521,12 @@ Partial Class frmMain
         Me.mnuMarkAutoMI.Name = "mnuMarkAutoMI"
         Me.mnuMarkAutoMI.Size = New System.Drawing.Size(171, 22)
         Me.mnuMarkAutoMI.Text = "Meta Data Only"
+        '
+        'mnuMarkAutoActor
+        '
+        Me.mnuMarkAutoActor.Name = "mnuMarkAutoActor"
+        Me.mnuMarkAutoActor.Size = New System.Drawing.Size(171, 22)
+        Me.mnuMarkAutoActor.Text = "Actor Thumbs Only"
         '
         'AskRequireInputIfNoExactMatchToolStripMenuItem
         '
@@ -4504,18 +4516,6 @@ Partial Class frmMain
         'tmrKeyBuffer
         '
         Me.tmrKeyBuffer.Interval = 1000
-        '
-        'mnuAllAutoActor
-        '
-        Me.mnuAllAutoActor.Name = "mnuAllAutoActor"
-        Me.mnuAllAutoActor.Size = New System.Drawing.Size(171, 22)
-        Me.mnuAllAutoActor.Text = "Actor Thumbs Only"
-        '
-        'mnuMarkAutoActor
-        '
-        Me.mnuMarkAutoActor.Name = "mnuMarkAutoActor"
-        Me.mnuMarkAutoActor.Size = New System.Drawing.Size(171, 22)
-        Me.mnuMarkAutoActor.Text = "Actor Thumbs Only"
         '
         'frmMain
         '

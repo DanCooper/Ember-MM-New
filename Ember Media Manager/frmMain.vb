@@ -4000,7 +4000,7 @@ doCancel:
             End If
 
             'icons
-            If e.ColumnIndex >= 2 AndAlso e.ColumnIndex <= 4 AndAlso e.RowIndex = -1 Then
+            If e.ColumnIndex >= 2 AndAlso e.ColumnIndex <= 24 AndAlso e.RowIndex = -1 Then
                 e.PaintBackground(e.ClipBounds, False)
 
                 Dim pt As Point = e.CellBounds.Location
@@ -4008,12 +4008,17 @@ doCancel:
 
                 pt.X += offset
                 pt.Y = 1
-                Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 2)
+                If e.ColumnIndex = 24 Then
+                    Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 24)
+                Else
+                    Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 2)
+                End If
 
                 e.Handled = True
 
             End If
 
+            'text
             If e.ColumnIndex = 1 AndAlso e.RowIndex >= 0 Then
                 If Convert.ToBoolean(Me.dgvTVShows.Item(6, e.RowIndex).Value) Then
                     e.CellStyle.ForeColor = Color.Crimson
@@ -4030,7 +4035,7 @@ doCancel:
                 End If
             End If
 
-            If e.ColumnIndex >= 1 AndAlso e.ColumnIndex <= 4 AndAlso e.RowIndex >= 0 Then
+            If e.ColumnIndex >= 1 AndAlso e.ColumnIndex <= 24 AndAlso e.RowIndex >= 0 Then
 
                 If Convert.ToBoolean(Me.dgvTVShows.Item(10, e.RowIndex).Value) Then
                     e.CellStyle.BackColor = Color.LightSteelBlue
@@ -4040,7 +4045,7 @@ doCancel:
                     e.CellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.Highlight)
                 End If
 
-                If e.ColumnIndex >= 2 AndAlso e.ColumnIndex <= 4 Then
+                If e.ColumnIndex >= 2 AndAlso e.ColumnIndex <= 24 Then
                     e.PaintBackground(e.ClipBounds, True)
 
                     Dim pt As Point = e.CellBounds.Location
@@ -4555,7 +4560,32 @@ doCancel:
                         .dgvTVShows.Columns(4).SortMode = DataGridViewColumnSortMode.Automatic
                         .dgvTVShows.Columns(4).Visible = Not Master.eSettings.ShowNfoCol
                         .dgvTVShows.Columns(4).ToolTipText = Master.eLang.GetString(150, "Nfo")
-                        For i As Integer = 5 To .dgvTVShows.Columns.Count - 1
+                        .dgvTVShows.Columns(5).Visible = False
+                        .dgvTVShows.Columns(6).Visible = False
+                        .dgvTVShows.Columns(7).Visible = False
+                        .dgvTVShows.Columns(8).Visible = False
+                        .dgvTVShows.Columns(9).Visible = False
+                        .dgvTVShows.Columns(10).Visible = False
+                        .dgvTVShows.Columns(11).Visible = False
+                        .dgvTVShows.Columns(12).Visible = False
+                        .dgvTVShows.Columns(13).Visible = False
+                        .dgvTVShows.Columns(14).Visible = False
+                        .dgvTVShows.Columns(15).Visible = False
+                        .dgvTVShows.Columns(16).Visible = False
+                        .dgvTVShows.Columns(17).Visible = False
+                        .dgvTVShows.Columns(18).Visible = False
+                        .dgvTVShows.Columns(19).Visible = False
+                        .dgvTVShows.Columns(20).Visible = False
+                        .dgvTVShows.Columns(21).Visible = False
+                        .dgvTVShows.Columns(22).Visible = False
+                        .dgvTVShows.Columns(23).Visible = False
+                        .dgvTVShows.Columns(24).Width = 20
+                        .dgvTVShows.Columns(24).Resizable = DataGridViewTriState.False
+                        .dgvTVShows.Columns(24).ReadOnly = True
+                        .dgvTVShows.Columns(24).SortMode = DataGridViewColumnSortMode.Automatic
+                        .dgvTVShows.Columns(24).Visible = Not Master.eSettings.ShowBannerCol
+                        .dgvTVShows.Columns(24).ToolTipText = Master.eLang.GetString(838, "Banner")
+                        For i As Integer = 25 To .dgvTVShows.Columns.Count - 1
                             .dgvTVShows.Columns(i).Visible = False
                         Next
 
@@ -7448,6 +7478,7 @@ doCancel:
                 Dim sContainer As New Scanner.TVShowContainer With {.ShowPath = tmpShowDb.ShowPath}
                 fScanner.GetShowFolderContents(sContainer, ID)
                 tmpShowDb.ShowPosterPath = sContainer.Poster
+                tmpShowDb.ShowBannerPath = sContainer.Banner
                 tmpShowDb.ShowFanartPath = sContainer.Fanart
                 'assume invalid nfo if no title
                 tmpShowDb.ShowNfoPath = If(String.IsNullOrEmpty(tmpShowDb.TVShow.Title), String.Empty, sContainer.Nfo)
@@ -7464,12 +7495,52 @@ doCancel:
                         Me.Invoke(myDelegate, New Object() {dRow(0), 3, If(String.IsNullOrEmpty(sContainer.Fanart), False, True)})
                         Me.Invoke(myDelegate, New Object() {dRow(0), 4, If(String.IsNullOrEmpty(tmpShowDb.ShowNfoPath), False, True)})
                         Me.Invoke(myDelegate, New Object() {dRow(0), 5, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 6, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 7, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 8, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 9, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 10, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 11, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 12, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 13, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 14, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 15, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 16, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 17, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 18, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 19, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 20, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 21, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 22, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 23, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 24, If(String.IsNullOrEmpty(sContainer.Banner), False, True)})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 25, False})
                     Else
                         DirectCast(dRow(0), DataRow).Item(1) = tmpShowDb.TVShow.Title
                         DirectCast(dRow(0), DataRow).Item(2) = If(String.IsNullOrEmpty(sContainer.Poster), False, True)
                         DirectCast(dRow(0), DataRow).Item(3) = If(String.IsNullOrEmpty(sContainer.Fanart), False, True)
                         DirectCast(dRow(0), DataRow).Item(4) = If(String.IsNullOrEmpty(tmpShowDb.ShowNfoPath), False, True)
                         DirectCast(dRow(0), DataRow).Item(5) = False
+                        DirectCast(dRow(0), DataRow).Item(6) = False
+                        DirectCast(dRow(0), DataRow).Item(7) = False
+                        DirectCast(dRow(0), DataRow).Item(8) = False
+                        DirectCast(dRow(0), DataRow).Item(9) = False
+                        DirectCast(dRow(0), DataRow).Item(10) = False
+                        DirectCast(dRow(0), DataRow).Item(11) = False
+                        DirectCast(dRow(0), DataRow).Item(12) = False
+                        DirectCast(dRow(0), DataRow).Item(13) = False
+                        DirectCast(dRow(0), DataRow).Item(14) = False
+                        DirectCast(dRow(0), DataRow).Item(15) = False
+                        DirectCast(dRow(0), DataRow).Item(16) = False
+                        DirectCast(dRow(0), DataRow).Item(17) = False
+                        DirectCast(dRow(0), DataRow).Item(18) = False
+                        DirectCast(dRow(0), DataRow).Item(19) = False
+                        DirectCast(dRow(0), DataRow).Item(20) = False
+                        DirectCast(dRow(0), DataRow).Item(21) = False
+                        DirectCast(dRow(0), DataRow).Item(22) = False
+                        DirectCast(dRow(0), DataRow).Item(23) = False
+                        DirectCast(dRow(0), DataRow).Item(24) = If(String.IsNullOrEmpty(sContainer.Banner), False, True)
+                        DirectCast(dRow(0), DataRow).Item(25) = False
                     End If
                 End If
 
@@ -7615,6 +7686,7 @@ doCancel:
             If (iType = 0 OrElse iType = 1) AndAlso Me.dgvTVShows.ColumnCount > 0 Then
                 Me.dgvTVShows.Columns(1).Width = Me.dgvTVShows.Width - _
                 If(Master.eSettings.ShowPosterCol, 0, 20) - _
+                If(Master.eSettings.ShowBannerCol, 0, 20) - _
                 If(Master.eSettings.ShowFanartCol, 0, 20) - _
                 If(Master.eSettings.ShowNfoCol, 0, 20) - _
                 If(Me.dgvTVShows.DisplayRectangle.Height > Me.dgvTVShows.ClientRectangle.Height, 0, SystemInformation.VerticalScrollBarWidth)
@@ -8223,8 +8295,9 @@ doCancel:
 
             If Me.dgvTVShows.RowCount > 0 Then
                 Me.dgvTVShows.Columns(2).Visible = Not Master.eSettings.ShowPosterCol
-                Me.dgvTVShows.Columns(3).Visible = Not Master.eSettings.ShowFanartCol
-                Me.dgvTVShows.Columns(4).Visible = Not Master.eSettings.ShowNfoCol
+                Me.dgvTVShows.Columns(3).Visible = Not Master.eSettings.ShowBannerCol
+                Me.dgvTVShows.Columns(4).Visible = Not Master.eSettings.ShowFanartCol
+                Me.dgvTVShows.Columns(5).Visible = Not Master.eSettings.ShowNfoCol
             End If
 
             If Me.dgvTVSeasons.RowCount > 0 Then

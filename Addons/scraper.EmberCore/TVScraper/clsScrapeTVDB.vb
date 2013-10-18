@@ -135,6 +135,7 @@ Public Class Scraper
         Dim SeasonImageList As List(Of TVDBSeasonImage)
         Dim ShowFanart As TVDBFanart
         Dim ShowPoster As TVDBShowPoster
+        Dim ShowBanner As TVDBShowPoster
 
 #End Region 'Fields
 

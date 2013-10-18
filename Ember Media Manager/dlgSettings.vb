@@ -902,7 +902,7 @@ Public Class dlgSettings
         Me.chkSeasonXXDashFanartJPG.Checked = True
         Me.chkSeasonXXDashPosterJPG.Checked = True
         Me.chkSeasonXXTBN.Checked = False
-        'Me.chkShowBannerJPG.Checked = True (banners not implemented atm)
+        Me.chkShowBannerJPG.Checked = True
         Me.chkShowDashFanart.Checked = False
         Me.chkShowDotFanart.Checked = False
         Me.chkShowFanartJPG.Checked = True
@@ -2008,7 +2008,7 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
-    Private Sub chkShowPosterCol_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkShowPosterCol.CheckedChanged
+    Private Sub chkShowPosterCol_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkShowPosterCol.CheckedChanged, chkShowBannerCol.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2583,6 +2583,7 @@ Public Class dlgSettings
             Me.chkEpisodeDashFanart.Checked = Master.eSettings.EpisodeDashFanart
             Me.chkEpisodeDotFanart.Checked = Master.eSettings.EpisodeDotFanart
             Me.chkShowPosterCol.Checked = Master.eSettings.ShowPosterCol
+            Me.chkShowBannerCol.Checked = Master.eSettings.ShowBannerCol
             Me.chkShowFanartCol.Checked = Master.eSettings.ShowFanartCol
             Me.chkShowNfoCol.Checked = Master.eSettings.ShowNfoCol
             Me.chkSeasonPosterCol.Checked = Master.eSettings.SeasonPosterCol
@@ -3708,6 +3709,7 @@ Public Class dlgSettings
             Master.eSettings.EpisodeDashFanart = Me.chkEpisodeDashFanart.Checked
             Master.eSettings.EpisodeDotFanart = Me.chkEpisodeDotFanart.Checked
             Master.eSettings.ShowPosterCol = Me.chkShowPosterCol.Checked
+            Master.eSettings.ShowBannerCol = Me.chkShowBannerCol.Checked
             Master.eSettings.ShowFanartCol = Me.chkShowFanartCol.Checked
             Master.eSettings.ShowNfoCol = Me.chkShowNfoCol.Checked
             Master.eSettings.SeasonPosterCol = Me.chkSeasonPosterCol.Checked
@@ -4070,6 +4072,7 @@ Public Class dlgSettings
         Me.gbSeasonListOptions.Text = Master.eLang.GetString(681, "Seasons")
         Me.gbEpisodeListOptions.Text = Master.eLang.GetString(682, "Episodes")
         Me.chkShowPosterCol.Text = Me.chkMoviePosterCol.Text
+        Me.chkShowBannerCol.Text = Master.eLang.GetString(895, "Hide Banner Column")
         Me.chkSeasonPosterCol.Text = Me.chkMoviePosterCol.Text
         Me.chkEpisodePosterCol.Text = Me.chkMoviePosterCol.Text
         Me.chkShowFanartCol.Text = Me.chkMovieFanartCol.Text

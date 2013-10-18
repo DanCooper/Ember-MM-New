@@ -367,6 +367,17 @@ Public Class Images
         End Try
     End Sub
 
+    Public Sub DeleteShowBanner(ByVal mShow As Structures.DBTV)
+        Try
+            Dim tPath As String = mShow.ShowPath
+
+            Delete(Path.Combine(tPath, "banner.jpg"))
+
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+    End Sub
+
     Public Sub Dispose() Implements IDisposable.Dispose
 		If Not IsNothing(_ms) Then
 			_ms.Flush()
@@ -1537,7 +1548,47 @@ Public Class Images
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
 		Return strReturn
-	End Function
+    End Function
+
+    Public Function SaveAsShowBanner(ByVal mShow As Structures.DBTV, Optional sURL As String = "") As String
+        Dim strReturn As String = String.Empty
+        Dim doResize As Boolean = Master.eSettings.ResizeShowPoster AndAlso (_image.Width > Master.eSettings.ShowPosterWidth OrElse _image.Height > Master.eSettings.ShowPosterHeight)
+
+        Try
+            Dim bPath As String = String.Empty
+
+            If doResize Then
+                ImageUtils.ResizeImage(_image, Master.eSettings.ShowPosterWidth, Master.eSettings.ShowPosterHeight)
+            End If
+
+            Try
+                Dim params As New List(Of Object)(New Object() {Enums.TVImageType.ShowBanner, mShow, New List(Of String)})
+                Dim doContinue As Boolean = True
+                ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.TVImageNaming, params, doContinue)
+                For Each s As String In DirectCast(params(2), List(Of String))
+                    If Not File.Exists(s) OrElse (IsEdit OrElse Master.eSettings.OverwriteShowPoster) Then
+                        Save(s, Master.eSettings.SeasonFanartQuality, sURL, doResize)
+                        If String.IsNullOrEmpty(strReturn) Then strReturn = s
+                    End If
+                Next
+                If Not doContinue Then Return strReturn
+            Catch ex As Exception
+                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            End Try
+
+            If Master.eSettings.ShowBannerJPG Then
+                bPath = Path.Combine(mShow.ShowPath, "banner.jpg")
+                If Not File.Exists(bPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteShowPoster) Then
+                    Save(bPath, Master.eSettings.ShowPosterQuality, sURL, doResize)
+                    strReturn = bPath
+                End If
+            End If
+
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+        Return strReturn
+    End Function
 
     Public Sub SaveFAasET(ByVal faPath As String, ByVal inPath As String)
         Dim iMod As Integer = 0

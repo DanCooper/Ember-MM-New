@@ -491,7 +491,7 @@ Public Class dlgWizard
 		Me.chkSeasonXXDashFanartJPG.Checked = True
 		Me.chkSeasonXXDashPosterJPG.Checked = True
 		Me.chkSeasonXXTBN.Checked = False
-		'Me.chkShowBannerJPG.Checked = True (banners not implemented at time)
+        Me.chkShowBannerJPG.Checked = True
 		Me.chkShowDashFanart.Checked = False
 		Me.chkShowDotFanart.Checked = False
 		Me.chkShowFanartJPG.Checked = True

@@ -341,6 +341,8 @@ Public Class Database
             Dim doAddColumns As Boolean = False
             Dim doAddColumnWatched As Boolean = False
             Dim doAddColumnDisplaySE As Boolean = False
+            Dim doAddColumnBanner As Boolean = False
+
             SQLpathcommand.CommandText = "pragma table_info(TVEps);"
 			Try
                 doAddColumns = True
@@ -366,30 +368,47 @@ Public Class Database
 			Catch ex As Exception
 				'TODO
             End Try
-			'Now add new columns to current database if needed
-			If doAddColumns = True Then
-				Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
-					Dim strlistSQLCommands As New List(Of String)
-					strlistSQLCommands.Add("alter table MoviesAStreams add Audio_Bitrate text;")
-					strlistSQLCommands.Add("alter table MoviesVStreams add Video_EncodedSettings text;")
-					strlistSQLCommands.Add("alter table MoviesVStreams add Video_Bitrate text;")
-					strlistSQLCommands.Add("alter table MoviesVStreams add Video_MultiView text;")
-					strlistSQLCommands.Add("alter table TVAStreams add Audio_Bitrate text;")
-					strlistSQLCommands.Add("alter table TVVStreams add Video_EncodedSettings text;")
-					strlistSQLCommands.Add("alter table TVVStreams add Video_Bitrate text;")
-					strlistSQLCommands.Add("alter table TVVStreams add Video_MultiView text;")
-					strlistSQLCommands.Add("alter table TVEps add Playcount text;")
-					For Each sqlstatement In strlistSQLCommands
-						Try
-							SQLpathcommand.CommandText = sqlstatement
-							SQLpathcommand.ExecuteNonQuery()
-						Catch ex As Exception
-							'TODO ugly to rely on exception but will do the job
-							'Happens when column does exist (duplicate columns)
-						End Try
-					Next
-					transaction.Commit()
-				End Using
+
+            SQLpathcommand.CommandText = "pragma table_info(TVShows);"
+            Try
+                doAddColumnBanner = True
+                Using SQLreader As SQLite.SQLiteDataReader = SQLpathcommand.ExecuteReader
+                    While SQLreader.Read
+                        Debug.Print(SQLreader("name").ToString.ToLower())
+                        If SQLreader("name").ToString.ToLower = "hasbanner" Then
+                            'Column does exist in current database of Ember --> asume: if one columns missing, all new mediainfo columns must be added
+                            doAddColumnBanner = False
+                        End If
+                    End While
+                End Using
+            Catch ex As Exception
+                'TODO
+            End Try
+
+            'Now add new columns to current database if needed
+            If doAddColumns = True Then
+                Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
+                    Dim strlistSQLCommands As New List(Of String)
+                    strlistSQLCommands.Add("alter table MoviesAStreams add Audio_Bitrate text;")
+                    strlistSQLCommands.Add("alter table MoviesVStreams add Video_EncodedSettings text;")
+                    strlistSQLCommands.Add("alter table MoviesVStreams add Video_Bitrate text;")
+                    strlistSQLCommands.Add("alter table MoviesVStreams add Video_MultiView text;")
+                    strlistSQLCommands.Add("alter table TVAStreams add Audio_Bitrate text;")
+                    strlistSQLCommands.Add("alter table TVVStreams add Video_EncodedSettings text;")
+                    strlistSQLCommands.Add("alter table TVVStreams add Video_Bitrate text;")
+                    strlistSQLCommands.Add("alter table TVVStreams add Video_MultiView text;")
+                    strlistSQLCommands.Add("alter table TVEps add Playcount text;")
+                    For Each sqlstatement In strlistSQLCommands
+                        Try
+                            SQLpathcommand.CommandText = sqlstatement
+                            SQLpathcommand.ExecuteNonQuery()
+                        Catch ex As Exception
+                            'TODO ugly to rely on exception but will do the job
+                            'Happens when column does exist (duplicate columns)
+                        End Try
+                    Next
+                    transaction.Commit()
+                End Using
             End If
             If doAddColumnWatched = True Then
                 Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
@@ -412,6 +431,23 @@ Public Class Database
                     Dim strlistSQLCommands As New List(Of String)
                     strlistSQLCommands.Add("alter table TVEps add DisplaySeason integer;")
                     strlistSQLCommands.Add("alter table TVEps add DisplayEpisode integer;")
+                    For Each sqlstatement In strlistSQLCommands
+                        Try
+                            SQLpathcommand.CommandText = sqlstatement
+                            SQLpathcommand.ExecuteNonQuery()
+                        Catch ex As Exception
+                            'TODO ugly to rely on exception but will do the job
+                            'Happens when column does exist (duplicate columns)
+                        End Try
+                    Next
+                    transaction.Commit()
+                End Using
+            End If
+            If doAddColumnBanner = True Then
+                Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
+                    Dim strlistSQLCommands As New List(Of String)
+                    strlistSQLCommands.Add("alter table TVShows add HasBanner BOOL NOT NULL DEFAULT False;")
+                    strlistSQLCommands.Add("alter table TVShows add BannerPath TEXT;")
                     For Each sqlstatement In strlistSQLCommands
                         Try
                             SQLpathcommand.CommandText = sqlstatement
@@ -711,6 +747,7 @@ Public Class Database
         _TVDB.IsMarkShow = _tmpTVDB.IsMarkShow
         _TVDB.ShowFanartPath = _tmpTVDB.ShowFanartPath
         _TVDB.ShowPosterPath = _tmpTVDB.ShowPosterPath
+        _TVDB.ShowBannerPath = _tmpTVDB.ShowBannerPath
         _TVDB.ShowNeedsSave = _tmpTVDB.ShowNeedsSave
         _TVDB.ShowNfoPath = _tmpTVDB.ShowNfoPath
         _TVDB.ShowPath = _tmpTVDB.ShowPath
@@ -1189,6 +1226,7 @@ Public Class Database
                     If SQLreader.HasRows Then
                         If Not DBNull.Value.Equals(SQLreader("TVShowPath")) Then _TVDB.ShowPath = SQLreader("TVShowPath").ToString
                         If Not DBNull.Value.Equals(SQLreader("PosterPath")) Then _TVDB.ShowPosterPath = SQLreader("PosterPath").ToString
+                        If Not DBNull.Value.Equals(SQLreader("BannerPath")) Then _TVDB.ShowBannerPath = SQLreader("BannerPath").ToString
                         If Not DBNull.Value.Equals(SQLreader("FanartPath")) Then _TVDB.ShowFanartPath = SQLreader("FanartPath").ToString
                         If Not DBNull.Value.Equals(SQLreader("NfoPath")) Then _TVDB.ShowNfoPath = SQLreader("NfoPath").ToString
                         If Not DBNull.Value.Equals(SQLreader("Source")) Then _TVDB.Source = SQLreader("Source").ToString
@@ -2005,13 +2043,13 @@ Public Class Database
                 If IsNew Then
                     SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVShows (", _
                      "TVShowPath, HasPoster, HasFanart, HasNfo, New, Mark, Source, TVDB, Lock, Title,", _
-                     "EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering", _
-                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
+                     "EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering, HasBanner, BannerPath", _
+                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
                 Else
                     SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVShows (", _
                      "ID, TVShowPath, HasPoster, HasFanart, HasNfo, New, Mark, Source, TVDB, Lock, Title,", _
-                     "EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering", _
-                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
+                     "EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering, HasBanner, BannerPath", _
+                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
                     Dim parTVShowID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTVShowID", DbType.UInt64, 0, "ID")
                     parTVShowID.Value = _TVShowDB.ShowID
                 End If
@@ -2039,6 +2077,8 @@ Public Class Database
                 Dim parNeedsSave As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parNeedsSave", DbType.Boolean, 0, "NeedsSave")
                 Dim parLanguage As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parLanguage", DbType.String, 0, "Language")
                 Dim parOrdering As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parOrdering", DbType.Int16, 0, "Ordering")
+                Dim parHasBanner As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parHasBanner", DbType.Boolean, 0, "HasBanner")
+                Dim parBannerPath As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parBannerPath", DbType.String, 0, "BannerPath")
 
                 With _TVShowDB.TVShow
                     parTVDB.Value = .ID
@@ -2057,9 +2097,11 @@ Public Class Database
 
                 parTVShowPath.Value = _TVShowDB.ShowPath
                 parPosterPath.Value = _TVShowDB.ShowPosterPath
+                parBannerPath.Value = _TVShowDB.ShowBannerPath
                 parFanartPath.Value = _TVShowDB.ShowFanartPath
                 parNfoPath.Value = _TVShowDB.ShowNfoPath
                 parHasPoster.Value = Not String.IsNullOrEmpty(_TVShowDB.ShowPosterPath)
+                parHasBanner.Value = Not String.IsNullOrEmpty(_TVShowDB.ShowBannerPath)
                 parHasFanart.Value = Not String.IsNullOrEmpty(_TVShowDB.ShowFanartPath)
                 parHasNfo.Value = Not String.IsNullOrEmpty(_TVShowDB.ShowNfoPath)
 
