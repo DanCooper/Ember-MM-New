@@ -71,6 +71,7 @@ Public Class frmMain
     Private MainFanart As New Images
     Private MainPoster As New Images
     Private MainFanartSmall As New Images
+    Private MainBanner As New Images
     Private pbGenre() As PictureBox = Nothing
     Private pnlGenre() As Panel = Nothing
     Private prevText As String = String.Empty
@@ -110,6 +111,8 @@ Public Class frmMain
     Private _postermaxwidth As Integer = 160
     Private _fanartsmallmaxheight As Integer = 160
     Private _fanartsmallmaxwidth As Integer = 285
+    Private _bannermaxheight As Integer = 160
+    Private _bannermaxwidth As Integer = 160
     Private tTheme As New Theming
     Private _genrepanelcolor As Color = Color.Gainsboro
     Private _ipmid As Integer = 280
@@ -200,6 +203,24 @@ Public Class frmMain
         End Set
     End Property
 
+    Public Property BannerMaxHeight() As Integer
+        Get
+            Return _bannermaxheight
+        End Get
+        Set(ByVal value As Integer)
+            _bannermaxheight = value
+        End Set
+    End Property
+
+    Public Property BannerMaxWidth() As Integer
+        Get
+            Return _bannermaxwidth
+        End Get
+        Set(ByVal value As Integer)
+            _bannermaxwidth = value
+        End Set
+    End Property
+
 #End Region 'Properties
 
 #Region "Methods"
@@ -267,6 +288,13 @@ Public Class frmMain
                 End If
                 .pnlFanartSmall.Visible = False
                 .MainFanartSmall.Clear()
+
+                If Not IsNothing(.pbBanner.Image) Then
+                    .pbBanner.Image.Dispose()
+                    .pbBanner.Image = Nothing
+                End If
+                .pnlBanner.Visible = False
+                .MainBanner.Clear()
 
                 If WithAllSeasons Then
                     If Not IsNothing(.pbAllSeason.Image) Then
@@ -873,6 +901,7 @@ Public Class frmMain
             Me.MainPoster.Clear()
             Me.MainFanart.Clear()
             Me.MainFanartSmall.Clear()
+            Me.MainBanner.Clear()
 
             If bwLoadEpInfo.CancellationPending Then
                 e.Cancel = True
@@ -950,6 +979,7 @@ Public Class frmMain
             Me.MainFanart.Clear()
             Me.MainPoster.Clear()
             Me.MainFanartSmall.Clear()
+            Me.MainBanner.Clear()
 
             If bwLoadInfo.CancellationPending Then
                 e.Cancel = True
@@ -1016,6 +1046,7 @@ Public Class frmMain
             Me.MainPoster.Clear()
             Me.MainFanart.Clear()
             Me.MainFanartSmall.Clear()
+            Me.MainBanner.Clear()
 
             Master.currShow = Master.DB.LoadTVSeasonFromDB(Args.ID, Args.Season, True)
 
@@ -1072,6 +1103,7 @@ Public Class frmMain
             Me.MainFanart.Clear()
             Me.MainPoster.Clear()
             Me.MainFanartSmall.Clear()
+            Me.MainBanner.Clear()
 
             If bwLoadShowInfo.CancellationPending Then
                 e.Cancel = True
@@ -1094,6 +1126,7 @@ Public Class frmMain
 
             If Not Master.eSettings.NoDisplayPoster Then Me.MainPoster.FromFile(Master.currShow.ShowPosterPath)
             If Not Master.eSettings.NoDisplayFanartSmall Then Me.MainFanartSmall.FromFile(Master.currShow.ShowFanartPath)
+            If Not Master.eSettings.NoDisplayBanner Then Me.MainBanner.FromFile(Master.currShow.ShowBannerPath)
 
             If Master.eSettings.DisplayAllSeason AndAlso Master.eSettings.AllSeasonPosterEnabled Then
                 Me.MainAllSeason.FromFile(Master.currShow.SeasonPosterPath)
@@ -5323,6 +5356,31 @@ doCancel:
                 End If
             End If
 
+            If Not IsNothing(Me.MainBanner.Image) Then
+                Me.pbBannerCache.Image = Me.MainBanner.Image
+                ImageUtils.ResizePB(Me.pbBanner, Me.pbBannerCache, Me.BannerMaxHeight, Me.BannerMaxWidth)
+                If Master.eSettings.PosterGlassOverlay Then ImageUtils.SetGlassOverlay(Me.pbBanner)
+                Me.pnlBanner.Size = New Size(Me.pbBanner.Width + 10, Me.pbBanner.Height + 10)
+                Me.pnlBanner.Location = New Point(Me.pnlPoster.Location.X, Me.pnlPoster.Location.Y + Me.pnlPoster.Height + 10)
+
+                If Master.eSettings.ShowDims Then
+                    g = Graphics.FromImage(pbBanner.Image)
+                    g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+                    strSize = String.Format("{0} x {1}", Me.MainBanner.Image.Width, Me.MainBanner.Image.Height)
+                    lenSize = Convert.ToInt32(g.MeasureString(strSize, New Font("Arial", 8, FontStyle.Bold)).Width)
+                    rect = New Rectangle(Convert.ToInt32((pbBanner.Image.Width - lenSize) / 2 - 15), Me.pbBanner.Height - 25, lenSize + 30, 25)
+                    ImageUtils.DrawGradEllipse(g, rect, Color.FromArgb(250, 120, 120, 120), Color.FromArgb(0, 255, 255, 255))
+                    g.DrawString(strSize, New Font("Arial", 8, FontStyle.Bold), New SolidBrush(Color.White), Convert.ToInt32((pbBanner.Image.Width - lenSize) / 2), Me.pbBanner.Height - 20)
+                End If
+
+                Me.pbBanner.Location = New Point(4, 4)
+            Else
+                If Not IsNothing(Me.pbBanner.Image) Then
+                    Me.pbBanner.Image.Dispose()
+                    Me.pbBanner.Image = Nothing
+                End If
+            End If
+
             If Not IsNothing(Me.MainFanart.Image) Then
                 Me.pbFanartCache.Image = Me.MainFanart.Image
 
@@ -5392,6 +5450,7 @@ doCancel:
             If Not IsNothing(Me.pbAllSeason.Image) Then Me.pnlAllSeason.Visible = True
             If Not IsNothing(Me.pbPoster.Image) Then Me.pnlPoster.Visible = True
             If Not IsNothing(Me.pbFanartSmall.Image) Then Me.pnlFanartSmall.Visible = True
+            If Not IsNothing(Me.pbBanner.Image) Then Me.pnlBanner.Visible = True
             If Not IsNothing(Me.pbMPAA.Image) Then Me.pnlMPAA.Visible = True
             For i As Integer = 0 To UBound(Me.pnlGenre)
                 Me.pnlGenre(i).Visible = True
@@ -7027,6 +7086,18 @@ doCancel:
             If Not IsNothing(Me.pbFanartSmall.Image) Then
                 Using dImgView As New dlgImgView
                     dImgView.ShowDialog(Me.pbFanartSmallCache.Image)
+                End Using
+            End If
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+    End Sub
+
+    Private Sub pbBanner_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles pbBanner.DoubleClick
+        Try
+            If Not IsNothing(Me.pbBanner.Image) Then
+                Using dImgView As New dlgImgView
+                    dImgView.ShowDialog(Me.pbBannerCache.Image)
                 End Using
             End If
         Catch ex As Exception

@@ -34,6 +34,8 @@ fontstyle code 5.
     <postermaxheight>160</postermaxheight>
     <fanartsmallmaxwidth>285</fanartsmallmaxwidth>
     <fanartsmallmaxheight>160</fanartsmallmaxheight>
+    <bannermaxwidth>160</bannermaxwidth>
+    <bannermaxheight>160</bannermaxheight>
     <mpaabackcolor>-2302756</mpaabackcolor>
     <genrebackcolor>-2302756</genrebackcolor>
   </images>

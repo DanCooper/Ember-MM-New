@@ -152,7 +152,8 @@ Public Class dlgWizard
 		Me.chkShowJPG.Checked = Master.eSettings.ShowJPG
 		Me.chkShowFolderJPG.Checked = Master.eSettings.ShowFolderJPG
 		Me.chkShowPosterTBN.Checked = Master.eSettings.ShowPosterTBN
-		Me.chkShowPosterJPG.Checked = Master.eSettings.ShowPosterJPG
+        Me.chkShowPosterJPG.Checked = Master.eSettings.ShowPosterJPG
+        Me.chkShowBannerJPG.Checked = Master.eSettings.ShowBannerJPG
 		Me.chkShowFanartJPG.Checked = Master.eSettings.ShowFanartJPG
 		Me.chkShowDashFanart.Checked = Master.eSettings.ShowDashFanart
 		Me.chkShowDotFanart.Checked = Master.eSettings.ShowDotFanart
@@ -353,7 +354,8 @@ Public Class dlgWizard
 		Master.eSettings.ShowJPG = Me.chkShowJPG.Checked
 		Master.eSettings.ShowFolderJPG = Me.chkShowFolderJPG.Checked
 		Master.eSettings.ShowPosterTBN = Me.chkShowPosterTBN.Checked
-		Master.eSettings.ShowPosterJPG = Me.chkShowPosterJPG.Checked
+        Master.eSettings.ShowPosterJPG = Me.chkShowPosterJPG.Checked
+        Master.eSettings.ShowBannerJPG = Me.chkShowBannerJPG.Checked
 		Master.eSettings.ShowFanartJPG = Me.chkShowFanartJPG.Checked
 		Master.eSettings.ShowDashFanart = Me.chkShowDashFanart.Checked
 		Master.eSettings.ShowDotFanart = Me.chkShowDotFanart.Checked

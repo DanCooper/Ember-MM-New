@@ -430,6 +430,7 @@ Public Class dlgEditShow
 
     Private Sub dlgEditShow_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Master.eSettings.AllSeasonPosterEnabled Then Me.TabControl1.TabPages.Remove(TabPage4)
+        If Not Master.eSettings.ShowBannerJPG Then Me.TabControl1.TabPages.Remove(TabPage5)
 
         Me.SetUp()
 
@@ -860,7 +861,7 @@ Public Class dlgEditShow
 
                 If Master.eSettings.AllSeasonPosterEnabled Then
                     If Not IsNothing(.ASPoster.Image) Then
-						Master.currShow.SeasonPosterPath = .ASPoster.SaveAsAllSeasonPoster(Master.currShow, "")
+                        Master.currShow.SeasonPosterPath = .ASPoster.SaveAsAllSeasonPoster(Master.currShow, "")
                     Else
                         .ASPoster.DeleteAllSeasonPosters(Master.currShow)
                         Master.currShow.SeasonPosterPath = String.Empty

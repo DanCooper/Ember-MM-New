@@ -1508,7 +1508,7 @@ Public Class dlgSettings
 
     Private Sub chkNoDisplayFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkNoDisplayFanart.CheckedChanged
         Me.SetApplyButton(True)
-        If Me.chkNoDisplayFanart.Checked AndAlso Me.chkNoDisplayPoster.Checked AndAlso Me.chkNoDisplayFanartSmall.Checked Then
+        If Me.chkNoDisplayFanart.Checked AndAlso Me.chkNoDisplayPoster.Checked AndAlso Me.chkNoDisplayFanartSmall.Checked AndAlso Me.chkNoDisplayBanner.Checked Then
             Me.chkShowDims.Enabled = False
             Me.chkShowDims.Checked = False
         Else
@@ -1518,7 +1518,7 @@ Public Class dlgSettings
 
     Private Sub chkNoDisplayPoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkNoDisplayPoster.CheckedChanged
         Me.SetApplyButton(True)
-        If Me.chkNoDisplayFanart.Checked AndAlso Me.chkNoDisplayPoster.Checked AndAlso Me.chkNoDisplayFanartSmall.Checked Then
+        If Me.chkNoDisplayFanart.Checked AndAlso Me.chkNoDisplayPoster.Checked AndAlso Me.chkNoDisplayFanartSmall.Checked AndAlso Me.chkNoDisplayBanner.Checked Then
             Me.chkShowDims.Enabled = False
             Me.chkShowDims.Checked = False
         Else
@@ -1528,7 +1528,17 @@ Public Class dlgSettings
 
     Private Sub chkNoDisplayFanartSmall_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkNoDisplayFanartSmall.CheckedChanged
         Me.SetApplyButton(True)
-        If Me.chkNoDisplayFanart.Checked AndAlso Me.chkNoDisplayPoster.Checked AndAlso Me.chkNoDisplayFanartSmall.Checked Then
+        If Me.chkNoDisplayFanart.Checked AndAlso Me.chkNoDisplayPoster.Checked AndAlso Me.chkNoDisplayFanartSmall.Checked AndAlso Me.chkNoDisplayBanner.Checked Then
+            Me.chkShowDims.Enabled = False
+            Me.chkShowDims.Checked = False
+        Else
+            Me.chkShowDims.Enabled = True
+        End If
+    End Sub
+
+    Private Sub chkNoDisplayBanner_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkNoDisplayBanner.CheckedChanged
+        Me.SetApplyButton(True)
+        If Me.chkNoDisplayFanart.Checked AndAlso Me.chkNoDisplayPoster.Checked AndAlso Me.chkNoDisplayFanartSmall.Checked AndAlso Me.chkNoDisplayBanner.Checked Then
             Me.chkShowDims.Enabled = False
             Me.chkShowDims.Checked = False
         Else
@@ -2474,6 +2484,7 @@ Public Class dlgSettings
             Me.chkNoDisplayFanart.Checked = Master.eSettings.NoDisplayFanart
             Me.chkNoDisplayPoster.Checked = Master.eSettings.NoDisplayPoster
             Me.chkNoDisplayFanartSmall.Checked = Master.eSettings.NoDisplayFanartSmall
+            Me.chkNoDisplayBanner.Checked = Master.eSettings.NoDisplayBanner
             Me.chkPosterGlassOverlay.Checked = Master.eSettings.PosterGlassOverlay
             Me.chkOutlineForPlot.Checked = Master.eSettings.OutlineForPlot
             Me.chkPlotForOutline.Checked = Master.eSettings.PlotForOutline
@@ -3580,6 +3591,7 @@ Public Class dlgSettings
             Master.eSettings.NoDisplayFanart = Me.chkNoDisplayFanart.Checked
             Master.eSettings.NoDisplayPoster = Me.chkNoDisplayPoster.Checked
             Master.eSettings.NoDisplayFanartSmall = Me.chkNoDisplayFanartSmall.Checked
+            Master.eSettings.NoDisplayBanner = Me.chkNoDisplayBanner.Checked
             Master.eSettings.PosterGlassOverlay = Me.chkPosterGlassOverlay.Checked
             Master.eSettings.OutlineForPlot = Me.chkOutlineForPlot.Checked
             Master.eSettings.PlotForOutline = Me.chkPlotForOutline.Checked
@@ -3859,6 +3871,7 @@ Public Class dlgSettings
         Me.chkNoDisplayFanart.Text = Master.eLang.GetString(455, "Do Not Display Fanart")
         Me.chkNoDisplayPoster.Text = Master.eLang.GetString(456, "Do Not Display Poster")
         Me.chkNoDisplayFanartSmall.Text = Master.eLang.GetString(893, "Do Not Display Small Fanart")
+        Me.chkNoDisplayBanner.Text = Master.eLang.GetString(896, "Do Not Display Banner")
         Me.chkPosterGlassOverlay.Text = Master.eLang.GetString(892, "Enable Poster Glass Overlay")
         Me.chkShowDims.Text = Master.eLang.GetString(457, "Display Image Dimensions")
         Me.chkMarkNew.Text = Master.eLang.GetString(459, "Mark New Movies")

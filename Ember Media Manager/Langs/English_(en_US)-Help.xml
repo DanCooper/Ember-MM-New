@@ -3,6 +3,7 @@
   <string control="Core_chkSourceFromFolder">If enabled, Ember will check the folder name for source types. If disabled, Ember will only check the file name.</string>
   <string control="Core_chkNoDisplayFanart">If enabled, fanart will not be displayed in the main window. This is helpful to speed up the interface on slow computers.</string>
   <string control="Core_chkNoDisplayPoster">If enabled, posters will not be displayed in the main window. This is helpful to speed up the interface on slow computers.</string>
+  <string control="Core_chkNoDisplayBanner">If enabled, banners will not be displayed in the main window. This is helpful to speed up the interface on slow computers.</string>
   <string control="Core_chkShowDims">If enabled, the dimensions of the images (posters and fanart) will be overlayed on top of the images.</string>
   <string control="Core_chkUpdates">If enabled, Ember will check for a new version at each start up.</string>
   <string control="Core_chkOverwriteNfo">If enabled, NFO files will be overwritten when saving. If disabled, they will be renamed to *.info.</string>

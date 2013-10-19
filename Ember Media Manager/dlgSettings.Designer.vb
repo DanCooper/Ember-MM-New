@@ -622,6 +622,7 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.chkNoDisplayBanner = New System.Windows.Forms.CheckBox()
         Me.gbGeneralMiscellaneous.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -734,6 +735,7 @@ Partial Class dlgSettings
         '
         'gbGeneralMiscellaneous
         '
+        Me.gbGeneralMiscellaneous.Controls.Add(Me.chkNoDisplayBanner)
         Me.gbGeneralMiscellaneous.Controls.Add(Me.chkNoDisplayFanartSmall)
         Me.gbGeneralMiscellaneous.Controls.Add(Me.chkPosterGlassOverlay)
         Me.gbGeneralMiscellaneous.Controls.Add(Me.chkSpecialDateAdd)
@@ -770,7 +772,7 @@ Partial Class dlgSettings
         '
         Me.chkPosterGlassOverlay.AutoSize = True
         Me.chkPosterGlassOverlay.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkPosterGlassOverlay.Location = New System.Drawing.Point(10, 194)
+        Me.chkPosterGlassOverlay.Location = New System.Drawing.Point(10, 210)
         Me.chkPosterGlassOverlay.Name = "chkPosterGlassOverlay"
         Me.chkPosterGlassOverlay.Size = New System.Drawing.Size(167, 17)
         Me.chkPosterGlassOverlay.TabIndex = 11
@@ -781,7 +783,7 @@ Partial Class dlgSettings
         '
         Me.chkSpecialDateAdd.AutoSize = True
         Me.chkSpecialDateAdd.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSpecialDateAdd.Location = New System.Drawing.Point(10, 228)
+        Me.chkSpecialDateAdd.Location = New System.Drawing.Point(10, 244)
         Me.chkSpecialDateAdd.Name = "chkSpecialDateAdd"
         Me.chkSpecialDateAdd.Size = New System.Drawing.Size(196, 17)
         Me.chkSpecialDateAdd.TabIndex = 10
@@ -792,7 +794,7 @@ Partial Class dlgSettings
         '
         Me.chkShowGenresText.AutoSize = True
         Me.chkShowGenresText.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowGenresText.Location = New System.Drawing.Point(10, 211)
+        Me.chkShowGenresText.Location = New System.Drawing.Point(10, 227)
         Me.chkShowGenresText.Name = "chkShowGenresText"
         Me.chkShowGenresText.Size = New System.Drawing.Size(166, 17)
         Me.chkShowGenresText.TabIndex = 9
@@ -815,7 +817,7 @@ Partial Class dlgSettings
         '
         Me.chkNoDisplayFanart.AutoSize = True
         Me.chkNoDisplayFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkNoDisplayFanart.Location = New System.Drawing.Point(10, 160)
+        Me.chkNoDisplayFanart.Location = New System.Drawing.Point(10, 176)
         Me.chkNoDisplayFanart.Name = "chkNoDisplayFanart"
         Me.chkNoDisplayFanart.Size = New System.Drawing.Size(139, 17)
         Me.chkNoDisplayFanart.TabIndex = 7
@@ -848,7 +850,7 @@ Partial Class dlgSettings
         '
         Me.chkShowDims.AutoSize = True
         Me.chkShowDims.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowDims.Location = New System.Drawing.Point(10, 177)
+        Me.chkShowDims.Location = New System.Drawing.Point(10, 193)
         Me.chkShowDims.Name = "chkShowDims"
         Me.chkShowDims.Size = New System.Drawing.Size(160, 17)
         Me.chkShowDims.TabIndex = 8
@@ -7405,6 +7407,17 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
         '
+        'chkNoDisplayBanner
+        '
+        Me.chkNoDisplayBanner.AutoSize = True
+        Me.chkNoDisplayBanner.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkNoDisplayBanner.Location = New System.Drawing.Point(10, 160)
+        Me.chkNoDisplayBanner.Name = "chkNoDisplayBanner"
+        Me.chkNoDisplayBanner.Size = New System.Drawing.Size(143, 17)
+        Me.chkNoDisplayBanner.TabIndex = 13
+        Me.chkNoDisplayBanner.Text = "Do Not Display Banner"
+        Me.chkNoDisplayBanner.UseVisualStyleBackColor = True
+        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -8210,4 +8223,5 @@ Partial Class dlgSettings
     Friend WithEvents chkUseEPDuration As System.Windows.Forms.CheckBox
     Friend WithEvents chkNoDisplayFanartSmall As System.Windows.Forms.CheckBox
     Friend WithEvents chkShowBannerCol As System.Windows.Forms.CheckBox
+    Friend WithEvents chkNoDisplayBanner As System.Windows.Forms.CheckBox
 End Class

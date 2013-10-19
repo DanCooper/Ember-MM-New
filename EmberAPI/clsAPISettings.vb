@@ -190,6 +190,7 @@ Public Class Settings
     Private _nodisplayfanart As Boolean
     Private _nodisplayposter As Boolean
     Private _nodisplayfanartsmall As Boolean
+    Private _nodisplaybanner As Boolean
     Private _posterglassoverlay As Boolean
     Private _noepfilters As Boolean
     Private _nofilterepisode As Boolean
@@ -1813,6 +1814,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._nodisplayfanartsmall = value
+        End Set
+    End Property
+
+    Public Property NoDisplayBanner() As Boolean
+        Get
+            Return Me._nodisplaybanner
+        End Get
+        Set(ByVal value As Boolean)
+            Me._nodisplaybanner = value
         End Set
     End Property
 
@@ -3615,6 +3625,7 @@ Public Class Settings
         Me._showdims = False
         Me._nodisplayposter = False
         Me._nodisplayfanartsmall = False
+        Me._nodisplaybanner = False
         Me._nodisplayfanart = False
         Me._posterglassoverlay = False
         Me._outlineforplot = False
