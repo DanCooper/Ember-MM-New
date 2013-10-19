@@ -321,25 +321,13 @@ Namespace TMDBg
 
 				'Get countries of the movie
 				If Options.bCountry Then
-					If IsNothing(Releases) Then
-						Releases = _TMDBApi.GetMovieReleases(Movie.id)
-						If Not IsNothing(Releases) AndAlso Not IsNothing(Releases.countries) Then
-							If (Releases.countries.Count = 0) AndAlso _MySettings.FallBackEng Then
-								Releases = _TMDBApiE.GetMovieReleases(Movie.id)
-							End If
-						Else
-							If _MySettings.FallBackEng Then
-								Releases = _TMDBApiE.GetMovieReleases(Movie.id)
-							End If
-						End If
-					End If
-					IMDBMovie.Countries.Clear()
-					If Not IsNothing(Releases) AndAlso Not IsNothing(Releases.countries) Then
-						For Each aCo As WatTmdb.V3.ReleaseCountry In Releases.countries
-							IMDBMovie.Countries.Add(aCo.iso_3166_1)
-						Next
-					End If
-				End If
+                    IMDBMovie.Countries.Clear()
+                    If Not IsNothing(Movie.production_countries) Then
+                        For Each aCo As WatTmdb.V3.ProductionCountry In Movie.production_countries
+                            IMDBMovie.Countries.Add(aCo.name) 'XBMC use full names
+                        Next
+                    End If
+                End If
 
 				If bwTMDBg.CancellationPending Then Return Nothing
 
