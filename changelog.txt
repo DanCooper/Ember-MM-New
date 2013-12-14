@@ -5,6 +5,7 @@ Ember Main:
 - fixed: IMDB plot (again)
 - fixed: textbox focus in set manager window
 - added: "image caching is broken" message
+- added: preferred poster language setting in native and tmdb scraper
 
 
 
