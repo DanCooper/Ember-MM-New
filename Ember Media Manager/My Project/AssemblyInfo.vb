@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Ember Media Manager")> 
-<Assembly: AssemblyDescription("http://forum.xbmc.org/showthread.php?tid=116941")> 
+<Assembly: AssemblyDescription("http://forum.xbmc.org/forumdisplay.php?fid=195")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Ember Media Manager")> 
 <Assembly: AssemblyCopyright("Copyright ©  2013")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.3.0.17")> 
-<Assembly: AssemblyFileVersion("1.3.0.17")> 
+<Assembly: AssemblyVersion("1.3.0.18")> 
+<Assembly: AssemblyFileVersion("1.3.0.18")> 

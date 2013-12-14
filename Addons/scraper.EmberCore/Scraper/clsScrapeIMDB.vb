@@ -960,7 +960,8 @@ mPlot:
                     If D <= 0 Then GoTo mPartial
                     W = HTMLp.IndexOf("</table>", D) + 8
 
-                    Dim Table As String = Regex.Match(HTML.Substring(D, W - D), TABLE_PATTERN).ToString
+                    Dim Table = String.Empty
+                    Table = Regex.Match(HTML.Substring(D, W - D), TABLE_PATTERN).ToString
 
                     Dim qPopular = From Mtr In Regex.Matches(Table, TITLE_PATTERN) _
                                    Where Not DirectCast(Mtr, Match).Groups("name").ToString.Contains("<img") AndAlso Not DirectCast(Mtr, Match).Groups("type").ToString.Contains("VG") _
