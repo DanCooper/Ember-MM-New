@@ -1,3 +1,13 @@
+Changelog 1.3.0.18 (14.12.2013)
+
+Ember Main:
+- fixed: TMDB images
+- fixed: IMDB plot (again)
+- fixed: textbox focus in set manager window
+- added: "image caching is broken" message
+
+
+
 Changelog 1.3.0.17 (20.10.2013)
 
 Ember Main:
