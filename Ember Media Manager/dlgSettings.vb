@@ -2132,6 +2132,9 @@ Public Class dlgSettings
     End Sub
 
     Private Sub chkUseImgCache_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseImgCache.CheckedChanged
+        If chkUseImgCache.Checked Then
+            MsgBox("Image Caching is broken! Don't use it!", MsgBoxStyle.OkOnly, "Info")
+        End If
         Me.chkPersistImgCache.Enabled = Me.chkUseImgCache.Checked
         Me.chkUseImgCacheUpdaters.Enabled = Me.chkUseImgCache.Checked
         If Not Me.chkUseImgCache.Checked Then
