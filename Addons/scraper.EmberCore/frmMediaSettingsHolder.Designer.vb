@@ -27,6 +27,9 @@ Partial Class frmMediaSettingsHolder
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.gbImages = New System.Windows.Forms.GroupBox()
+        Me.gbPosterLanguage = New System.Windows.Forms.GroupBox()
+        Me.cbPosterTMDBPref = New System.Windows.Forms.ComboBox()
+        Me.lblPrefPosterLanguage = New System.Windows.Forms.Label()
         Me.gbActorThumbsSize = New System.Windows.Forms.GroupBox()
         Me.cbActorThumbsSize = New System.Windows.Forms.ComboBox()
         Me.gbExtrathumbsSize = New System.Windows.Forms.GroupBox()
@@ -59,6 +62,7 @@ Partial Class frmMediaSettingsHolder
         Me.pnlSettings.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbImages.SuspendLayout()
+        Me.gbPosterLanguage.SuspendLayout()
         Me.gbActorThumbsSize.SuspendLayout()
         Me.gbExtrathumbsSize.SuspendLayout()
         Me.gbSaveFanartIn.SuspendLayout()
@@ -107,6 +111,7 @@ Partial Class frmMediaSettingsHolder
         '
         'gbImages
         '
+        Me.gbImages.Controls.Add(Me.gbPosterLanguage)
         Me.gbImages.Controls.Add(Me.gbActorThumbsSize)
         Me.gbImages.Controls.Add(Me.gbExtrathumbsSize)
         Me.gbImages.Controls.Add(Me.gbSaveFanartIn)
@@ -120,6 +125,38 @@ Partial Class frmMediaSettingsHolder
         Me.gbImages.TabIndex = 1
         Me.gbImages.TabStop = False
         Me.gbImages.Text = "Images"
+        '
+        'gbPosterLanguage
+        '
+        Me.gbPosterLanguage.Controls.Add(Me.cbPosterTMDBPref)
+        Me.gbPosterLanguage.Controls.Add(Me.lblPrefPosterLanguage)
+        Me.gbPosterLanguage.Location = New System.Drawing.Point(165, 97)
+        Me.gbPosterLanguage.Name = "gbPosterLanguage"
+        Me.gbPosterLanguage.Size = New System.Drawing.Size(160, 74)
+        Me.gbPosterLanguage.TabIndex = 6
+        Me.gbPosterLanguage.TabStop = False
+        Me.gbPosterLanguage.Text = "Poster Language:"
+        '
+        'cbPosterTMDBPref
+        '
+        Me.cbPosterTMDBPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbPosterTMDBPref.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.cbPosterTMDBPref.FormattingEnabled = True
+        Me.cbPosterTMDBPref.Items.AddRange(New Object() {"bg", "cs", "da", "de", "el", "en", "es", "fi", "fr", "he", "hu", "it", "nb", "nl", "no", "pl", "pt", "ru", "sk", "sv", "ta", "tr", "uk", "vi", "xx", "zh"})
+        Me.cbPosterTMDBPref.Location = New System.Drawing.Point(20, 42)
+        Me.cbPosterTMDBPref.Name = "cbPosterTMDBPref"
+        Me.cbPosterTMDBPref.Size = New System.Drawing.Size(121, 21)
+        Me.cbPosterTMDBPref.TabIndex = 3
+        '
+        'lblPrefPosterLanguage
+        '
+        Me.lblPrefPosterLanguage.AutoSize = True
+        Me.lblPrefPosterLanguage.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.lblPrefPosterLanguage.Location = New System.Drawing.Point(25, 21)
+        Me.lblPrefPosterLanguage.Name = "lblPrefPosterLanguage"
+        Me.lblPrefPosterLanguage.Size = New System.Drawing.Size(111, 13)
+        Me.lblPrefPosterLanguage.TabIndex = 2
+        Me.lblPrefPosterLanguage.Text = "Preferred Language:"
         '
         'gbActorThumbsSize
         '
@@ -471,6 +508,8 @@ Partial Class frmMediaSettingsHolder
         Me.pnlSettings.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbImages.ResumeLayout(False)
+        Me.gbPosterLanguage.ResumeLayout(False)
+        Me.gbPosterLanguage.PerformLayout()
         Me.gbActorThumbsSize.ResumeLayout(False)
         Me.gbExtrathumbsSize.ResumeLayout(False)
         Me.gbSaveFanartIn.ResumeLayout(False)
@@ -520,5 +559,8 @@ Partial Class frmMediaSettingsHolder
     Friend WithEvents lblPrefLanguage As System.Windows.Forms.Label
     Friend WithEvents gbActorThumbsSize As System.Windows.Forms.GroupBox
     Friend WithEvents cbActorThumbsSize As System.Windows.Forms.ComboBox
+    Friend WithEvents gbPosterLanguage As System.Windows.Forms.GroupBox
+    Friend WithEvents cbPosterTMDBPref As System.Windows.Forms.ComboBox
+    Friend WithEvents lblPrefPosterLanguage As System.Windows.Forms.Label
 
 End Class

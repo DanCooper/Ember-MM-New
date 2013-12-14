@@ -201,7 +201,8 @@ Public Class EmberTMDBScraperModule
 		_setupPost.cbEnabled.Checked = _PostScraperEnabled
 		_setupPost.chkTrailerIMDB.Checked = _MySettings.UseIMDBTrailer
 		_setupPost.chkTrailerTMDB.Checked = _MySettings.UseTMDBTrailer
-		_setupPost.cbTrailerTMDBPref.Text = _MySettings.UseTMDBTrailerPref
+        _setupPost.cbTrailerTMDBPref.Text = _MySettings.UseTMDBTrailerPref
+        _setupPost.cbPosterTMDBPref.Text = _MySettings.UseTMDBPosterPref
 		_setupPost.chkTrailerTMDBXBMC.Checked = _MySettings.UseTMDBTrailerXBMC
 		_setupPost.chkScrapePoster.Checked = ConfigScrapeModifier.Poster
 		_setupPost.chkScrapeFanart.Checked = ConfigScrapeModifier.Fanart
@@ -334,6 +335,7 @@ Public Class EmberTMDBScraperModule
         _MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
         _MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "thumb"))
         _MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
+        _MySettings.UseTMDBPosterPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBPosterPref", "en"))
 
         ConfigScrapeModifier.DoSearch = True
         ConfigScrapeModifier.Meta = True
@@ -506,6 +508,7 @@ Public Class EmberTMDBScraperModule
 
         AdvancedSettings.SetSetting("ManualETSize", _MySettings.ManualETSize.ToString)
         AdvancedSettings.SetSetting("UseTMDBTrailerPref", _MySettings.UseTMDBTrailerPref.ToString)
+        AdvancedSettings.SetSetting("UseTMDBPosterPref", _MySettings.UseTMDBPosterPref.ToString)
 
         AdvancedSettings.SetBooleanSetting("DoPoster", ConfigScrapeModifier.Poster)
         AdvancedSettings.SetBooleanSetting("DoFanart", ConfigScrapeModifier.Fanart)
@@ -529,6 +532,7 @@ Public Class EmberTMDBScraperModule
         _MySettings.TrailerTimeout = Convert.ToInt32(_setupPost.txtTimeout.Text)
         _MySettings.ManualETSize = _setupPost.cbManualETSize.Text
         _MySettings.UseTMDBTrailerPref = _setupPost.cbTrailerTMDBPref.Text
+        _MySettings.UseTMDBPosterPref = _setupPost.cbPosterTMDBPref.Text
         _MySettings.UseIMDB = _setupPost.chkUseIMDBp.Checked
         _MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
         _MySettings.UseMPDB = _setupPost.chkUseMPDB.Checked
@@ -742,7 +746,8 @@ Public Class EmberTMDBScraperModule
 		Dim UseTMDBTrailer As Boolean
 		Dim UseTMDBTrailerXBMC As Boolean
 		Dim ManualETSize As String
-		Dim UseTMDBTrailerPref As String
+        Dim UseTMDBTrailerPref As String
+        Dim UseTMDBPosterPref As String
 		Dim TMDBAPIKey As String
 		Dim FANARTTVApiKey As String
 		Dim TMDBLanguage As String

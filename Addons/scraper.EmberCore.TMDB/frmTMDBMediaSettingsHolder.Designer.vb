@@ -56,6 +56,9 @@ Partial Class frmTMDBMediaSettingsHolder
         Me.btnDown = New System.Windows.Forms.Button()
         Me.btnUp = New System.Windows.Forms.Button()
         Me.cbEnabled = New System.Windows.Forms.CheckBox()
+        Me.gbPosterLanguage = New System.Windows.Forms.GroupBox()
+        Me.cbPosterTMDBPref = New System.Windows.Forms.ComboBox()
+        Me.lblPrefPosterLanguage = New System.Windows.Forms.Label()
         Me.pnlSettings.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbImages.SuspendLayout()
@@ -67,6 +70,7 @@ Partial Class frmTMDBMediaSettingsHolder
         Me.gbSupportedSites.SuspendLayout()
         Me.gbYouTubeTrailer.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.gbPosterLanguage.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlSettings
@@ -107,6 +111,7 @@ Partial Class frmTMDBMediaSettingsHolder
         '
         'gbImages
         '
+        Me.gbImages.Controls.Add(Me.gbPosterLanguage)
         Me.gbImages.Controls.Add(Me.gbGetFanart)
         Me.gbImages.Controls.Add(Me.gbGetPoster)
         Me.gbImages.Controls.Add(Me.gbExtrathumbsSize)
@@ -454,6 +459,38 @@ Partial Class frmTMDBMediaSettingsHolder
         Me.cbEnabled.Text = "Enabled"
         Me.cbEnabled.UseVisualStyleBackColor = True
         '
+        'gbPosterLanguage
+        '
+        Me.gbPosterLanguage.Controls.Add(Me.cbPosterTMDBPref)
+        Me.gbPosterLanguage.Controls.Add(Me.lblPrefPosterLanguage)
+        Me.gbPosterLanguage.Location = New System.Drawing.Point(374, 97)
+        Me.gbPosterLanguage.Name = "gbPosterLanguage"
+        Me.gbPosterLanguage.Size = New System.Drawing.Size(160, 74)
+        Me.gbPosterLanguage.TabIndex = 97
+        Me.gbPosterLanguage.TabStop = False
+        Me.gbPosterLanguage.Text = "Poster Language:"
+        '
+        'cbPosterTMDBPref
+        '
+        Me.cbPosterTMDBPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbPosterTMDBPref.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.cbPosterTMDBPref.FormattingEnabled = True
+        Me.cbPosterTMDBPref.Items.AddRange(New Object() {"bg", "cs", "da", "de", "el", "en", "es", "fi", "fr", "he", "hu", "it", "nb", "nl", "no", "pl", "pt", "ru", "sk", "sv", "ta", "tr", "uk", "vi", "xx", "zh"})
+        Me.cbPosterTMDBPref.Location = New System.Drawing.Point(20, 42)
+        Me.cbPosterTMDBPref.Name = "cbPosterTMDBPref"
+        Me.cbPosterTMDBPref.Size = New System.Drawing.Size(121, 21)
+        Me.cbPosterTMDBPref.TabIndex = 3
+        '
+        'lblPrefPosterLanguage
+        '
+        Me.lblPrefPosterLanguage.AutoSize = True
+        Me.lblPrefPosterLanguage.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.lblPrefPosterLanguage.Location = New System.Drawing.Point(25, 21)
+        Me.lblPrefPosterLanguage.Name = "lblPrefPosterLanguage"
+        Me.lblPrefPosterLanguage.Size = New System.Drawing.Size(111, 13)
+        Me.lblPrefPosterLanguage.TabIndex = 2
+        Me.lblPrefPosterLanguage.Text = "Preferred Language:"
+        '
         'frmTMDBMediaSettingsHolder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -485,6 +522,8 @@ Partial Class frmTMDBMediaSettingsHolder
         Me.gbYouTubeTrailer.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.gbPosterLanguage.ResumeLayout(False)
+        Me.gbPosterLanguage.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -520,6 +559,9 @@ Partial Class frmTMDBMediaSettingsHolder
     Friend WithEvents chkUseIMPA As System.Windows.Forms.CheckBox
     Friend WithEvents chkTrailerIMDB As System.Windows.Forms.CheckBox
     Friend WithEvents gbGetFanart As System.Windows.Forms.GroupBox
-	Friend WithEvents chkUseFANARTTV As System.Windows.Forms.CheckBox
+    Friend WithEvents chkUseFANARTTV As System.Windows.Forms.CheckBox
+    Friend WithEvents gbPosterLanguage As System.Windows.Forms.GroupBox
+    Friend WithEvents cbPosterTMDBPref As System.Windows.Forms.ComboBox
+    Friend WithEvents lblPrefPosterLanguage As System.Windows.Forms.Label
 
 End Class

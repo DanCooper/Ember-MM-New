@@ -207,6 +207,7 @@ Public Class EmberNativeScraperModule
         _setupPost.chkTrailerIMDB.Checked = _MySettings.UseIMDBTrailer
         _setupPost.chkTrailerTMDB.Checked = _MySettings.UseTMDBTrailer
         _setupPost.cbTrailerTMDBPref.Text = _MySettings.UseTMDBTrailerPref
+        _setupPost.cbPosterTMDBPref.Text = _MySettings.UseTMDBPosterPref
         _setupPost.chkTrailerTMDBXBMC.Checked = _MySettings.UseTMDBTrailerXBMC
         _setupPost.chkScrapePoster.Checked = ConfigScrapeModifier.Poster
         _setupPost.chkScrapeFanart.Checked = ConfigScrapeModifier.Fanart
@@ -330,6 +331,7 @@ Public Class EmberNativeScraperModule
         _MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "thumb"))
         _MySettings.ActorThumbsSize = Convert.ToString(AdvancedSettings.GetSetting("ActorThumbsSize", "SY275_SX400"))
         _MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
+        _MySettings.UseTMDBPosterPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBPosterPref", "en"))
 
         ConfigScrapeModifier.DoSearch = True
         ConfigScrapeModifier.Meta = True
@@ -344,7 +346,7 @@ Public Class EmberNativeScraperModule
         'fix
         _MySettings.TMDBAPIKey = "44810eefccd9cb1fa1d57e7b0d67b08d"
         _MySettings.FallBackEng = True
-        _MySettings.TMDBLanguage = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
+        _MySettings.TMDBLanguage = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBPosterPref", "en"))
 
     End Sub
 
@@ -521,6 +523,7 @@ Public Class EmberNativeScraperModule
         AdvancedSettings.SetSetting("ManualETSize", _MySettings.ManualETSize.ToString)
         AdvancedSettings.SetSetting("ActorThumbsSize", _MySettings.ActorThumbsSize.ToString)
         AdvancedSettings.SetSetting("UseTMDBTrailerPref", _MySettings.UseTMDBTrailerPref.ToString)
+        AdvancedSettings.SetSetting("UseTMDBPosterPref", _MySettings.UseTMDBPosterPref.ToString)
 
         AdvancedSettings.SetBooleanSetting("DoPoster", ConfigScrapeModifier.Poster)
         AdvancedSettings.SetBooleanSetting("DoFanart", ConfigScrapeModifier.Fanart)
@@ -539,6 +542,7 @@ Public Class EmberNativeScraperModule
         _MySettings.ManualETSize = _setupPost.cbManualETSize.Text
         _MySettings.ActorThumbsSize = _setupPost.cbActorThumbsSize.Text
         _MySettings.UseTMDBTrailerPref = _setupPost.cbTrailerTMDBPref.Text
+        _MySettings.UseTMDBPosterPref = _setupPost.cbPosterTMDBPref.Text
         ConfigScrapeModifier.Poster = _setupPost.chkScrapePoster.Checked
         ConfigScrapeModifier.Fanart = _setupPost.chkScrapeFanart.Checked
         SaveSettings()
@@ -745,6 +749,7 @@ Public Class EmberNativeScraperModule
         Dim ManualETSize As String
         Dim ActorThumbsSize As String
         Dim UseTMDBTrailerPref As String
+        Dim UseTMDBPosterPref As String
         Dim CountryFull As Boolean
 
         'fix

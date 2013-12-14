@@ -169,6 +169,10 @@ Public Class frmMediaSettingsHolder
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
+    Private Sub cbPosterTMDBPref_SelectedIndexChanged(ByVal sender As System.Object, e As System.EventArgs) Handles cbPosterTMDBPref.SelectedIndexChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
+
 #End Region 'Methods
 
 End Class
