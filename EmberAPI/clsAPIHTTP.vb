@@ -231,7 +231,6 @@ Public Class HTTP
 
 	Public Function DownloadFile(ByVal URL As String, ByVal LocalFile As String, ByVal ReportUpdate As Boolean, ByVal Type As String) As String
 		Dim outFile As String = String.Empty
-        Dim urlExt As String = String.Empty
         Dim urlExtWeb As String = String.Empty
 
 		Me._cancel = False
@@ -250,11 +249,6 @@ Public Class HTTP
 				Me.wrRequest.Proxy = wProxy
 			End If
 
-            Try
-                urlExt = Path.GetExtension(URL)
-            Catch
-            End Try
-
             Using wrResponse As HttpWebResponse = DirectCast(Me.wrRequest.GetResponse(), HttpWebResponse)
                 urlExtWeb = "." & wrResponse.ContentType.Replace("video/", String.Empty).Trim
                 Select Case True
@@ -263,7 +257,7 @@ Public Class HTTP
                             outFile = Path.Combine(Directory.GetParent(LocalFile).FullName, String.Concat(Path.GetFileNameWithoutExtension(LocalFile), If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), urlExtWeb))
                         ElseIf Master.eSettings.MovieNameNFOStack Then
                             Dim LocalFileStack As String = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(LocalFile))
-                            outFile = String.Concat(Directory.GetParent(LocalFile).FullName, "\", LocalFileStack, If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), Path.GetExtension(URL))
+                            outFile = String.Concat(Directory.GetParent(LocalFile).FullName, "\", LocalFileStack, If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), urlExtWeb)
                         Else
                             outFile = Path.Combine(Directory.GetParent(LocalFile).FullName, String.Concat(Path.GetFileNameWithoutExtension(LocalFile), If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), urlExtWeb))
                         End If
